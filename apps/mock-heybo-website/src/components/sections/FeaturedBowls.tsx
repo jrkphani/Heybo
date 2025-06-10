@@ -1,42 +1,85 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Star, Clock, Flame } from 'lucide-react'
 
 const featuredBowls = [
   {
     id: 1,
-    name: 'Protein Power Bowl',
-    description: 'Quinoa base with grilled chicken, roasted vegetables, and tahini dressing',
+    name: 'Kampong Table',
+    description: 'Roasted lemongrass chicken, mixed grains, basil tofu, onsen egg, oriental cabbage salad, lime wedge with Purple Sweet Potato Dip & Green Goddess',
     price: 16.90,
     rating: 4.8,
     prepTime: '6 mins',
     isPopular: true,
-    tags: ['High Protein', 'Gluten-Free'],
-    calories: 520,
+    tags: ['High Protein', 'Asian Fusion'],
+    calories: 1048,
     protein: '35g',
+    image: '/food/kampong-table.png',
   },
   {
     id: 2,
-    name: 'Mediterranean Delight',
-    description: 'Brown rice with falafel, hummus, cucumber, tomatoes, and tzatziki',
+    name: 'Spice Trade',
+    description: 'Falafels, cauliflower lentil rice, fried eggplant, spiced chickpeas, carrot salad, soya crisps with Red Pepper Dip & Tzatziki',
     price: 15.50,
     rating: 4.7,
     prepTime: '5 mins',
     isPopular: false,
-    tags: ['Vegetarian', 'Fresh'],
-    calories: 480,
+    tags: ['Vegetarian', 'Mediterranean'],
+    calories: 661,
     protein: '18g',
+    image: '/food/spice-trade.png',
   },
   {
     id: 3,
-    name: 'Spicy Korean Bowl',
-    description: 'Jasmine rice with Korean beef, kimchi, edamame, and gochujang sauce',
+    name: 'Sunday Roast',
+    description: 'Char-grilled steak, tri-colour quinoa, roasted pumpkin wedge, charred corn, tomato salad, garlic breadcrumbs with Red Pepper Dip & Balsamic Butter',
     price: 17.90,
     rating: 4.9,
     prepTime: '7 mins',
     isPopular: true,
-    tags: ['Spicy', 'Bold Flavors'],
-    calories: 580,
+    tags: ['High Protein', 'Hearty'],
+    calories: 785,
     protein: '32g',
+    image: '/food/sunday-roast.png',
+  },
+  {
+    id: 4,
+    name: 'Shibuya Nights',
+    description: 'Baked salmon, green soba, onsen egg, grilled mushrooms, oriental cabbage salad, furikake with Avocado Edamame Dip & Beetroot Miso',
+    price: 16.50,
+    rating: 4.8,
+    prepTime: '6 mins',
+    isPopular: false,
+    tags: ['Omega-3', 'Japanese'],
+    calories: 592,
+    protein: '28g',
+    image: '/food/shibuya-nights.png',
+  },
+  {
+    id: 5,
+    name: 'Gochu-Pop',
+    description: 'Sweet potato noodles, gochujang chicken, charred corn, grilled mushrooms, carrot salad, radish pickles with Avocado Edamame Dip & Black Garlic Vinaigrette',
+    price: 17.20,
+    rating: 4.9,
+    prepTime: '7 mins',
+    isPopular: true,
+    tags: ['Spicy', 'Korean'],
+    calories: 768,
+    protein: '30g',
+    image: '/food/gochu-pop.png',
+  },
+  {
+    id: 6,
+    name: 'Muscle Beach',
+    description: 'Sous-vide chicken breast, tri-colour quinoa, charred broccoli, carrot salad, avocado, mixed seeds with Purple Sweet Potato Dip & Yuzu Soy',
+    price: 18.50,
+    rating: 4.9,
+    prepTime: '6 mins',
+    isPopular: true,
+    tags: ['High Protein', 'Fitness'],
+    calories: 814,
+    protein: '45g',
+    image: '/food/muscle-beach.png',
   },
 ]
 
@@ -61,11 +104,14 @@ export default function FeaturedBowls() {
             <div key={bowl.id} className="bowl-card group">
               {/* Bowl Image */}
               <div className="relative mb-6">
-                <div className="w-full h-48 bg-gradient-to-br from-brown-200 via-brown-300 to-brown-400 rounded-xl flex items-center justify-center">
-                  <div className="text-center text-brown-700">
-                    <span className="text-4xl mb-2 block">🍲</span>
-                    <p className="text-sm font-medium">{bowl.name}</p>
-                  </div>
+                <div className="w-full h-48 bg-gray-100 rounded-xl overflow-hidden">
+                  <Image
+                    src={bowl.image}
+                    alt={bowl.name}
+                    width={400}
+                    height={300}
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
                 
                 {/* Popular badge */}

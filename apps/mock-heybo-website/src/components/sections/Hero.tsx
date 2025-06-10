@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowRight, Sparkles, Clock, Heart } from 'lucide-react'
 
 export default function Hero() {
@@ -85,23 +86,36 @@ export default function Hero() {
           {/* Hero Image */}
           <div className="relative animate-slide-up">
             <div className="relative">
-              {/* Main bowl image placeholder */}
-              <div className="w-full h-96 lg:h-[500px] bg-gradient-to-br from-brown-200 via-brown-300 to-brown-400 rounded-3xl shadow-large flex items-center justify-center">
-                <div className="text-center text-brown-700">
-                  <div className="w-24 h-24 mx-auto mb-4 bg-brown-500 rounded-full flex items-center justify-center">
-                    <span className="text-3xl">🍲</span>
-                  </div>
-                  <p className="text-lg font-medium">Delicious Grain Bowl</p>
-                  <p className="text-sm opacity-75">Image placeholder</p>
-                </div>
+              {/* Main bowl image */}
+              <div className="w-full h-96 lg:h-[500px] bg-gray-100 rounded-3xl shadow-large overflow-hidden">
+                <Image
+                  src="/food/kampong-table.png"
+                  alt="HeyBo Signature Bowl"
+                  width={600}
+                  height={500}
+                  className="w-full h-full object-cover"
+                  priority
+                />
               </div>
-              
-              {/* Floating elements */}
-              <div className="absolute -top-4 -right-4 w-20 h-20 bg-secondary-400 rounded-2xl shadow-medium flex items-center justify-center animate-pulse-soft">
-                <span className="text-2xl">🥗</span>
+
+              {/* Floating bowl images */}
+              <div className="absolute -top-4 -right-4 w-20 h-20 bg-white rounded-2xl shadow-medium overflow-hidden animate-pulse-soft">
+                <Image
+                  src="/food/spice-trade.png"
+                  alt="Spice Trade Bowl"
+                  width={80}
+                  height={80}
+                  className="w-full h-full object-cover"
+                />
               </div>
-              <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-green-400 rounded-xl shadow-medium flex items-center justify-center animate-pulse-soft">
-                <span className="text-xl">🌱</span>
+              <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-white rounded-xl shadow-medium overflow-hidden animate-pulse-soft">
+                <Image
+                  src="/food/muscle-beach.png"
+                  alt="Muscle Beach Bowl"
+                  width={64}
+                  height={64}
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
           </div>

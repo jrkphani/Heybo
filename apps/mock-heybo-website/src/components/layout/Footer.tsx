@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Facebook, Instagram, Twitter, Mail, Phone, MapPin } from 'lucide-react'
 
 const footerLinks = {
@@ -43,11 +44,14 @@ export default function Footer() {
           {/* Brand Section */}
           <div className="lg:col-span-2 space-y-6">
             {/* Logo */}
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">H</span>
-              </div>
-              <span className="text-xl font-bold">HeyBo</span>
+            <div className="flex items-center">
+              <Image
+                src="/brand/heybo-logo.png"
+                alt="HeyBo"
+                width={120}
+                height={40}
+                className="h-8 w-auto brightness-0 invert"
+              />
             </div>
             
             {/* Description */}
