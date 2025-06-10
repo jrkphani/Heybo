@@ -66,9 +66,10 @@ This design system serves as the comprehensive guide for HeyBo's visual identity
 
 **Widget Responsive Behavior:**
 
-- **Desktop (1024px+):** Fixed bottom-right position, 400px width, up to 600px height
-- **Tablet (640-1023px):** Adaptive positioning, 360px width, adjustable height
-- **Mobile (<640px):** Full-screen overlay when opened, slide-up animation
+- **XL Desktop (1280px+):** Fixed bottom-right position, ~60% viewport width, up to 85% viewport height
+- **Large Desktop (1024-1279px):** Fixed bottom-right position, ~95% viewport width, up to 90% viewport height
+- **Tablet (768-1023px):** Fixed bottom-right position, ~95% viewport width, up to 90% viewport height
+- **Mobile (<768px):** Full-screen overlay when opened, 100% viewport coverage
 
 **Website Integration Guidelines:**
 
@@ -83,24 +84,24 @@ This design system serves as the comprehensive guide for HeyBo's visual identity
 
 | Device | Widget Width | Content Grid | Padding | Scroll Behavior |
 |---------|--------------|--------------|---------|----------------|
-| Mobile | 100vw | Single column | 16px | Full scroll |
-| Tablet | 360px | Single column | 20px | Internal scroll |
-| Desktop | 400px | Single column | 24px | Internal scroll |
-| Large Desktop | 400px | Single column | 24px | Internal scroll |
+| Mobile (<768px) | 100vw | Single column | 16px | Full scroll |
+| Tablet (768-1023px) | ~95vw | Single column | 20px | Internal scroll |
+| Large Desktop (1024-1279px) | ~95vw | Single column | 24px | Internal scroll |
+| XL Desktop (1280px+) | ~60vw | Single column | 24px | Internal scroll |
 
 ### 2.4 Responsive Breakpoints - Widget Focused
 
 ```css
 /* Chatbot Widget Responsive Strategy */
-$widget-mobile: 320px;    /* Full-screen overlay */
-$widget-tablet: 640px;    /* Fixed-width sidebar */
-$widget-desktop: 1024px;  /* Corner widget */
-$widget-wide: 1280px;     /* Enhanced corner widget */
+$widget-mobile: 768px;    /* Full-screen overlay */
+$widget-tablet: 1024px;   /* Large coverage widget */
+$widget-desktop: 1280px;  /* Enhanced coverage widget */
+$widget-xl: 1280px;       /* Optimal coverage widget */
 
 /* Widget positioning variables */
---widget-mobile-position: fixed bottom-0 left-0 right-0;
---widget-tablet-position: fixed bottom-4 right-4;
---widget-desktop-position: fixed bottom-6 right-6;
+--widget-mobile-position: fixed top-0 left-0 right-0 bottom-0;
+--widget-tablet-position: fixed with responsive coverage;
+--widget-desktop-position: fixed with responsive coverage;
 --widget-z-index: 1000; /* Above website content */
 ```
 
@@ -177,9 +178,9 @@ Natural, healthy, fresh ingredients
 | green-800 | #166534 | - | Dark success |
 | green-900 | #14532D | - | Deepest green |
 
-#### Bright Blue (Accent)
+#### Bright Blue (Accent) - Optional
 
-Trust, reliability, freshness
+Trust, reliability, freshness (used sparingly for information states)
 
 | Token | Hex | Pantone | Usage |
 |-------|-----|---------|-------|
@@ -188,11 +189,13 @@ Trust, reliability, freshness
 | blue-200 | #BFDBFE | - | Info hover |
 | blue-300 | #93C5FD | - | Info active |
 | blue-400 | #60A5FA | - | Info elements |
-| **blue-500** | **#3B82F6** | **Blue 2925** | **Information** |
+| **blue-500** | **#3B82F6** | **Blue 2925** | **Information (optional)** |
 | blue-600 | #2563EB | - | Info hover |
 | blue-700 | #1D4ED8 | - | Info active |
 | blue-800 | #1E40AF | - | Dark info |
 | blue-900 | #1E3A8A | - | Deepest blue |
+
+*Note: Blue accent is optional and primarily used for informational states. The core HeyBo experience relies on the warm orange/yellow/brown/green palette.*
 
 ### 3.2 Supporting Brand Colors
 
@@ -217,10 +220,13 @@ Representing grain bowls, warmth, and comfort
 
 ```css
 /* Status Colors - HeyBo Brand Aligned */
---color-success: #22C55E;   /* Fresh green */
---color-warning: #F59E0B;   /* Vibrant yellow */
---color-error: #DC2626;     /* Red (not primary brand) */
---color-info: #3B82F6;      /* Bright blue */
+--color-success: #22C55E;   /* Fresh green - healthy ingredients */
+--color-warning: #F59E0B;   /* Vibrant yellow - attention needed */
+--color-error: #DC2626;     /* Red - error states only */
+--color-healthy: #22C55E;   /* Healthy ingredient indicator */
+--color-spicy: #DC2626;     /* Spice level indicator */
+--color-grain: #A16B47;     /* Bowl/grain representation */
+--color-premium: #F59E0B;   /* Premium ingredient indicator */
 
 /* With light/dark variants */
 --color-success-light: #DCFCE7;
@@ -232,6 +238,8 @@ Representing grain bowls, warmth, and comfort
 --color-error-light: #FEE2E2;
 --color-error-dark: #991B1B;
 
+/* Note: Blue info color is optional - HeyBo primarily uses warm palette */
+--color-info: #3B82F6;      /* Optional: Bright blue for information */
 --color-info-light: #DBEAFE;
 --color-info-dark: #1E3A8A;
 ```
@@ -271,16 +279,19 @@ Representing grain bowls, warmth, and comfort
 ### 4.1 Font Stack
 
 ```css
-/* Primary Font Family - Friendly and Modern */
---font-sans: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 
+/* Primary Font Family - Inherits from HeyBo Website */
+--font-sans: inherit; /* Inherits from parent HeyBo website for consistency */
+
+/* Fallback Font Stack (when inherit is not available) */
+--font-fallback: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont,
+                 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+/* LULU Branding Font - Specific for chatbot assistant name */
+--font-lulu: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont,
              'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 
-/* Accent Font for Headlines */
---font-display: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 
-                'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-
 /* Monospace for Order IDs and Data */
---font-mono: 'JetBrains Mono', 'SF Mono', Monaco, 'Cascadia Code', 
+--font-mono: 'JetBrains Mono', 'SF Mono', Monaco, 'Cascadia Code',
              'Roboto Mono', Consolas, monospace;
 ```
 
@@ -368,32 +379,45 @@ Representing grain bowls, warmth, and comfort
   position: fixed;
   z-index: var(--widget-z-index);
   font-family: inherit; /* Inherit from parent website */
-  
+
   /* Mobile: Full overlay */
-  @media (max-width: 639px) {
-    bottom: 0;
+  @media (max-width: 767px) {
+    top: 0;
     left: 0;
     right: 0;
+    bottom: 0;
+    width: 100vw;
     height: 100vh;
     border-radius: 0;
   }
-  
-  /* Tablet & Desktop: Corner widget */
-  @media (min-width: 640px) {
-    bottom: 20px;
-    right: 20px;
-    width: 380px;
-    max-height: 600px;
-    border-radius: 16px;
+
+  /* Tablet: Large coverage */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    width: 95vw;
+    height: 90vh;
+    max-width: 95vw;
+    max-height: 90vh;
+    border-radius: 20px;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
                 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   }
-  
-  /* Large Desktop: Enhanced positioning */
+
+  /* Large Desktop: Large coverage */
+  @media (min-width: 1024px) and (max-width: 1279px) {
+    width: 95vw;
+    height: 90vh;
+    max-width: 95vw;
+    max-height: 90vh;
+    border-radius: 20px;
+  }
+
+  /* XL Desktop: Optimal coverage */
   @media (min-width: 1280px) {
-    bottom: 32px;
-    right: 32px;
-    width: 400px;
+    width: 60vw;
+    height: 85vh;
+    max-width: 60vw;
+    max-height: 85vh;
+    border-radius: 20px;
   }
 }
 ```
@@ -1135,39 +1159,51 @@ Representing grain bowls, warmth, and comfort
   /* Base styles that inherit from parent */
   font-family: inherit;
   color: inherit;
-  
-  /* Responsive behavior */
-  @media (max-width: 639px) {
-    /* Mobile: Take full screen when active */
+
+  /* Responsive behavior - Covers significant screen real estate for optimal UX */
+  @media (max-width: 767px) {
+    /* Mobile: Full screen overlay */
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
+    width: 100vw;
+    height: 100vh;
     z-index: 9999;
     background: white;
   }
-  
-  @media (min-width: 640px) and (max-width: 1023px) {
-    /* Tablet: Fixed corner position */
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    /* Tablet: Large coverage for better interaction */
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 360px;
-    max-height: 500px;
+    width: 95vw;
+    height: 90vh;
+    max-width: 95vw;
+    max-height: 90vh;
     z-index: 1000;
   }
-  
-  @media (min-width: 1024px) {
-    /* Desktop: Enhanced corner widget */
+
+  @media (min-width: 1024px) and (max-width: 1279px) {
+    /* Large Desktop: Large coverage */
     position: fixed;
-    bottom: 32px;
-    right: 32px;
-    width: 400px;
-    max-height: 600px;
+    width: 95vw;
+    height: 90vh;
+    max-width: 95vw;
+    max-height: 90vh;
     z-index: 1000;
   }
-  
+
+  @media (min-width: 1280px) {
+    /* XL Desktop: Optimal coverage */
+    position: fixed;
+    width: 60vw;
+    height: 85vh;
+    max-width: 60vw;
+    max-height: 85vh;
+    z-index: 1000;
+  }
+
   /* Avoid conflicts with HeyBo's existing modals */
   &[data-mobile-fullscreen="true"] {
     z-index: 10000;
@@ -1403,18 +1439,21 @@ export const heyboTokens = {
       success: '#22C55E',      // Fresh, healthy
       warning: '#F59E0B',      // Attention needed
       error: '#DC2626',        // Error states
-      info: '#3B82F6',         // Information
+      healthy: '#22C55E',      // Healthy ingredient indicator
       spicy: '#DC2626',        // Spice level indicator
-      vegetarian: '#22C55E',   // Dietary indicator
+      grain: '#A16B47',        // Bowl/grain representation
       premium: '#F59E0B',      // Premium ingredients
+      // Optional: Blue for information (used sparingly)
+      info: '#3B82F6',         // Information states (optional)
     },
   },
   
-  // Typography - Food Service Optimized
+  // Typography - Food Service Optimized (Inherits from HeyBo website)
   typography: {
     fontFamily: {
-      sans: ['Inter', 'sans-serif'],
-      display: ['Inter', 'sans-serif'],
+      sans: 'inherit', // Inherits from parent HeyBo website
+      fallback: ['Inter', 'sans-serif'], // Fallback when inherit unavailable
+      lulu: ['Inter', 'sans-serif'], // Specific for LULU branding
       mono: ['JetBrains Mono', 'monospace'],
     },
     fontSize: {
@@ -1530,9 +1569,10 @@ export const heyboTokens = {
 
 ### Breakpoints
 
-- **Mobile:** < 640px (phone ordering)
-- **Tablet:** 640px - 1023px (tablet browsing)
-- **Desktop:** 1024px+ (kiosk/counter)
+- **Mobile:** < 768px (phone ordering - full screen)
+- **Tablet:** 768px - 1023px (tablet browsing - 95% coverage)
+- **Large Desktop:** 1024px - 1279px (laptop/desktop - 95% coverage)
+- **XL Desktop:** 1280px+ (large monitors - 60% coverage)
 
 ### Chatbot-Specific
 

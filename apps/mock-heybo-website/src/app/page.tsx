@@ -2,30 +2,30 @@ import { Metadata } from 'next'
 import Header from '@/components/layout/Header'
 import Hero from '@/components/sections/Hero'
 import FeaturedBowls from '@/components/sections/FeaturedBowls'
-import WhyHeyBo from '@/components/sections/WhyHeyBo'
 import Footer from '@/components/layout/Footer'
+import { ChatbotWidget } from '@/components/ChatbotWidget'
 
 export const metadata: Metadata = {
-  title: 'HeyBo - Warm Grain Bowls | Fresh, Bold, Wholesome',
-  description: 'Discover HeyBo\'s signature warm grain bowls. Customizable, protein-packed, and made with fresh ingredients. Order online for pickup or delivery.',
+  title: 'Tokyo Yokocho - Premium Japanese Street Food | Singapore',
+  description: 'Experience authentic Japanese street food with bold flavors and fresh ingredients. Premium food from Singapore.',
 }
 
 export default function HomePage() {
   return (
     <>
       <Header />
-      
+
       {/* Hero Section */}
       <Hero />
-      
+
       {/* Featured Bowls Section */}
       <FeaturedBowls />
-      
-      {/* Why HeyBo Section */}
-      <WhyHeyBo />
-      
+
       {/* Footer */}
       <Footer />
+
+      {/* HeyBo Chatbot Widget */}
+      <ChatbotWidget />
     </>
   )
 }

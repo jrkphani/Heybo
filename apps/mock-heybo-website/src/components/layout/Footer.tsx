@@ -37,7 +37,7 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-gradient-to-r from-orange-600 to-orange-700 text-white">
       {/* Main Footer */}
       <div className="container py-16">
         <div className="grid lg:grid-cols-5 gap-8">
@@ -45,37 +45,31 @@ export default function Footer() {
           <div className="lg:col-span-2 space-y-6">
             {/* Logo */}
             <div className="flex items-center">
-              <Image
-                src="/brand/heybo-logo.png"
-                alt="HeyBo"
-                width={120}
-                height={40}
-                className="h-8 w-auto brightness-0 invert"
-              />
+              <h2 className="text-2xl font-bold text-white">TOKYO YOKOCHO</h2>
             </div>
-            
+
             {/* Description */}
-            <p className="text-gray-400 leading-relaxed max-w-md">
-              Fresh, bold, and wholesome grain bowls made your way. 
-              We're committed to providing nutritious meals that fuel your body and satisfy your taste buds.
+            <p className="text-orange-100 leading-relaxed max-w-md">
+              Premium Japanese street food experience with authentic flavors and fresh ingredients.
+              Bringing the taste of Tokyo to Singapore.
             </p>
             
             {/* Contact Info */}
-            <div className="space-y-3 text-sm text-gray-400">
+            <div className="space-y-3 text-sm text-orange-100">
               <div className="flex items-center space-x-3">
-                <Phone className="w-4 h-4 text-primary-500" />
+                <Phone className="w-4 h-4 text-yellow-300" />
                 <span>+65 6123 4567</span>
               </div>
               <div className="flex items-center space-x-3">
-                <Mail className="w-4 h-4 text-primary-500" />
-                <span>hello@heybo.sg</span>
+                <Mail className="w-4 h-4 text-yellow-300" />
+                <span>hello@tokyoyokocho.sg</span>
               </div>
               <div className="flex items-center space-x-3">
-                <MapPin className="w-4 h-4 text-primary-500" />
-                <span>15+ locations across Singapore</span>
+                <MapPin className="w-4 h-4 text-yellow-300" />
+                <span>Multiple locations across Singapore</span>
               </div>
             </div>
-            
+
             {/* Social Links */}
             <div className="flex items-center space-x-4">
               {socialLinks.map((social) => {
@@ -84,7 +78,7 @@ export default function Footer() {
                   <Link
                     key={social.name}
                     href={social.href}
-                    className="w-10 h-10 bg-gray-800 hover:bg-primary-600 rounded-lg flex items-center justify-center transition-colors duration-200"
+                    className="w-10 h-10 bg-orange-500 hover:bg-yellow-500 rounded-lg flex items-center justify-center transition-colors duration-200"
                     aria-label={social.name}
                   >
                     <Icon className="w-5 h-5" />
@@ -119,7 +113,7 @@ export default function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-gray-400 hover:text-primary-400 transition-colors duration-200"
+                    className="text-orange-100 hover:text-yellow-300 transition-colors duration-200"
                   >
                     {link.name}
                   </Link>
@@ -136,7 +130,7 @@ export default function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-gray-400 hover:text-primary-400 transition-colors duration-200"
+                    className="text-orange-100 hover:text-yellow-300 transition-colors duration-200"
                   >
                     {link.name}
                   </Link>
@@ -148,21 +142,21 @@ export default function Footer() {
       </div>
       
       {/* Bottom Footer */}
-      <div className="border-t border-gray-800">
+      <div className="border-t border-orange-500">
         <div className="container py-6">
           <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
             {/* Copyright */}
-            <div className="text-sm text-gray-400">
-              © 2024 HeyBo. All rights reserved. | Mock website for development purposes.
+            <div className="text-sm text-orange-100">
+              © 2024 Tokyo Yokocho. All rights reserved. | Mock website for development purposes.
             </div>
-            
+
             {/* Legal Links */}
             <div className="flex items-center space-x-6 text-sm">
               {footerLinks.legal.map((link) => (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="text-gray-400 hover:text-primary-400 transition-colors duration-200"
+                  className="text-orange-100 hover:text-yellow-300 transition-colors duration-200"
                 >
                   {link.name}
                 </Link>

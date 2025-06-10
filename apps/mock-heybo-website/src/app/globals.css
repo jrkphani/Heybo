@@ -160,32 +160,64 @@
   .text-balance {
     text-wrap: balance;
   }
-  
+
   .gradient-primary {
     background: linear-gradient(135deg, var(--orange-500) 0%, var(--orange-600) 100%);
   }
-  
+
   .gradient-secondary {
     background: linear-gradient(135deg, var(--yellow-500) 0%, var(--orange-500) 100%);
   }
-  
+
   .gradient-warm {
     background: linear-gradient(to bottom, #FAF9F7, #FEFDFB);
   }
-  
+
+  /* Text stroke effect for Tokyo Yokocho style */
+  .text-stroke-black {
+    -webkit-text-stroke: 3px #000;
+    text-stroke: 3px #000;
+    color: transparent;
+  }
+
+  .text-stroke-white {
+    -webkit-text-stroke: 2px #fff;
+    text-stroke: 2px #fff;
+  }
+
   /* Animation utilities */
   .animate-fade-in {
     animation: fadeIn 0.5s ease-in-out;
   }
-  
+
   .animate-slide-up {
     animation: slideUp 0.3s ease-out;
   }
-  
+
+  .animate-pulse-soft {
+    animation: pulseSoft 2s ease-in-out infinite;
+  }
+
   /* Chatbot widget namespace - prevent conflicts */
   .heybo-chatbot-widget {
     /* All chatbot styles will be prefixed with this class */
     font-family: inherit;
     z-index: 1000;
   }
+}
+
+/* Keyframes */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseSoft {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
 }

@@ -85,26 +85,38 @@ const featuredBowls = [
 
 export default function FeaturedBowls() {
   return (
-    <section className="section bg-white">
+    <section className="section bg-gradient-to-b from-orange-50 to-white">
       <div className="container">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Signature Bowls
+          <h2 className="text-4xl md:text-5xl font-bold text-orange-600 mb-4">
+            SEASONAL BO!
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Our chef-crafted favorites, loved by thousands. Each bowl is perfectly balanced 
-            with fresh ingredients and bold flavors.
+            Click on each item to view the nutritional information.
           </p>
+
+          {/* Filter buttons */}
+          <div className="flex flex-wrap justify-center gap-4 mt-8">
+            <button className="px-6 py-2 bg-orange-500 text-white rounded-full font-medium hover:bg-orange-600 transition-colors">
+              All categories
+            </button>
+            <button className="px-6 py-2 bg-gray-100 text-gray-700 rounded-full font-medium hover:bg-gray-200 transition-colors">
+              Drinks
+            </button>
+            <button className="px-6 py-2 bg-orange-500 text-white rounded-full font-medium hover:bg-orange-600 transition-colors">
+              Bowl
+            </button>
+          </div>
         </div>
 
-        {/* Bowls Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {featuredBowls.map((bowl) => (
-            <div key={bowl.id} className="bowl-card group">
+        {/* Bowls Grid - Only show first 2 bowls to match the design */}
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-12">
+          {featuredBowls.slice(0, 2).map((bowl, index) => (
+            <div key={bowl.id} className="bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
               {/* Bowl Image */}
-              <div className="relative mb-6">
-                <div className="w-full h-48 bg-gray-100 rounded-xl overflow-hidden">
+              <div className="relative">
+                <div className="w-full h-64 bg-gray-100 overflow-hidden">
                   <Image
                     src={bowl.image}
                     alt={bowl.name}
@@ -113,79 +125,74 @@ export default function FeaturedBowls() {
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                   />
                 </div>
-                
-                {/* Popular badge */}
-                {bowl.isPopular && (
-                  <div className="absolute top-3 left-3 bg-primary-500 text-white px-3 py-1 rounded-full text-xs font-medium flex items-center space-x-1">
-                    <Flame className="w-3 h-3" />
-                    <span>Popular</span>
-                  </div>
-                )}
-                
-                {/* Quick add button */}
-                <button className="absolute top-3 right-3 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-white">
-                  <span className="text-lg">+</span>
-                </button>
+
+                {/* NEW badge */}
+                <div className="absolute top-4 right-4 bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-bold">
+                  NEW
+                </div>
               </div>
 
               {/* Bowl Info */}
-              <div className="space-y-4">
+              <div className="p-6">
                 {/* Name and Rating */}
-                <div className="flex items-start justify-between">
-                  <h3 className="font-semibold text-gray-900 text-lg leading-tight">
-                    {bowl.name}
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="font-bold text-gray-900 text-xl">
+                    {index === 0 ? 'Tori Sasaki' : 'Una Umai'}
                   </h3>
-                  <div className="flex items-center space-x-1 text-sm text-gray-600">
-                    <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                    <span>{bowl.rating}</span>
+                  <div className="flex items-center space-x-1">
+                    <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                    <span className="font-medium">{index === 0 ? '4.5' : '3.7'}</span>
                   </div>
+                </div>
+
+                {/* Allergen info */}
+                <div className="flex items-center space-x-2 mb-4">
+                  <div className="flex items-center space-x-1">
+                    <div className="w-4 h-4 bg-green-500 rounded-full"></div>
+                    <div className="w-4 h-4 bg-orange-500 rounded-full"></div>
+                    <div className="w-4 h-4 bg-red-500 rounded-full"></div>
+                  </div>
+                  <span className="text-sm text-gray-600">1 allergen</span>
                 </div>
 
                 {/* Description */}
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  {bowl.description}
+                <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                  {bowl.description.substring(0, 100)}...
                 </p>
 
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2">
-                  {bowl.tags.map((tag) => (
-                    <span key={tag} className="ingredient-tag">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Nutrition Info */}
-                <div className="flex items-center justify-between text-xs text-gray-500">
-                  <div className="flex items-center space-x-4">
-                    <span>{bowl.calories} cal</span>
-                    <span>{bowl.protein} protein</span>
-                  </div>
-                  <div className="flex items-center space-x-1">
-                    <Clock className="w-3 h-3" />
-                    <span>{bowl.prepTime}</span>
-                  </div>
-                </div>
-
-                {/* Price and CTA */}
-                <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                  <span className="price-tag">
-                    ${bowl.price.toFixed(2)}
+                {/* Price */}
+                <div className="text-right">
+                  <span className="text-2xl font-bold text-gray-900">
+                    {index === 0 ? '45.5' : '37.4'}
                   </span>
-                  <button className="btn btn-primary btn-sm">
-                    Add to Cart
-                  </button>
                 </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* View All CTA */}
-        <div className="text-center">
-          <Link href="/menu" className="btn btn-outline btn-lg">
-            View All Bowls
-          </Link>
+        {/* Nutritional Calculator Section */}
+        <div className="bg-gradient-to-r from-orange-400 to-yellow-400 rounded-3xl p-8 md:p-12 text-center text-white">
+          <h3 className="text-3xl md:text-4xl font-bold mb-4">
+            NUTRITIONAL CALCULATOR
+          </h3>
+          <p className="text-lg mb-8 opacity-90">
+            Calculate the nutritional value of your custom bowl
+          </p>
+          <div className="relative max-w-2xl mx-auto">
+            <Image
+              src="/food/sunday-roast.png"
+              alt="Nutritional Calculator Bowl"
+              width={600}
+              height={300}
+              className="w-full h-48 object-cover rounded-2xl shadow-lg"
+            />
+            <div className="absolute inset-0 bg-black/20 rounded-2xl flex items-center justify-center">
+              <button className="bg-white text-orange-600 px-8 py-3 rounded-full font-bold text-lg hover:bg-yellow-100 transition-colors">
+                Try Calculator
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </section>

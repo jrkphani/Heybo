@@ -4,118 +4,102 @@ import { ArrowRight, Sparkles, Clock, Heart } from 'lucide-react'
 
 export default function Hero() {
   return (
-    <section className="relative bg-gradient-warm overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary-50 via-secondary-50 to-green-50 opacity-60" />
-      <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-primary rounded-full opacity-10 transform translate-x-32 -translate-y-32" />
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-secondary rounded-full opacity-10 transform -translate-x-16 translate-y-16" />
-      
+    <section className="relative bg-gradient-to-br from-orange-400 via-orange-500 to-yellow-400 overflow-hidden min-h-[600px]">
+      {/* Background decoration with brush strokes */}
+      <div className="absolute inset-0 bg-gradient-to-br from-orange-300/20 via-yellow-300/20 to-orange-400/20" />
+
+      {/* Brush stroke effects */}
+      <div className="absolute top-0 right-0 w-full h-full">
+        <svg className="w-full h-full" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M200 100 Q400 50 600 150 Q700 200 800 100" stroke="rgba(255,255,255,0.1)" strokeWidth="40" fill="none"/>
+          <path d="M0 300 Q200 250 400 350 Q600 400 800 300" stroke="rgba(255,255,255,0.1)" strokeWidth="60" fill="none"/>
+          <path d="M100 500 Q300 450 500 550 Q700 600 800 500" stroke="rgba(255,255,255,0.1)" strokeWidth="30" fill="none"/>
+        </svg>
+      </div>
+
       <div className="relative container section">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Content */}
-          <div className="space-y-8 animate-fade-in">
-            {/* Badge */}
-            <div className="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm rounded-full px-4 py-2 border border-primary-200">
-              <Sparkles className="w-4 h-4 text-primary-500" />
-              <span className="text-sm font-medium text-primary-700">
-                Fresh • Bold • Wholesome
-              </span>
+        <div className="text-center space-y-8">
+          {/* Main Title - Tokyo Yokocho Style */}
+          <div className="space-y-6">
+            <div className="inline-flex items-center space-x-2 bg-red-500 text-white px-6 py-2 rounded-full text-sm font-bold transform -rotate-2">
+              <span>ORIGINAL TASTE</span>
+              <span>FROM</span>
+              <span>SHIBUYA</span>
             </div>
-            
-            {/* Headline */}
-            <div className="space-y-4">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                Warm Grain Bowls
-                <span className="block text-primary-600">
-                  Made Your Way
-                </span>
-              </h1>
-              <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-lg">
-                Customize your perfect bowl with fresh ingredients, bold flavors, and wholesome nutrition. 
-                Every bowl is crafted with care and packed with protein.
-              </p>
-            </div>
-            
-            {/* Features */}
-            <div className="flex flex-wrap gap-6 text-sm text-gray-600">
-              <div className="flex items-center space-x-2">
-                <Clock className="w-4 h-4 text-green-500" />
-                <span>Ready in 5-7 mins</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Heart className="w-4 h-4 text-green-500" />
-                <span>Made fresh daily</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Sparkles className="w-4 h-4 text-green-500" />
-                <span>Fully customizable</span>
-              </div>
-            </div>
-            
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/build" className="btn btn-primary btn-lg group">
-                Build Your Bowl
-                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
-              </Link>
-              <Link href="/menu" className="btn btn-outline btn-lg">
-                View Menu
-              </Link>
-            </div>
-            
-            {/* Social proof */}
-            <div className="pt-8 border-t border-gray-200">
-              <p className="text-sm text-gray-500 mb-3">Trusted by thousands of bowl lovers</p>
-              <div className="flex items-center space-x-6">
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-gray-900">50K+</div>
-                  <div className="text-xs text-gray-500">Bowls served</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-gray-900">4.8★</div>
-                  <div className="text-xs text-gray-500">Customer rating</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-gray-900">15+</div>
-                  <div className="text-xs text-gray-500">Locations</div>
-                </div>
-              </div>
-            </div>
+
+            <h1 className="text-6xl md:text-8xl lg:text-9xl font-black text-white leading-none tracking-tight">
+              <span className="block text-stroke-black">TOKYO</span>
+              <span className="block text-yellow-300 -mt-4">YOKOCHO</span>
+            </h1>
+
+            <p className="text-xl md:text-2xl text-white/90 font-medium max-w-2xl mx-auto">
+              Authentic Japanese street food experience with bold flavors and fresh ingredients
+            </p>
           </div>
-          
-          {/* Hero Image */}
-          <div className="relative animate-slide-up">
+
+          {/* CTA Button */}
+          <div className="flex justify-center">
+            <Link href="/menu" className="bg-white text-orange-600 px-8 py-4 rounded-full text-lg font-bold hover:bg-yellow-100 transition-colors duration-200 shadow-lg">
+              Order Now
+            </Link>
+          </div>
+
+          {/* Food Images */}
+          <div className="grid grid-cols-2 gap-8 max-w-4xl mx-auto mt-16">
+            {/* Left Bowl */}
             <div className="relative">
-              {/* Main bowl image */}
-              <div className="w-full h-96 lg:h-[500px] bg-gray-100 rounded-3xl shadow-large overflow-hidden">
+              <div className="w-full h-64 bg-white rounded-3xl shadow-xl overflow-hidden transform rotate-3 hover:rotate-0 transition-transform duration-300">
                 <Image
                   src="/food/kampong-table.png"
-                  alt="HeyBo Signature Bowl"
-                  width={600}
-                  height={500}
+                  alt="Tori Sasaki Bowl"
+                  width={400}
+                  height={300}
                   className="w-full h-full object-cover"
                   priority
                 />
               </div>
+              {/* Rating and info overlay */}
+              <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-sm rounded-xl p-3">
+                <h3 className="font-bold text-gray-900">Tori Sasaki</h3>
+                <div className="flex items-center justify-between mt-1">
+                  <div className="flex items-center space-x-1">
+                    <span className="text-yellow-500">★</span>
+                    <span className="text-sm font-medium">4.5</span>
+                  </div>
+                  <span className="text-sm text-gray-600">45.5</span>
+                </div>
+              </div>
+              {/* NEW badge */}
+              <div className="absolute top-3 right-3 bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-bold">
+                NEW
+              </div>
+            </div>
 
-              {/* Floating bowl images */}
-              <div className="absolute -top-4 -right-4 w-20 h-20 bg-white rounded-2xl shadow-medium overflow-hidden animate-pulse-soft">
+            {/* Right Bowl */}
+            <div className="relative">
+              <div className="w-full h-64 bg-white rounded-3xl shadow-xl overflow-hidden transform -rotate-3 hover:rotate-0 transition-transform duration-300">
                 <Image
                   src="/food/spice-trade.png"
-                  alt="Spice Trade Bowl"
-                  width={80}
-                  height={80}
+                  alt="Una Umai Bowl"
+                  width={400}
+                  height={300}
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-white rounded-xl shadow-medium overflow-hidden animate-pulse-soft">
-                <Image
-                  src="/food/muscle-beach.png"
-                  alt="Muscle Beach Bowl"
-                  width={64}
-                  height={64}
-                  className="w-full h-full object-cover"
-                />
+              {/* Rating and info overlay */}
+              <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-sm rounded-xl p-3">
+                <h3 className="font-bold text-gray-900">Una Umai</h3>
+                <div className="flex items-center justify-between mt-1">
+                  <div className="flex items-center space-x-1">
+                    <span className="text-yellow-500">★</span>
+                    <span className="text-sm font-medium">3.7</span>
+                  </div>
+                  <span className="text-sm text-gray-600">37.4</span>
+                </div>
+              </div>
+              {/* NEW badge */}
+              <div className="absolute top-3 right-3 bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-bold">
+                NEW
               </div>
             </div>
           </div>

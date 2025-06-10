@@ -25,6 +25,16 @@ export const BowlCompositionSchema = z.object({
 
 export type BowlComposition = z.infer<typeof BowlCompositionSchema>
 
+// Cart Item Schema
+export const CartItemSchema = z.object({
+  id: z.string(),
+  bowl: BowlCompositionSchema,
+  quantity: z.number(),
+  addedAt: z.string(),
+})
+
+export type CartItem = z.infer<typeof CartItemSchema>
+
 // Session Schema
 export const SessionSchema = z.object({
   session_id: z.string(),
@@ -38,9 +48,9 @@ export const SessionSchema = z.object({
   order_time: z.string().optional(),
   pickup_location_type: z.enum(['station', 'outlet']).optional(),
   location: z.string().optional(),
-  selections: z.array(z.any()),
-  cart: z.array(z.any()),
-  preferences: z.record(z.any()),
+  selections: z.array(HeyBoIngredientSchema),
+  cart: z.array(CartItemSchema),
+  preferences: z.record(z.union([z.string(), z.number(), z.boolean()])),
 })
 
 export type Session = z.infer<typeof SessionSchema>

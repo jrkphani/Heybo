@@ -286,6 +286,100 @@ className="heybo-grain-bowl-preview"
 
 ---
 
+## ✅ Type Safety Compliance
+
+### TypeScript Configuration Standards
+
+- [ ] Uses `strict: true` in all TypeScript configurations
+- [ ] Implements `noUncheckedIndexedAccess: true` for array safety
+- [ ] Uses `noImplicitReturns: true` for function consistency
+- [ ] Uses `exactOptionalPropertyTypes: true` for precise interfaces
+- [ ] Uses `useUnknownInCatchVariables: true` for error handling
+- [ ] No TypeScript comment directives (`@ts-ignore`, `@ts-expect-error`)
+
+### Food Service Type Definitions
+
+- [ ] Uses proper `HeyBoIngredient` interface for all ingredient data
+- [ ] Implements `BowlComposition` with required base ingredient
+- [ ] Uses typed `IngredientCategory` for proper categorization
+- [ ] Implements `DietaryRestriction` and `Allergen` union types
+- [ ] Uses `OrderStatus` enum for order tracking states
+- [ ] All ingredient weights typed as `number` (grams)
+
+### API Response Type Safety
+
+- [ ] No `any` types in API response interfaces
+- [ ] Uses generic `APIResponse<T>` for consistent response typing
+- [ ] Implements proper error response interfaces
+- [ ] Uses Zod schemas for runtime validation
+- [ ] Types all ML recommendation responses
+- [ ] Validates session management API responses
+
+### ❌ Type Safety Violations to Avoid
+
+```typescript
+// ❌ Don't use any types
+onOrderComplete?: (order: any) => void;
+bowlValidation: any | null;
+
+// ❌ Don't use type assertions to any
+return result as any;
+mlSource: source as any;
+
+// ❌ Don't leave parameters untyped
+.map((ingredient, index) => { // Parameters implicitly any
+
+// ✅ Use proper HeyBo food service types
+onOrderComplete?: (order: OrderSummary) => void;
+bowlValidation: BowlValidationResult | null;
+return result as MockAPIResponse<BowlComposition[]>;
+mlSource: source as MLRecommendationSource;
+.map((ingredient: HeyBoIngredient, index: number) => {
+```
+
+### User Authentication Type Safety
+
+- [ ] Uses `User` interface consistently across auth flow
+- [ ] Types OTP verification responses properly
+- [ ] Implements `UserType` union ('registered' | 'guest' | 'unauthenticated')
+- [ ] Uses `UserPreferences` interface for dietary restrictions
+- [ ] No `any` types in authentication callbacks
+- [ ] Types session validation responses
+
+### Cart and Order Type Safety
+
+- [ ] Uses `CartItem` interface for all cart operations
+- [ ] Implements `OrderSummary` for checkout flow
+- [ ] Types ingredient selection state properly
+- [ ] Uses `BowlValidationResult` for weight/price validation
+- [ ] Implements `CartValidationResult` for checkout validation
+- [ ] No unsafe array access in cart operations
+
+### Error Handling Type Safety
+
+- [ ] Uses `unknown` type in catch blocks, not `any`
+- [ ] Implements `ChatbotError` interface for all errors
+- [ ] Uses `ErrorCategory` union for error classification
+- [ ] Types recovery actions properly
+- [ ] No implicit error types in async operations
+- [ ] Uses type guards for error type checking
+
+```typescript
+// ✅ Proper error handling pattern
+try {
+  const recommendations = await mlAPI.getRecommendations(params);
+} catch (error: unknown) {
+  if (error instanceof Error) {
+    handleAPIError({
+      code: 'ML_API_ERROR',
+      message: error.message,
+      category: 'ml' as ErrorCategory,
+      recoverable: true
+    });
+  }
+}
+```
+
 ## ✅ Performance & Integration Compliance
 
 ### API Integration
@@ -294,6 +388,8 @@ className="heybo-grain-bowl-preview"
 - [ ] Implements 3-second timeout with fallback
 - [ ] Uses best-effort ingredient availability checking
 - [ ] Handles vendor database read-only access correctly
+- [ ] All API calls properly typed with response interfaces
+- [ ] Uses type-safe error handling for API failures
 
 ### Caching Strategy
 
@@ -301,6 +397,8 @@ className="heybo-grain-bowl-preview"
 - [ ] Uses CloudFront caching for menu data
 - [ ] Accepts acceptable staleness with user notification
 - [ ] No real-time inventory locking
+- [ ] Cached data maintains type safety
+- [ ] Cache invalidation properly typed
 
 ### Session Management
 
@@ -308,6 +406,8 @@ className="heybo-grain-bowl-preview"
 - [ ] Implements proper cart recovery
 - [ ] Handles guest user OTP flow correctly
 - [ ] Maintains session state during widget close/open
+- [ ] Session data strictly typed with `SessionData` interface
+- [ ] Type-safe session validation and updates
 
 ---
 
@@ -328,6 +428,11 @@ className="heybo-grain-bowl-preview"
 - [ ] Ensure consistent patterns with food service UX
 - [ ] Review ML recommendation implementation
 - [ ] Check widget responsive behavior
+- [ ] **Verify no `any` types in new code**
+- [ ] **Check all function parameters are properly typed**
+- [ ] **Ensure API responses use proper interfaces**
+- [ ] **Validate error handling uses `unknown` type**
+- [ ] **Confirm ingredient/bowl data uses HeyBo types**
 
 ### Before Deployment
 
@@ -348,6 +453,8 @@ className="heybo-grain-bowl-preview"
 3. **Widget Conflicts**: CSS conflicts with HeyBo website
 4. **Mobile Ordering Issues**: Poor touch targets for ingredient selection
 5. **Authentication Bypass**: Not handling HeyBo user sessions
+6. **🔴 Any Type Usage**: Using `any` types that bypass type safety
+7. **🔴 Missing Type Exports**: Referenced types not exported from modules
 
 ### High Priority Fixes
 
@@ -355,6 +462,9 @@ className="heybo-grain-bowl-preview"
 2. **Typography Issues**: Wrong font weights for food context
 3. **Widget Integration**: Poor responsive behavior in parent site
 4. **Performance Issues**: Slow ML recommendations without fallback
+5. **🟡 Type Assertion Abuse**: Overuse of `as any` type assertions
+6. **🟡 Incomplete Interfaces**: Missing required properties in type definitions
+7. **🟡 Unsafe Array Access**: Array access without bounds checking
 
 ---
 
@@ -369,7 +479,28 @@ className="heybo-grain-bowl-preview"
     "prefer-heybo-tokens": "error",
     "require-ingredient-aria": "warn",
     "no-salad-components-in-heybo": "error",
-    "proper-widget-namespacing": "error"
+    "proper-widget-namespacing": "error",
+    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/no-unsafe-member-access": "error",
+    "@typescript-eslint/no-unsafe-call": "error",
+    "@typescript-eslint/no-unsafe-assignment": "error",
+    "@typescript-eslint/no-unsafe-return": "error"
+  }
+}
+```
+
+### TypeScript Strict Mode Configuration
+
+```json
+{
+  "compilerOptions": {
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "exactOptionalPropertyTypes": true,
+    "useUnknownInCatchVariables": true
   }
 }
 ```
@@ -377,9 +508,13 @@ className="heybo-grain-bowl-preview"
 ### Pre-commit Hooks
 
 - TypeScript compilation check
+- **TypeScript strict mode validation**
+- **ESLint type safety rules check**
+- **Zod schema validation test**
 - HeyBo widget integration test
 - Ingredient selection accessibility scan
 - Mobile ordering flow validation
+- **Type coverage analysis (minimum 95%)**
 
 ---
 
@@ -396,6 +531,14 @@ className="heybo-grain-bowl-preview"
 - [Ingredient Accessibility Checker](https://www.tpgi.com/color-contrast-checker/)
 - [Mobile Ordering Simulator](https://responsively.app/)
 - [Voice Ordering Testing](https://www.deque.com/axe/devtools/)
+
+### Type Safety Tools
+
+- [TypeScript Compiler API](https://github.com/microsoft/TypeScript/wiki/Using-the-Compiler-API)
+- [Type Coverage Tool](https://github.com/plantain-00/type-coverage)
+- [ESLint TypeScript Rules](https://typescript-eslint.io/rules/)
+- [Zod Runtime Validation](https://github.com/colinhacks/zod)
+- [TypeScript Strict Mode Guide](https://www.typescriptlang.org/tsconfig#strict)
 
 ### API Documentation
 
@@ -420,6 +563,9 @@ className="heybo-grain-bowl-preview"
 - [ ] 100% touch target accessibility compliance
 - [ ] <3 second fallback activation time
 - [ ] 24-hour session persistence rate >95%
+- [ ] **Type safety coverage >95%**
+- [ ] **Zero TypeScript strict mode errors**
+- [ ] **Zero `any` types in production code**
 
 ### Brand Consistency Metrics
 
@@ -427,6 +573,14 @@ className="heybo-grain-bowl-preview"
 - [ ] Proper warm grain bowl categorization
 - [ ] Consistent with HeyBo website experience
 - [ ] Proper dietary indicator implementation
+
+### Code Quality Metrics
+
+- [ ] **TypeScript strict mode compliance: 100%**
+- [ ] **API response type coverage: 100%**
+- [ ] **Error handling type safety: 100%**
+- [ ] **Food service type accuracy: 100%**
+- [ ] **Zero unsafe type assertions in critical paths**
 
 ---
 
@@ -436,4 +590,6 @@ Maintaining HeyBo design system compliance ensures a consistent, accessible, and
 
 **Remember**: HeyBo focuses on warm, energetic, and wholesome nutrition. Every design decision should reflect the brand's bold yet approachable personality while maintaining optimal usability for on-the-go grain bowl ordering.
 
-**For 1CloudHub Team**: When implementing new features, always consider the food service context and mobile-first ordering experience that defines HeyBo's customer journey.
+**Type Safety First**: All code must maintain strict type safety to ensure reliable food ordering experiences. No `any` types should compromise the integrity of ingredient selection, bowl composition, or order processing.
+
+**For 1CloudHub Team**: When implementing new features, always consider the food service context, mobile-first ordering experience, and type safety requirements that define HeyBo's reliable customer journey. Every ingredient selection, every bowl composition, and every order must be type-safe from start to finish.

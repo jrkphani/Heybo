@@ -1,14 +1,14 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
-import type { 
-  User, 
-  OrderStep, 
-  Location, 
-  BowlComposition, 
-  CartItem, 
-  MessageType,
-  ErrorState 
-} from "@heybo/types";
+import type {
+  BowlComposition,
+  CartItem,
+  ChatMessage,
+  User,
+  ChatbotStep,
+  Location,
+  ErrorState
+} from "../../types";
 
 interface ChatbotState {
   // User session
@@ -17,24 +17,24 @@ interface ChatbotState {
   sessionId: string | null;
   
   // Order state
-  currentStep: OrderStep;
+  currentStep: ChatbotStep;
   selectedLocation: Location | null;
   orderTime: Date | null;
   currentBowl: BowlComposition | null;
   cart: CartItem[];
-  
+
   // UI state
   isWidgetOpen: boolean;
   isLoading: boolean;
   errors: ErrorState[];
-  
+
   // Chat state
-  messages: MessageType[];
-  
+  messages: ChatMessage[];
+
   // Actions
   setUser: (user: User | null) => void;
   setSessionType: (type: 'registered' | 'guest' | 'unauthenticated') => void;
-  setCurrentStep: (step: OrderStep) => void;
+  setCurrentStep: (step: ChatbotStep) => void;
   setSelectedLocation: (location: Location | null) => void;
   setOrderTime: (time: Date | null) => void;
   updateBowl: (ingredient: any, action: 'add' | 'remove') => void;
@@ -45,16 +45,18 @@ interface ChatbotState {
   setLoading: (loading: boolean) => void;
   addError: (error: ErrorState) => void;
   clearErrors: () => void;
-  addMessage: (message: MessageType) => void;
+  addMessage: (message: ChatMessage) => void;
   clearMessages: () => void;
   resetSession: () => void;
 }
+
+export interface ChatbotStore extends ChatbotState {}
 
 const initialState = {
   user: null,
   sessionType: 'unauthenticated' as const,
   sessionId: null,
-  currentStep: 'welcome' as OrderStep,
+  currentStep: 'welcome' as ChatbotStep,
   selectedLocation: null,
   orderTime: null,
   currentBowl: null,

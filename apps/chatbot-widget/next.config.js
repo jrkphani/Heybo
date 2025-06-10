@@ -5,9 +5,20 @@ const nextConfig = {
     optimizePackageImports: ["@heybo/ui"],
   },
   // Widget optimization
-  output: 'standalone',
+  output: process.env.NODE_ENV === 'production' ? 'standalone' : undefined,
   compress: true,
   poweredByHeader: false,
+
+  // Font optimization
+  optimizeFonts: true,
+
+  // Development improvements
+  ...(process.env.NODE_ENV === 'development' && {
+    onDemandEntries: {
+      maxInactiveAge: 25 * 1000,
+      pagesBufferLength: 2,
+    },
+  }),
   
   // Enable for widget embedding
   async headers() {

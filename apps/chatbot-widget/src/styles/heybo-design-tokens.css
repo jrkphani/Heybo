@@ -1,0 +1,758 @@
+/* HeyBo Design System Tokens - Chatbot Widget */
+
+.heybo-chatbot-widget {
+  /* Prevent style leakage from parent website */
+  all: initial;
+  font-family: inherit;
+
+  /* HeyBo Brand Colors - Complete Palette */
+  --heybo-primary-50: #FFF7ED;
+  --heybo-primary-100: #FFEDD5;
+  --heybo-primary-200: #FED7AA;
+  --heybo-primary-300: #FDBA74;
+  --heybo-primary-400: #FB923C;
+  --heybo-primary-500: #F97316;
+  --heybo-primary-600: #EA580C;
+  --heybo-primary-700: #C2410C;
+  --heybo-primary-800: #9A3412;
+  --heybo-primary-900: #7C2D12;
+
+  --heybo-secondary-50: #FEFCE8;
+  --heybo-secondary-100: #FEF3C7;
+  --heybo-secondary-200: #FDE68A;
+  --heybo-secondary-300: #FCD34D;
+  --heybo-secondary-400: #FBBF24;
+  --heybo-secondary-500: #F59E0B;
+  --heybo-secondary-600: #D97706;
+  --heybo-secondary-700: #B45309;
+  --heybo-secondary-800: #92400E;
+  --heybo-secondary-900: #78350F;
+
+  --heybo-success-50: #F0FDF4;
+  --heybo-success-100: #DCFCE7;
+  --heybo-success-200: #BBF7D0;
+  --heybo-success-300: #86EFAC;
+  --heybo-success-400: #4ADE80;
+  --heybo-success-500: #22C55E;
+  --heybo-success-600: #16A34A;
+  --heybo-success-700: #15803D;
+  --heybo-success-800: #166534;
+  --heybo-success-900: #14532D;
+
+  --heybo-bowl-50: #FEFDFB;
+  --heybo-bowl-100: #FEF7E6;
+  --heybo-bowl-200: #F5E6D3;
+  --heybo-bowl-300: #E7C4A0;
+  --heybo-bowl-400: #D4956D;
+  --heybo-bowl-500: #A16B47;
+  --heybo-bowl-600: #8B4513;
+  --heybo-bowl-700: #723A0F;
+  --heybo-bowl-800: #5A2D0C;
+  --heybo-bowl-900: #422209;
+
+  /* Semantic Colors - HeyBo Food Service */
+  --heybo-text-primary: #292524;
+  --heybo-text-secondary: #78716C;
+  --heybo-text-muted: #A8A29E;
+  --heybo-background-primary: #FFFFFF;
+  --heybo-background-secondary: #FAF9F7;
+  --heybo-background-warm: #FFFCF8;
+  --heybo-border-light: #E8E5E1;
+  --heybo-border-medium: #D6D1CC;
+
+  /* Food Service Specific Colors */
+  --heybo-color-healthy: #22C55E;
+  --heybo-color-spicy: #DC2626;
+  --heybo-color-grain: #A16B47;
+  --heybo-color-premium: #F59E0B;
+  --heybo-color-vegetarian: #22C55E;
+  --heybo-color-vegan: #16A34A;
+  
+  /* Food Service Specific Colors */
+  --heybo-ingredient-base: #FEF3C7;
+  --heybo-ingredient-protein: #DBEAFE;
+  --heybo-ingredient-sides: #D1FAE5;
+  --heybo-ingredient-sauce: #FEE2E2;
+  --heybo-ingredient-garnish: #E0E7FF;
+  
+  /* Gradients */
+  --heybo-primary-gradient: linear-gradient(135deg, var(--heybo-primary-500) 0%, var(--heybo-primary-600) 100%);
+  --heybo-warm-gradient: linear-gradient(135deg, #FAE6D6 0%, #FCF0E6 100%);
+  --heybo-widget-gradient: linear-gradient(135deg, var(--heybo-primary-500) 0%, var(--heybo-primary-600) 100%);
+  --heybo-success-gradient: linear-gradient(135deg, var(--heybo-success-500) 0%, var(--heybo-success-600) 100%);
+  
+  /* Typography Scale (8px grid system) */
+  --heybo-text-xs: 12px;
+  --heybo-text-sm: 14px;
+  --heybo-text-base: 16px;
+  --heybo-text-lg: 18px;
+  --heybo-text-xl: 20px;
+  --heybo-text-2xl: 24px;
+  
+  /* Font Weights */
+  --heybo-font-normal: 400;
+  --heybo-font-medium: 500;
+  --heybo-font-semibold: 600;
+  --heybo-font-bold: 700;
+  
+  /* Spacing Scale (8px grid system) */
+  --heybo-space-1: 4px;
+  --heybo-space-2: 8px;
+  --heybo-space-3: 12px;
+  --heybo-space-4: 16px;
+  --heybo-space-5: 20px;
+  --heybo-space-6: 24px;
+  --heybo-space-8: 32px;
+  --heybo-space-10: 40px;
+  --heybo-space-12: 48px;
+  --heybo-space-16: 64px;
+  
+  /* Border Radius */
+  --heybo-radius-sm: 6px;
+  --heybo-radius-md: 8px;
+  --heybo-radius-lg: 12px;
+  --heybo-radius-xl: 16px;
+  --heybo-radius-2xl: 20px;
+  --heybo-radius-3xl: 24px;
+  --heybo-radius-full: 9999px;
+  
+  /* Shadows */
+  --heybo-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --heybo-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --heybo-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --heybo-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  
+  /* Touch Targets (44px minimum for mobile ordering) */
+  --heybo-touch-target: 44px;
+  --heybo-touch-target-lg: 48px;
+  
+  /* Z-Index Scale */
+  --heybo-z-dropdown: 1000;
+  --heybo-z-sticky: 1020;
+  --heybo-z-fixed: 1030;
+  --heybo-z-modal-backdrop: 1040;
+  --heybo-z-modal: 1050;
+  --heybo-z-popover: 1060;
+  --heybo-z-tooltip: 1070;
+  --heybo-z-toast: 1080;
+}
+
+/* HeyBo Component Classes */
+
+/* Utility Classes for Design Token Usage */
+.heybo-text-primary-600 { color: var(--heybo-primary-600) !important; }
+.heybo-text-primary-700 { color: var(--heybo-primary-700) !important; }
+.heybo-text-secondary-600 { color: var(--heybo-secondary-600) !important; }
+.heybo-bg-primary-50 { background-color: var(--heybo-primary-50) !important; }
+.heybo-bg-primary-500 { background-color: var(--heybo-primary-500) !important; }
+.heybo-bg-primary-600 { background-color: var(--heybo-primary-600) !important; }
+.heybo-border-primary-300 { border-color: var(--heybo-primary-300) !important; }
+.heybo-border-primary-400 { border-color: var(--heybo-primary-400) !important; }
+.heybo-border-primary-500 { border-color: var(--heybo-primary-500) !important; }
+
+/* Hover States */
+.heybo-hover-text-primary-700:hover { color: var(--heybo-primary-700) !important; }
+.heybo-hover-bg-primary-700:hover { background-color: var(--heybo-primary-700) !important; }
+.heybo-hover-border-primary-300:hover { border-color: var(--heybo-primary-300) !important; }
+.heybo-hover-border-primary-400:hover { border-color: var(--heybo-primary-400) !important; }
+
+/* Buttons */
+.heybo-btn-primary {
+  background: var(--heybo-primary-gradient);
+  color: var(--heybo-background-primary);
+  border: none;
+  border-radius: var(--heybo-radius-lg);
+  padding: var(--heybo-space-3) var(--heybo-space-6);
+  font-size: var(--heybo-text-base);
+  font-weight: var(--heybo-font-semibold);
+  min-height: var(--heybo-touch-target);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.heybo-btn-primary:hover {
+  background: linear-gradient(135deg, var(--heybo-primary-600) 0%, var(--heybo-primary-700) 100%);
+  box-shadow: var(--heybo-shadow-md);
+}
+
+.heybo-btn-secondary {
+  background: var(--heybo-background-primary);
+  color: var(--heybo-primary-600);
+  border: 2px solid var(--heybo-primary-500);
+  border-radius: var(--heybo-radius-lg);
+  padding: var(--heybo-space-3) var(--heybo-space-6);
+  font-size: var(--heybo-text-base);
+  font-weight: var(--heybo-font-semibold);
+  min-height: var(--heybo-touch-target);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.heybo-btn-secondary:hover {
+  background: #FFF7ED;
+  border-color: var(--heybo-primary-600);
+}
+
+/* Cards */
+.heybo-card {
+  background: var(--heybo-background-primary);
+  border: 1px solid var(--heybo-border-light);
+  border-radius: var(--heybo-radius-xl);
+  padding: var(--heybo-space-6);
+  box-shadow: var(--heybo-shadow-sm);
+  transition: all 0.2s ease;
+}
+
+.heybo-card:hover {
+  border-color: var(--heybo-primary-500);
+  box-shadow: var(--heybo-shadow-md);
+}
+
+/* Ingredient Grid Layout - Official HeyBo Specification */
+.heybo-chatbot-ingredient-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+
+/* Ingredient Cards - Official HeyBo Specification */
+.heybo-chatbot-ingredient-card {
+  background: var(--heybo-background-primary);
+  border: 2px solid var(--heybo-border-light);
+  border-radius: 12px;
+  padding: 12px 8px;
+  min-height: var(--heybo-touch-target);
+  min-width: var(--heybo-touch-target);
+  cursor: pointer;
+  transition: all 200ms ease-out;
+  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.heybo-chatbot-ingredient-card:hover {
+  border-color: var(--heybo-primary-300);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.1);
+}
+
+.heybo-chatbot-ingredient-card.selected {
+  border-color: var(--heybo-primary-500);
+  background: var(--heybo-primary-50);
+  box-shadow: 0 4px 16px rgba(249, 115, 22, 0.15);
+}
+
+.heybo-chatbot-ingredient-card.unavailable {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: grayscale(50%);
+}
+
+.heybo-chatbot-ingredient-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--heybo-brown-800);
+  margin-top: 4px;
+  text-align: center;
+}
+
+/* Bowl Building Interface */
+.heybo-bowl-preview {
+  background: var(--heybo-warm-gradient);
+  border: 1px solid var(--heybo-border-light);
+  border-radius: var(--heybo-radius-2xl);
+  padding: var(--heybo-space-6);
+}
+
+/* Input Fields */
+.heybo-input {
+  background: var(--heybo-background-primary);
+  border: 2px solid var(--heybo-border-medium);
+  border-radius: var(--heybo-radius-lg);
+  padding: var(--heybo-space-3) var(--heybo-space-4);
+  font-size: var(--heybo-text-base);
+  min-height: var(--heybo-touch-target);
+  transition: all 0.2s ease;
+}
+
+.heybo-input:focus {
+  outline: none;
+  border-color: var(--heybo-primary-500);
+  box-shadow: 0 0 0 3px rgb(249 115 22 / 0.1);
+}
+
+/* Message Bubbles */
+.heybo-message-user {
+  background: var(--heybo-primary-gradient);
+  color: var(--heybo-background-primary);
+  border-radius: var(--heybo-radius-lg) var(--heybo-radius-lg) var(--heybo-radius-sm) var(--heybo-radius-lg);
+  padding: var(--heybo-space-3) var(--heybo-space-4);
+  margin-left: var(--heybo-space-12);
+}
+
+.heybo-message-assistant {
+  background: var(--heybo-background-secondary);
+  color: var(--heybo-text-primary);
+  border-radius: var(--heybo-radius-lg) var(--heybo-radius-lg) var(--heybo-radius-lg) var(--heybo-radius-sm);
+  padding: var(--heybo-space-3) var(--heybo-space-4);
+  margin-right: var(--heybo-space-12);
+}
+
+/* Widget Container - CSS Namespace Compliance */
+.heybo-chatbot-container {
+  position: fixed;
+  bottom: var(--heybo-space-6);
+  right: var(--heybo-space-6);
+  z-index: var(--heybo-z-modal);
+  font-family: inherit; /* Inherit from parent HeyBo website */
+}
+
+/* Chat Message Bubbles - Official HeyBo Specification */
+.heybo-chatbot-message {
+  margin-bottom: 12px;
+  display: flex;
+  max-width: 100%;
+}
+
+.heybo-chatbot-message.user {
+  justify-content: flex-end;
+}
+
+.heybo-chatbot-message.bot {
+  justify-content: flex-start;
+}
+
+.heybo-chatbot-message-bubble {
+  max-width: 80%;
+  padding: 12px 16px;
+  border-radius: 18px; /* Official 18px radius specification */
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* User message bubbles */
+.heybo-chatbot-message-bubble.user {
+  background: var(--heybo-primary-500);
+  color: white;
+  border-bottom-right-radius: 4px;
+}
+
+/* Bot message bubbles */
+.heybo-chatbot-message-bubble.bot {
+  background: white;
+  color: var(--heybo-brown-800);
+  border: 1px solid var(--heybo-border-light);
+  border-bottom-left-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* FAB (Floating Action Button) - Official HeyBo Specification */
+.heybo-chatbot-fab {
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, var(--heybo-primary-500) 0%, var(--heybo-primary-600) 100%);
+  border: none;
+  border-radius: var(--heybo-radius-full);
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.4);
+  cursor: pointer;
+  transition: all 200ms ease-out;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heybo-chatbot-fab:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(249, 115, 22, 0.5);
+}
+
+/* FAB Pulse Animation */
+.heybo-chatbot-fab::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  animation: heybo-fab-pulse 2s infinite;
+  border-radius: inherit;
+}
+
+@keyframes heybo-fab-pulse {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+/* Widget Window - CSS Namespace Compliance */
+.heybo-chatbot-window {
+  background: var(--heybo-background-primary);
+  border-radius: var(--heybo-radius-3xl);
+  box-shadow: var(--heybo-shadow-xl);
+  overflow: hidden;
+  border: 1px solid var(--heybo-border-light);
+  font-family: inherit; /* Inherit from parent website */
+}
+
+/* Touch Target Compliance - 44px Minimum */
+.heybo-chatbot-touch-target {
+  min-width: var(--heybo-touch-target);
+  min-height: var(--heybo-touch-target);
+}
+
+/* Button Components - Touch Friendly */
+.heybo-chatbot-button {
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 200ms ease-out;
+  min-height: var(--heybo-touch-target);
+  padding: 0 16px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: inherit;
+}
+
+/* Primary action button */
+.heybo-chatbot-button-primary {
+  background: var(--heybo-primary-600);
+  color: white;
+}
+
+.heybo-chatbot-button-primary:hover {
+  background: var(--heybo-primary-700);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+}
+
+/* Secondary button */
+.heybo-chatbot-button-secondary {
+  background: white;
+  color: var(--heybo-primary-700);
+  border: 1px solid var(--heybo-primary-200);
+}
+
+.heybo-chatbot-button-secondary:hover {
+  background: var(--heybo-primary-50);
+  border-color: var(--heybo-primary-300);
+}
+
+/* Header - CSS Namespace Compliance */
+.heybo-chatbot-header {
+  background: linear-gradient(135deg, var(--heybo-primary-500) 0%, var(--heybo-primary-600) 100%);
+  color: white;
+  padding: 16px 20px;
+  border-radius: 16px 16px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: inherit;
+}
+
+/* Mobile header adjustments */
+@media (max-width: 639px) {
+  .heybo-chatbot-header {
+    border-radius: 0;
+    padding: 20px 16px;
+  }
+}
+
+.heybo-chatbot-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  font-family: inherit;
+}
+
+.heybo-chatbot-subtitle {
+  font-size: 14px;
+  opacity: 0.9;
+  color: white;
+  font-family: inherit;
+}
+
+/* Input Components - CSS Namespace Compliance */
+.heybo-chatbot-input-container {
+  background: white;
+  border-top: 1px solid var(--heybo-border-light);
+  padding: 12px 16px;
+  font-family: inherit;
+}
+
+/* Mobile input adjustments */
+@media (max-width: 639px) {
+  .heybo-chatbot-input-container {
+    padding: 16px;
+  }
+}
+
+.heybo-chatbot-input {
+  width: 100%;
+  border: 1px solid var(--heybo-border-medium);
+  border-radius: 24px;
+  padding: 10px 16px;
+  font-size: 14px;
+  background: var(--heybo-background-secondary);
+  transition: all 150ms ease-out;
+  resize: none;
+  min-height: var(--heybo-touch-target);
+  max-height: 120px;
+  font-family: inherit;
+}
+
+.heybo-chatbot-input:focus {
+  outline: none;
+  border-color: var(--heybo-primary-500);
+  background: white;
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+}
+
+/* Two-Pane Layout */
+.heybo-two-pane-layout {
+  display: flex;
+  height: 100%;
+}
+
+.heybo-left-pane {
+  width: 320px;
+  background: var(--heybo-background-secondary);
+  border-right: 1px solid var(--heybo-border-light);
+  overflow-y: auto;
+}
+
+.heybo-right-pane {
+  flex: 1;
+  background: var(--heybo-background-primary);
+  overflow: hidden;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .heybo-chatbot-container {
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 0;
+  }
+  
+  .heybo-chatbot-window {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+  }
+  
+  .heybo-left-pane {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: var(--heybo-z-modal);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+  
+  .heybo-left-pane.open {
+    transform: translateX(0);
+  }
+}
+
+/* Accessibility */
+.heybo-chatbot-widget *:focus {
+  outline: 2px solid var(--heybo-primary-500);
+  outline-offset: 2px;
+}
+
+/* Loading States */
+.heybo-loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--heybo-border-light);
+  border-radius: 50%;
+  border-top-color: var(--heybo-primary-500);
+  animation: heybo-spin 1s ease-in-out infinite;
+}
+
+@keyframes heybo-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Dietary Tags */
+.heybo-tag-vegan { background: var(--heybo-success-500); color: white; }
+.heybo-tag-vegetarian { background: var(--heybo-success-600); color: white; }
+.heybo-tag-gluten-free { background: var(--heybo-secondary-500); color: white; }
+.heybo-tag-spicy { background: #EF4444; color: white; }
+.heybo-tag-popular { background: var(--heybo-primary-500); color: white; }
+
+/* Widget Responsive Layout - Official HeyBo UX Guide Specification */
+.heybo-chatbot-widget {
+  font-family: inherit; /* Inherit from parent HeyBo website */
+  color: inherit;
+  position: fixed;
+  z-index: 1000;
+  border-radius: var(--heybo-radius-3xl);
+  box-shadow: var(--heybo-shadow-xl);
+  overflow: hidden;
+  border: 1px solid var(--heybo-border-light);
+}
+
+/* SM: ≤640px - Fullscreen Mobile Widget */
+@media (max-width: 640px) {
+  .heybo-chatbot-widget {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+  }
+}
+
+/* MD: 641px - 1024px - Large Corner Widget */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .heybo-chatbot-widget {
+    bottom: 24px;
+    right: 24px;
+    width: 420px;
+    height: 600px;
+    border-radius: 16px;
+  }
+}
+
+/* LG: 1025px - 1440px - Optimal Dual-Pane Capable */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .heybo-chatbot-widget {
+    bottom: 32px;
+    right: 32px;
+    width: 480px;
+    height: 640px;
+    border-radius: 20px;
+  }
+
+  .heybo-chatbot-widget.dual-pane {
+    width: calc(480px + 300px + 0.75rem);
+    height: 640px;
+  }
+}
+
+/* XL: ≥1441px - Premium Experience */
+@media (min-width: 1441px) {
+  .heybo-chatbot-widget {
+    bottom: 40px;
+    right: 40px;
+    width: 520px;
+    height: 680px;
+    border-radius: 24px;
+  }
+
+  .heybo-chatbot-widget.dual-pane {
+    width: calc(520px + 320px + 1rem);
+    height: 680px;
+  }
+}
+
+/* Mobile: Full screen overlay */
+@media (max-width: 767px) {
+  .heybo-chatbot-widget {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background: white;
+    border-radius: 0;
+  }
+}
+
+/* Tablet: Large coverage for better interaction */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .heybo-chatbot-widget {
+    width: 95vw;
+    height: 90vh;
+    max-width: 95vw;
+    max-height: 90vh;
+    bottom: 24px;
+    right: 24px;
+    border-radius: 20px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+}
+
+/* Large Desktop: Large coverage */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .heybo-chatbot-widget {
+    width: 95vw;
+    height: 90vh;
+    max-width: 95vw;
+    max-height: 90vh;
+    bottom: 24px;
+    right: 24px;
+    border-radius: 20px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+}
+
+/* XL Desktop: Optimal coverage */
+@media (min-width: 1280px) {
+  .heybo-chatbot-widget {
+    width: 60vw;
+    height: 85vh;
+    max-width: 60vw;
+    max-height: 85vh;
+    bottom: 24px;
+    right: 24px;
+    border-radius: 20px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+}
+
+/* Component Namespacing Classes */
+.heybo-chatbot-gps-handler {
+  font-family: inherit;
+}
+
+.heybo-chatbot-ml-suggestions {
+  font-family: inherit;
+}
+
+.heybo-chatbot-upselling {
+  font-family: inherit;
+}
+
+.heybo-chatbot-ingredient-selector {
+  font-family: inherit;
+}
+
+.heybo-chatbot-weight-warning {
+  /* Weight Warning Dialog specific styles */
+}
+
+/* Utility Classes */
+.heybo-text-primary { color: var(--heybo-text-primary); }
+.heybo-text-secondary { color: var(--heybo-text-secondary); }
+.heybo-text-muted { color: var(--heybo-text-muted); }
+.heybo-bg-primary { background: var(--heybo-background-primary); }
+.heybo-bg-secondary { background: var(--heybo-background-secondary); }
+.heybo-border-light { border-color: var(--heybo-border-light); }

@@ -1,0 +1,131 @@
+/* HeyBo Chatbot Widget Layout - CSS Namespace Compliance */
+
+/* Ensure all widget styles inherit font from parent website */
+.heybo-chatbot-widget,
+.heybo-chatbot-widget * {
+  font-family: inherit !important;
+}
+
+/* Widget positioning and responsiveness - Official HeyBo Specification */
+.heybo-chatbot-widget {
+  position: fixed;
+  z-index: 1000;
+  font-family: inherit;
+  color: inherit;
+}
+
+/* Mobile: Full screen overlay */
+@media (max-width: 767px) {
+  .heybo-chatbot-widget {
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    border-radius: 0 !important;
+  }
+}
+
+/* Tablet: Large coverage for better interaction */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .heybo-chatbot-widget {
+    width: 95vw !important;
+    height: 90vh !important;
+    max-width: 95vw !important;
+    max-height: 90vh !important;
+    bottom: 24px !important;
+    right: 24px !important;
+    border-radius: 20px !important;
+  }
+}
+
+/* Large Desktop: Large coverage */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .heybo-chatbot-widget {
+    width: 95vw !important;
+    height: 90vh !important;
+    max-width: 95vw !important;
+    max-height: 90vh !important;
+    bottom: 24px !important;
+    right: 24px !important;
+    border-radius: 20px !important;
+  }
+}
+
+/* XL Desktop: Optimal coverage */
+@media (min-width: 1280px) {
+  .heybo-chatbot-widget {
+    width: 60vw !important;
+    height: 85vh !important;
+    max-width: 60vw !important;
+    max-height: 85vh !important;
+    bottom: 24px !important;
+    right: 24px !important;
+    border-radius: 20px !important;
+  }
+}
+
+/* Collapsed state positioning */
+.heybo-chatbot-widget.collapsed {
+  bottom: 24px !important;
+  right: 24px !important;
+  width: 56px !important;
+  height: 56px !important;
+  border-radius: 50% !important;
+}
+
+/* Prevent conflicts with parent website styles */
+.heybo-chatbot-widget {
+  box-sizing: border-box;
+}
+
+.heybo-chatbot-widget *,
+.heybo-chatbot-widget *::before,
+.heybo-chatbot-widget *::after {
+  box-sizing: border-box;
+}
+
+/* Accessibility - Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .heybo-chatbot-widget *,
+  .heybo-chatbot-widget *::before,
+  .heybo-chatbot-widget *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .heybo-chatbot-widget {
+    border: 2px solid currentColor;
+  }
+
+  .heybo-chatbot-fab {
+    border: 2px solid white;
+  }
+
+  .heybo-chatbot-message-bubble {
+    border-width: 2px;
+  }
+}
+
+/* Focus management for screen readers */
+.heybo-chatbot-widget[aria-hidden="false"] .heybo-chatbot-input {
+  /* Auto-focus for screen readers when widget opens */
+}
+
+/* Screen reader only content */
+.heybo-chatbot-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

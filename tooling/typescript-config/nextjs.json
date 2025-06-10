@@ -1,8 +1,8 @@
 {
   "extends": "./base.json",
   "compilerOptions": {
-    "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "ES6"],
+    "target": "ES2022",
+    "lib": ["dom", "dom.iterable", "ES2022"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -15,6 +15,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "exactOptionalPropertyTypes": false,
     "plugins": [
       {
         "name": "next"
