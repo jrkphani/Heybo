@@ -1,5 +1,5 @@
 {
-  "extends": "@heybo/typescript-config/nextjs.json",
+  "extends": "./../../tooling/typescript-config/nextjs.json",
   "include": [
     "next-env.d.ts",
     "**/*.ts",

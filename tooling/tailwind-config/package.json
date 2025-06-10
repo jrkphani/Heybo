@@ -1,0 +1,14 @@
+{
+  "name": "@heybo/tailwind-config",
+  "version": "1.0.0",
+  "description": "Tailwind CSS configuration for HeyBo projects",
+  "private": true,
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "base.js"
+  ],
+  "dependencies": {
+    "tailwindcss": "^4.1.0"
+  }
+}

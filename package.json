@@ -3,11 +3,7 @@
   "version": "1.0.0",
   "description": "HeyBo AI-powered chatbot ordering system - 1CloudHub",
   "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*",
-    "tooling/*"
-  ],
+
   "packageManager": "pnpm@9.0.0",
   "engines": {
     "node": ">=20.0.0",
@@ -16,6 +12,9 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
+    "dev:website": "turbo dev --filter=@heybo/mock-website",
+    "dev:widget": "turbo dev --filter=@heybo/chatbot-widget",
+    "dev:all": "turbo dev --parallel",
     "lint": "turbo lint",
     "type-check": "turbo type-check",
     "test": "turbo test",

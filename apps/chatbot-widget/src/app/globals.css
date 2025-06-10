@@ -1,4 +1,4 @@
-import "@heybo/tailwind-config/base.css";
+@import "tailwindcss";
 
 :root {
   /* HeyBo Brand Colors - CSS Variables */

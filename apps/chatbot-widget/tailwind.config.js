@@ -1,7 +1,7 @@
 const config = require("@heybo/tailwind-config");
 
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   ...config,
   content: [
     "./src/**/*.{js,ts,jsx,tsx,mdx}",

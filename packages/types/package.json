@@ -1,0 +1,23 @@
+{
+  "name": "@heybo/types",
+  "version": "1.0.0",
+  "description": "Shared TypeScript types for HeyBo projects",
+  "private": true,
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@heybo/typescript-config": "workspace:*",
+    "typescript": "^5.6.0"
+  }
+}

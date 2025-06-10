@@ -1,0 +1,12 @@
+{
+  "name": "@heybo/typescript-config",
+  "version": "1.0.0",
+  "description": "TypeScript configuration for HeyBo projects",
+  "private": true,
+  "main": "index.json",
+  "files": [
+    "base.json",
+    "nextjs.json",
+    "react.json"
+  ]
+}

@@ -1,7 +1,6 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "ui": "tui",
-  "tasks": {
+  "pipeline": {
     "build": {
       "dependsOn": ["^build"],
       "inputs": [
@@ -15,7 +14,8 @@
     },
     "dev": {
       "cache": false,
-      "persistent": true
+      "persistent": true,
+      "env": ["NODE_ENV", "PORT", "NEXT_PUBLIC_*"]
     },
     "lint": {
       "dependsOn": ["^build"],
