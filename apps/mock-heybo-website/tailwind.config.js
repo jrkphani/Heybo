@@ -48,19 +48,6 @@ module.exports = {
           800: '#166534',
           900: '#14532D',
         },
-        // Accent - Bright Blue
-        blue: {
-          50: '#EFF6FF',
-          100: '#DBEAFE',
-          200: '#BFDBFE',
-          300: '#93C5FD',
-          400: '#60A5FA',
-          500: '#3B82F6', // Information
-          600: '#2563EB',
-          700: '#1D4ED8',
-          800: '#1E40AF',
-          900: '#1E3A8A',
-        },
         // Supporting - Rich Brown
         brown: {
           50: '#FEFDFB',
@@ -94,12 +81,6 @@ module.exports = {
         display: ['Inter', 'SF Pro Display', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
         mono: ['JetBrains Mono', 'SF Mono', 'Monaco', 'Cascadia Code', 'Roboto Mono', 'Consolas', 'monospace'],
       },
-      // Spacing (8px base unit)
-      spacing: {
-        '18': '4.5rem',   // 72px
-        '88': '22rem',    // 352px
-        '128': '32rem',   // 512px
-      },
       // Animation
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
@@ -128,4 +109,5 @@ module.exports = {
       },
     },
   },
+  plugins: [],
 }

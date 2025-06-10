@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 /* HeyBo Design System - Global Styles */
 
@@ -62,7 +60,8 @@
   
   /* Headings */
   h1, h2, h3, h4, h5, h6 {
-    @apply text-gray-800 font-display;
+    @apply text-gray-800;
+    font-family: var(--font-display);
   }
   
   h1 {
