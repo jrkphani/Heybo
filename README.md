@@ -8,24 +8,14 @@ AI-powered chatbot for warm grain bowl ordering with SageMaker ML, real-time ing
 # Install dependencies
 pnpm install
 
-# Start mock HeyBo website (port 3001)
-pnpm dev:website
-
 # Start chatbot widget (port 3000)
 pnpm dev:widget
 
-# Start both applications
-pnpm dev:all
+# Or start all development services
+pnpm dev
 ```
 
 ## 📖 What's Included
-
-### ✅ Mock HeyBo Website (`apps/mock-heybo-website`)
-- **Next.js 15 + React 19** with latest features
-- **Tailwind CSS v4.1** with HeyBo design system
-- **Realistic HeyBo branding** and layout
-- **Mobile-first responsive design**
-- **Widget integration ready**
 
 ### 🤖 Chatbot Widget (`apps/chatbot-widget`)
 - **shadcn-chatbot-kit** components ready for installation
@@ -45,14 +35,13 @@ pnpm dev:all
 
 ```text
 apps/
-├── mock-heybo-website/      # Mock HeyBo website for testing (port 3001)
-├── chatbot-widget/          # Embeddable chatbot widget (port 3000)
-└── design-system-docs/      # Storybook documentation (future)
+└── chatbot-widget/          # Embeddable chatbot widget (port 3000)
 
 packages/
 ├── api/                     # tRPC API definitions
 ├── design-tokens/           # HeyBo design system tokens
-└── types/                   # Shared TypeScript types
+├── types/                   # Shared TypeScript types
+└── ui/                      # Shared UI components
 
 tooling/
 ├── eslint-config/           # ESLint configuration
@@ -80,16 +69,13 @@ pnpm install
 ### Development Commands
 
 ```bash
-# Start mock HeyBo website only
-pnpm dev:website
-
-# Start chatbot widget only
+# Start chatbot widget
 pnpm dev:widget
 
-# Start both applications in parallel
-pnpm dev:all
+# Start all development services
+pnpm dev
 
-# Build all apps
+# Build all packages
 pnpm build
 
 # Run tests
@@ -136,9 +122,8 @@ npx shadcn@latest add https://shadcn-chatbot-kit.vercel.app/r/chat.json
 
 ## 🌐 URLs
 
-- **Mock HeyBo Website**: http://localhost:3001
-- **Chatbot Widget**: http://localhost:3000
-- **Real HeyBo Website**: https://order.heybo.sg (reference only)
+- **Chatbot Widget**: <http://localhost:3000>
+- **Real HeyBo Website**: <https://order.heybo.sg> (reference only)
 
 ## 📚 Documentation
 
@@ -158,8 +143,7 @@ npx shadcn@latest add https://shadcn-chatbot-kit.vercel.app/r/chat.json
 ## 🚧 Development Notes
 
 - **React 19 Peer Dependency Warnings**: Expected and safe to ignore
-- **Mock Website**: For development only, not production
-- **Widget Testing**: Use mock website to test integration scenarios
+- **Widget Testing**: Use demo pages to test integration scenarios
 - **No localStorage**: Use session-based storage for artifacts limitation
 
 ## 📄 License

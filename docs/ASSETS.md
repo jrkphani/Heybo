@@ -5,7 +5,7 @@ This document outlines the brand assets and media files used in the HeyBo chatbo
 ## 📁 Asset Structure
 
 ```
-apps/mock-heybo-website/public/
+apps/chatbot-widget/public/
 ├── brand/                    # Brand assets
 │   ├── heybo-logo.png       # Main HeyBo logo
 │   └── heybo-logo-large.png # Large version logo
@@ -147,7 +147,7 @@ To update assets from the HeyBo website:
 
 3. **Commit changes**:
    ```bash
-   git add apps/mock-heybo-website/public/
+   git add apps/chatbot-widget/public/
    git commit -m "update: refresh HeyBo brand assets"
    ```
 

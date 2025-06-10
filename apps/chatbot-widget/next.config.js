@@ -9,9 +9,6 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
 
-  // Font optimization
-  optimizeFonts: true,
-
   // Development improvements
   ...(process.env.NODE_ENV === 'development' && {
     onDemandEntries: {

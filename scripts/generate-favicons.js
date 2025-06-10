@@ -9,7 +9,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Paths
-const publicDir = path.join(__dirname, '../apps/mock-heybo-website/public');
+const publicDir = path.join(__dirname, '../apps/chatbot-widget/public');
 const logoPath = path.join(publicDir, 'brand/heybo-logo.png');
 
 // Create basic favicon.ico placeholder (since we can't easily convert PNG to ICO without external tools)

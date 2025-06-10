@@ -612,6 +612,8 @@
   box-shadow: var(--heybo-shadow-xl);
   overflow: hidden;
   border: 1px solid var(--heybo-border-light);
+  display: flex;
+  flex-direction: column;
 }
 
 /* SM: ≤640px - Fullscreen Mobile Widget */
@@ -645,15 +647,90 @@
   .heybo-chatbot-widget {
     bottom: 32px;
     right: 32px;
-    width: 480px;
-    height: 640px;
+    width: 75vw;
+    height: 80vh;
+    max-width: 1200px;
+    max-height: 800px;
     border-radius: 20px;
   }
 
   .heybo-chatbot-widget.dual-pane {
-    width: calc(480px + 300px + 0.75rem);
-    height: 640px;
+    width: 85vw;
+    height: 85vh;
+    max-width: 1400px;
+    max-height: 900px;
   }
+}
+
+/* Dual-pane specific layout styles */
+.heybo-chatbot-dual-pane {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.heybo-chatbot-left-pane {
+  flex: 2;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.heybo-chatbot-right-pane {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.heybo-chatbot-single-pane {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Widget header styles */
+.heybo-chatbot-header {
+  background: var(--heybo-primary-gradient);
+  color: white;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.heybo-chatbot-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.heybo-chatbot-subtitle {
+  font-size: 0.875rem;
+  opacity: 0.9;
+  margin: 0;
+}
+
+/* FAB styles */
+.heybo-chatbot-fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--heybo-primary-gradient);
+  border: none;
+  box-shadow: var(--heybo-shadow-xl);
+  cursor: pointer;
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* XL: ≥1441px - Premium Experience */
@@ -661,72 +738,22 @@
   .heybo-chatbot-widget {
     bottom: 40px;
     right: 40px;
-    width: 520px;
-    height: 680px;
+    width: 70vw;
+    height: 80vh;
+    max-width: 1200px;
+    max-height: 800px;
     border-radius: 24px;
   }
 
   .heybo-chatbot-widget.dual-pane {
-    width: calc(520px + 320px + 1rem);
-    height: 680px;
-  }
-}
-
-/* Mobile: Full screen overlay */
-@media (max-width: 767px) {
-  .heybo-chatbot-widget {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100vw;
-    height: 100vh;
-    background: white;
-    border-radius: 0;
-  }
-}
-
-/* Tablet: Large coverage for better interaction */
-@media (min-width: 768px) and (max-width: 1023px) {
-  .heybo-chatbot-widget {
-    width: 95vw;
-    height: 90vh;
-    max-width: 95vw;
-    max-height: 90vh;
-    bottom: 24px;
-    right: 24px;
-    border-radius: 20px;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  }
-}
-
-/* Large Desktop: Large coverage */
-@media (min-width: 1024px) and (max-width: 1279px) {
-  .heybo-chatbot-widget {
-    width: 95vw;
-    height: 90vh;
-    max-width: 95vw;
-    max-height: 90vh;
-    bottom: 24px;
-    right: 24px;
-    border-radius: 20px;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  }
-}
-
-/* XL Desktop: Optimal coverage */
-@media (min-width: 1280px) {
-  .heybo-chatbot-widget {
-    width: 60vw;
+    width: 80vw;
     height: 85vh;
-    max-width: 60vw;
-    max-height: 85vh;
-    bottom: 24px;
-    right: 24px;
-    border-radius: 20px;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    max-width: 1600px;
+    max-height: 900px;
   }
 }
+
+
 
 /* Component Namespacing Classes */
 .heybo-chatbot-gps-handler {

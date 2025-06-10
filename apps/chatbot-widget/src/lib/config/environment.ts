@@ -155,7 +155,7 @@ class EnvironmentService {
       
       development: {
         devMode: process.env.NEXT_PUBLIC_DEV_MODE === 'true',
-        localApiPort: parseInt(process.env.LOCAL_API_PORT || '3001'),
+        localApiPort: parseInt(process.env.LOCAL_API_PORT || '3000'),
         enableApiMocking: process.env.ENABLE_API_MOCKING === 'true',
         testUserPhone: process.env.TEST_USER_PHONE || '+6591234567',
         testOtpCode: process.env.TEST_OTP_CODE || '123456',

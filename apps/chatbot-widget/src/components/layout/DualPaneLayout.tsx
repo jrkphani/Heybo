@@ -112,17 +112,15 @@ export function DualPaneLayout({
 
   // Dual pane mode for larger screens
   return (
-    <div 
+    <div
       className={cn(
         "heybo-chatbot-dual-pane",
-        "flex h-full w-full gap-1",
+        "flex h-full w-full gap-4",
         className
       )}
       style={{
-        width: `calc(${layoutConfig.leftPane.width} + ${layoutConfig.rightPane.width} + ${layoutConfig.gap})`,
-        height: layoutConfig.leftPane.height,
-        maxWidth: `calc(${layoutConfig.leftPane.maxWidth} + ${layoutConfig.rightPane.maxWidth} + ${layoutConfig.gap})`,
-        maxHeight: layoutConfig.leftPane.maxHeight
+        height: '100%',
+        width: '100%'
       }}
     >
       {/* Left Pane - Primary Chat Interface */}
@@ -134,14 +132,12 @@ export function DualPaneLayout({
         className={cn(
           "heybo-chatbot-left-pane",
           "flex flex-col bg-gray-50 border-r border-gray-200",
-          "overflow-hidden"
+          "overflow-hidden flex-1",
+          "min-w-0" // Prevent flex item from overflowing
         )}
         style={{
-          width: layoutConfig.leftPane.width,
-          height: layoutConfig.leftPane.height,
-          maxWidth: layoutConfig.leftPane.maxWidth,
-          maxHeight: layoutConfig.leftPane.maxHeight,
-          borderRadius: '20px 0 0 20px'
+          borderRadius: '20px 0 0 20px',
+          flex: '2' // Takes 2/3 of the space
         }}
       >
         {/* Left Pane Header */}
@@ -174,14 +170,13 @@ export function DualPaneLayout({
           className={cn(
             "heybo-chatbot-right-pane",
             "flex flex-col bg-white",
-            "overflow-hidden"
+            "overflow-hidden",
+            "min-w-0" // Prevent flex item from overflowing
           )}
           style={{
-            width: layoutConfig.rightPane.width,
-            height: layoutConfig.rightPane.height,
-            maxWidth: layoutConfig.rightPane.maxWidth,
-            maxHeight: layoutConfig.rightPane.maxHeight,
-            borderRadius: '0 20px 20px 0'
+            borderRadius: '0 20px 20px 0',
+            flex: '1', // Takes 1/3 of the space
+            minWidth: '300px' // Minimum width for usability
           }}
         >
           {/* Right Pane Header */}

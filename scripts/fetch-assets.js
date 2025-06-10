@@ -10,7 +10,7 @@ const path = require('path');
 const https = require('https');
 
 // Create directories
-const assetsDir = path.join(__dirname, '../apps/mock-heybo-website/public');
+const assetsDir = path.join(__dirname, '../apps/chatbot-widget/public');
 const brandDir = path.join(assetsDir, 'brand');
 const foodDir = path.join(assetsDir, 'food');
 
