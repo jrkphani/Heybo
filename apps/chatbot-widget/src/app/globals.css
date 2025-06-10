@@ -1,0 +1,109 @@
+import "@heybo/tailwind-config/base.css";
+
+:root {
+  /* HeyBo Brand Colors - CSS Variables */
+  --primary-50: #fff7ed;
+  --primary-100: #ffedd5;
+  --primary-200: #fed7aa;
+  --primary-300: #fdba74;
+  --primary-400: #fb923c;
+  --primary-500: #f97316; /* Main HeyBo Orange */
+  --primary-600: #ea580c;
+  --primary-700: #c2410c;
+  --primary-800: #9a3412;
+  --primary-900: #7c2d12;
+
+  --secondary-50: #fefce8;
+  --secondary-100: #fef3c7;
+  --secondary-200: #fde68a;
+  --secondary-300: #fcd34d;
+  --secondary-400: #fbbf24;
+  --secondary-500: #f59e0b; /* HeyBo Yellow */
+  --secondary-600: #d97706;
+  --secondary-700: #b45309;
+  --secondary-800: #92400e;
+  --secondary-900: #78350f;
+
+  /* Food Service Semantic Colors */
+  --color-healthy: #22c55e;
+  --color-spicy: #dc2626;
+  --color-grain: #a16b47;
+  --color-premium: #f59e0b;
+
+  /* Warm Neutrals */
+  --gray-50: #faf9f7;
+  --gray-100: #f5f3f0;
+  --gray-200: #e8e5e1;
+  --gray-300: #d6d1cc;
+  --gray-400: #a8a29e;
+  --gray-500: #78716c;
+  --gray-600: #57534e;
+  --gray-700: #44403c;
+  --gray-800: #292524;
+  --gray-900: #1c1917;
+
+  /* Food Service Spacing */
+  --spacing-ingredient: 0.5rem; /* 8px */
+  --spacing-category: 1.5rem;   /* 24px */
+  --spacing-section: 2rem;      /* 32px */
+  --spacing-touch-target: 2.75rem; /* 44px */
+}
+
+/* Dark mode variables */
+[data-theme="dark"] {
+  --background: #1c1917;
+  --foreground: #faf9f7;
+  --primary-500: #fb923c;
+  --gray-50: #292524;
+  --gray-100: #44403c;
+  --gray-200: #57534e;
+  --gray-300: #78716c;
+  --gray-400: #a8a29e;
+  --gray-500: #d6d1cc;
+  --gray-600: #e8e5e1;
+  --gray-700: #f5f3f0;
+  --gray-800: #faf9f7;
+  --gray-900: #fefdfb;
+}
+
+/* Widget-specific styles */
+.heybo-chatbot-widget {
+  font-family: inherit; /* Inherit from HeyBo website */
+  color-scheme: light dark;
+}
+
+/* Food service specific utilities */
+.ingredient-spacing { gap: var(--spacing-ingredient); }
+.category-spacing { gap: var(--spacing-category); }
+.touch-friendly { min-height: var(--spacing-touch-target); }
+
+/* Bowl preview styles */
+.bowl-preview {
+  background: linear-gradient(145deg, var(--gray-50) 0%, var(--gray-100) 100%);
+  border: 2px solid var(--gray-200);
+  border-radius: 12px;
+}
+
+[data-theme="dark"] .bowl-preview {
+  background: linear-gradient(145deg, var(--gray-100) 0%, var(--gray-200) 100%);
+  border-color: var(--gray-300);
+}
+
+/* Custom scrollbar for chat */
+.chat-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+.chat-scroll::-webkit-scrollbar-track {
+  background: var(--gray-100);
+  border-radius: 2px;
+}
+
+.chat-scroll::-webkit-scrollbar-thumb {
+  background: var(--primary-300);
+  border-radius: 2px;
+}
+
+.chat-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-400);
+}

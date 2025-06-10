@@ -1,0 +1,80 @@
+# HeyBo Chatbot Development Guidelines
+
+## Project Overview
+
+HeyBo AI-powered chatbot for warm grain bowl ordering with SageMaker ML, real-time ingredient availability, and seamless website widget integration.
+
+## Tech Stack
+
+- **Frontend**: Next.js 15 + React 19 + TypeScript 5.6+
+- **UI Framework**: shadcn/ui + Tailwind CSS v4, shadcn-chatbot-kit
+- **State**: Zustand + tRPC + Zod validation
+- **ML**: Amazon SageMaker (3sec timeout), Bedrock FAQ
+- **Data**: PostgreSQL (vendor read-only), GenAI DB (sessions/cart)
+
+## Design System (CRITICAL)
+
+**STRICTLY follow HeyBo Design System:**
+
+### Colors (Use CSS variables)
+
+```css
+--orange-500: #F97316     /* Primary brand */
+--orange-600: #EA580C     /* Primary buttons */
+--yellow-500: #F59E0B     /* Secondary accent */
+--green-500: #22C55E      /* Success/healthy */
+--brown-500: #A16B47      /* Bowl representation */
+--gray-700: #44403C       /* Body text (warm) */
+```
+
+### Widget Namespace
+
+- ALL styles prefixed: `.heybo-chatbot-`
+- Font: `font-family: inherit` from parent website
+- Mobile: Full overlay, Desktop: Corner widget (400px)
+
+## Food Service Standards
+
+**Bowl Rules**: Base required, protein optional, max 900g weight
+**Categories**: base|protein|greens|toppings|sauce|garnish
+**Touch Targets**: 44px minimum for mobile ordering
+**Spacing**: 8px grid system for ingredient layout
+
+## Code Standards
+
+### TypeScript (Required)
+
+```tsx
+interface BowlComposition {
+  base: HeyBoIngredient      // Required
+  protein?: HeyBoIngredient  // Optional for HeyBo
+  sides: HeyBoIngredient[]   // Max 3
+  totalWeight: number        // Max 900g
+}
+```
+
+### API Integration
+
+- Vendor DB: Read-only access, 5-item limits
+- ML: 3sec timeout with signature bowl fallback
+- Session: Device-specific, 24hr cleanup
+
+## Key Requirements
+
+1. **Widget Integration**: No CSS conflicts with parent site
+2. **Mobile-First**: Touch-friendly ingredient selection
+3. **Type Safety**: Zod schemas for all food data
+4. **ML Fallback**: Graceful degradation when SageMaker unavailable
+5. **Weight Warnings**: Alert at 720g (80% threshold)
+
+## Forbidden
+
+- NO localStorage/sessionStorage (artifacts limitation)
+- NO hardcoded hex colors outside HeyBo palette
+- NO SaladStop components in HeyBo interface
+- NO inventory locking (handle at order submission)
+
+## Documentation Reference
+
+Use provided docs: Functional Specification, Design System, Compliance Checklist
+Follow HeyBo warm, energetic brand for grain bowl ordering experience.

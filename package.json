@@ -1,0 +1,42 @@
+{
+  "name": "heybo-chatbot-monorepo",
+  "version": "1.0.0",
+  "description": "HeyBo AI-powered chatbot ordering system - 1CloudHub",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "tooling/*"
+  ],
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "type-check": "turbo type-check",
+    "test": "turbo test",
+    "test:e2e": "turbo test:e2e",
+    "clean": "turbo clean",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "turbo build --filter=@heybo/chatbot-widget && changeset publish"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.1",
+    "@heybo/eslint-config": "workspace:*",
+    "@heybo/typescript-config": "workspace:*",
+    "prettier": "^3.1.0",
+    "turbo": "^1.11.0",
+    "typescript": "^5.6.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "tailwindcss": "^4.1.0"
+    }
+  }
+}
