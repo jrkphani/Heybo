@@ -99,7 +99,7 @@ export function SignatureBowlsList({ onBowlSelect, className }: SignatureBowlsLi
       case 'light':
         return 'bg-purple-100 text-purple-700';
       case 'hearty':
-        return 'bg-orange-100 text-orange-700';
+        return 'bg-[var(--heybo-primary-100)] text-[var(--heybo-primary-700)]';
       default:
         return 'bg-gray-100 text-gray-700';
     }
@@ -107,8 +107,8 @@ export function SignatureBowlsList({ onBowlSelect, className }: SignatureBowlsLi
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center py-12">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-600"></div>
+      <div className="heybo-chatbot-signature-bowls">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[var(--heybo-primary-600)]"></div>
       </div>
     );
   }
@@ -145,7 +145,7 @@ export function SignatureBowlsList({ onBowlSelect, className }: SignatureBowlsLi
                 {/* Name and Rating */}
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
-                    <h4 className="font-semibold text-gray-900 group-hover:text-orange-600 transition-colors">
+                    <h4 className="font-semibold text-gray-900 group-hover:text-[var(--heybo-primary-600)] transition-colors">
                       {bowl.name}
                     </h4>
                     {bowl.rating && (
@@ -199,7 +199,7 @@ export function SignatureBowlsList({ onBowlSelect, className }: SignatureBowlsLi
 
               {/* Add Button */}
               <div className="flex items-center pr-4">
-                <button className="w-8 h-8 bg-orange-600 text-white rounded-full flex items-center justify-center hover:bg-orange-700 transition-colors group-hover:scale-110 transform duration-200">
+                <button className="w-8 h-8 bg-[var(--heybo-primary-600)] text-white rounded-full flex items-center justify-center hover:bg-[var(--heybo-primary-700)] transition-colors group-hover:scale-110 transform duration-200">
                   <Plus className="w-4 h-4" />
                 </button>
               </div>
@@ -209,12 +209,12 @@ export function SignatureBowlsList({ onBowlSelect, className }: SignatureBowlsLi
       </div>
 
       {/* Info Section */}
-      <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+      <div className="bg-[var(--heybo-primary-50)] border border-[var(--heybo-primary-200)] rounded-lg p-4">
         <div className="flex items-start space-x-3">
-          <Info className="w-5 h-5 text-orange-600 mt-0.5 flex-shrink-0" />
+          <Info className="w-5 h-5 text-[var(--heybo-primary-600)] mt-0.5 flex-shrink-0" />
           <div className="text-sm">
-            <div className="font-medium text-orange-900 mb-1">About Our Signature Bowls</div>
-            <div className="text-orange-700">
+            <div className="font-medium text-[var(--heybo-primary-900)] mb-1">About Our Signature Bowls</div>
+            <div className="text-[var(--heybo-primary-700)]">
               Each signature bowl is carefully crafted by our chefs using fresh, high-quality ingredients. 
               You can customize any bowl to match your dietary preferences and taste.
             </div>

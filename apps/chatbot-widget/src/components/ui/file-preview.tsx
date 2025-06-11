@@ -11,19 +11,19 @@ interface FilePreviewProps {
 
 export const FilePreview = React.forwardRef<HTMLDivElement, FilePreviewProps>(
   (props, ref) => {
-    if (props.file.type.startsWith("image/")) {
-      return <ImageFilePreview {...props} ref={ref} />
-    }
-
-    if (
-      props.file.type.startsWith("text/") ||
-      props.file.name.endsWith(".txt") ||
-      props.file.name.endsWith(".md")
-    ) {
-      return <TextFilePreview {...props} ref={ref} />
-    }
-
-    return <GenericFilePreview {...props} ref={ref} />
+    return (
+      <div className="heybo-chatbot-file-preview">
+        {props.file.type.startsWith("image/") ? (
+          <ImageFilePreview {...props} ref={ref} />
+        ) : props.file.type.startsWith("text/") ||
+          props.file.name.endsWith(".txt") ||
+          props.file.name.endsWith(".md") ? (
+          <TextFilePreview {...props} ref={ref} />
+        ) : (
+          <GenericFilePreview {...props} ref={ref} />
+        )}
+      </div>
+    )
   }
 )
 FilePreview.displayName = "FilePreview"
@@ -33,7 +33,7 @@ const ImageFilePreview = React.forwardRef<HTMLDivElement, FilePreviewProps>(
     return (
       <motion.div
         ref={ref}
-        className="relative flex max-w-[200px] rounded-md border p-1.5 pr-2 text-xs"
+        className="undefined"
         layout
         initial={{ opacity: 0, y: "100%" }}
         animate={{ opacity: 1, y: 0 }}
@@ -83,7 +83,7 @@ const TextFilePreview = React.forwardRef<HTMLDivElement, FilePreviewProps>(
     return (
       <motion.div
         ref={ref}
-        className="relative flex max-w-[200px] rounded-md border p-1.5 pr-2 text-xs"
+        className="relative flex max-w-[200px] rounded-md border p-1.5 pr-2 text-xss"
         layout
         initial={{ opacity: 0, y: "100%" }}
         animate={{ opacity: 1, y: 0 }}
@@ -91,7 +91,7 @@ const TextFilePreview = React.forwardRef<HTMLDivElement, FilePreviewProps>(
       >
         <div className="flex w-full items-center space-x-2">
           <div className="grid h-10 w-10 shrink-0 place-items-center rounded-sm border bg-muted p-0.5">
-            <div className="h-full w-full overflow-hidden text-[6px] leading-none text-muted-foreground">
+            <div className="h-full w-full overflow-hidden text-xs leading-none text-muted-foreground">
               {preview || "Loading..."}
             </div>
           </div>
@@ -121,7 +121,7 @@ const GenericFilePreview = React.forwardRef<HTMLDivElement, FilePreviewProps>(
     return (
       <motion.div
         ref={ref}
-        className="relative flex max-w-[200px] rounded-md border p-1.5 pr-2 text-xs"
+        className="relative flex max-w-[200px] rounded-md border p-1.5 pr-2 text-xss"
         layout
         initial={{ opacity: 0, y: "100%" }}
         animate={{ opacity: 1, y: 0 }}

@@ -68,11 +68,11 @@ export function ErrorDisplay({
         };
       case 'high':
         return {
-          bg: 'bg-orange-50',
-          border: 'border-orange-200',
-          text: 'text-orange-800',
-          icon: 'text-orange-500',
-          button: 'bg-orange-600 hover:bg-orange-700'
+          bg: 'bg-[var(--heybo-primary-50)]',
+          border: 'border-[var(--heybo-primary-200)]',
+          text: 'text-[var(--heybo-primary-800)]',
+          icon: 'text-[var(--heybo-primary-500)]',
+          button: 'bg-[var(--heybo-primary-600)] hover:bg-[var(--heybo-primary-700)]'
         };
       case 'medium':
         return {
@@ -124,7 +124,7 @@ export function ErrorDisplay({
   };
 
   return (
-    <div className={cn("space-y-2", className)}>
+    <div className={cn("heybo-chatbot-error-display space-y-2", className)}>
       {/* Session Warnings */}
       <AnimatePresence>
         {warnings?.map((warning, index) => (

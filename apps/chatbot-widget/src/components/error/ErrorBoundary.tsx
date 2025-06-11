@@ -112,33 +112,33 @@ export function withErrorBoundary<P extends object>(
 export function ChatbotErrorFallback({ error, retry }: { error?: Error; retry: () => void }) {
   return (
     <div className="heybo-chatbot-widget heybo-chatbot-error">
-      <div className="flex flex-col items-center justify-center h-full p-6 bg-orange-50 border border-orange-200 rounded-lg">
-        <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-4">
+      <div className="flex flex-col items-center justify-center h-full p-6 bg-[var(--heybo-primary-50)] border border-[var(--heybo-primary-200)] rounded-lg">
+        <div className="w-16 h-16 bg-[var(--heybo-primary-100)] rounded-full flex items-center justify-center mb-4">
           <span className="text-2xl">🥣</span>
         </div>
-        <h3 className="text-lg font-semibold text-orange-800 mb-2">
+        <h3 className="text-lg font-semibold text-[var(--heybo-primary-800)] mb-2">
           LULU is taking a quick break
         </h3>
-        <p className="text-sm text-orange-600 text-center mb-4">
+        <p className="text-sm text-[var(--heybo-primary-600)] text-center mb-4">
           Our AI assistant is experiencing some technical difficulties. Please try again in a moment.
         </p>
         <div className="flex gap-3">
           <button
             onClick={retry}
-            className="flex items-center gap-2 px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors"
+            className="flex items-center gap-2 px-4 py-2 bg-[var(--heybo-primary-600)] text-white rounded-lg hover:bg-[var(--heybo-primary-700)] transition-colors"
           >
             <RefreshCw className="w-4 h-4" />
             Restart LULU
           </button>
           <button
             onClick={() => window.location.reload()}
-            className="px-4 py-2 border border-orange-600 text-orange-600 rounded-lg hover:bg-orange-50 transition-colors"
+            className="px-4 py-2 border border-[var(--heybo-primary-600)] text-[var(--heybo-primary-600)] rounded-lg hover:bg-[var(--heybo-primary-50)] transition-colors"
           >
             Refresh Page
           </button>
         </div>
         {process.env.NODE_ENV === 'development' && error && (
-          <details className="mt-4 p-3 bg-orange-100 rounded text-xs text-orange-700 max-w-full overflow-auto">
+          <details className="mt-4 p-3 bg-[var(--heybo-primary-100)] rounded text-xs text-[var(--heybo-primary-700)] max-w-full overflow-auto">
             <summary className="cursor-pointer font-medium">Technical Details</summary>
             <pre className="mt-2 whitespace-pre-wrap">{error.message}</pre>
           </details>

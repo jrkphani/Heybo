@@ -147,7 +147,7 @@ export function SimpleAuth({ onAuthComplete, className }: SimpleAuthProps) {
   };
 
   return (
-    <div className={`h-full flex flex-col bg-gradient-to-b from-orange-50 to-white ${className || ''}`}>
+    <div className={`heybo-chatbot-simple-auth h-full flex flex-col bg-gradient-to-b from-orange-50 to-white ${className || ''}`}>
       {/* Header */}
       <div className="p-6 text-center">
         <h1 className="text-2xl font-bold text-gray-900 mb-2">
@@ -193,7 +193,7 @@ export function SimpleAuth({ onAuthComplete, className }: SimpleAuthProps) {
               <button
                 onClick={handleSendOTP}
                 disabled={loading || !phoneNumber.trim()}
-                className="w-full bg-orange-500 text-white py-3 rounded-lg font-medium hover:bg-orange-600 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-[var(--heybo-primary-500)] text-white py-3 rounded-lg font-medium hover:bg-[var(--heybo-primary-600)] disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? 'Sending...' : 'Send OTP'}
               </button>
@@ -227,7 +227,7 @@ export function SimpleAuth({ onAuthComplete, className }: SimpleAuthProps) {
                 <button
                   onClick={handleVerifyOTP}
                   disabled={loading || !otp.trim()}
-                  className="w-full bg-orange-500 text-white py-3 rounded-lg font-medium hover:bg-orange-600 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-[var(--heybo-primary-500)] text-white py-3 rounded-lg font-medium hover:bg-[var(--heybo-primary-600)] disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {loading ? 'Verifying...' : 'Verify OTP'}
                 </button>

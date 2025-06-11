@@ -41,7 +41,7 @@ export function LocationSelectorExample() {
   }, []);
 
   return (
-    <div className="space-y-4">
+    <div className="heybo-chatbot-api-integration">
       <h3 className="text-lg font-semibold">Location Selection API Integration</h3>
       
       {loading && <p>Loading locations...</p>}
@@ -53,7 +53,7 @@ export function LocationSelectorExample() {
             onClick={() => handleLocationSelect(location)}
             className={`p-3 border rounded text-left ${
               selectedLocation?.id === location.id 
-                ? 'border-orange-500 bg-orange-50' 
+                ? 'border-[var(--heybo-primary-500)] bg-[var(--heybo-primary-50)]' 
                 : 'border-gray-200 hover:border-gray-300'
             }`}
           >
@@ -112,7 +112,7 @@ export function IngredientsExample() {
             onClick={() => setSelectedCategory(category)}
             className={`px-3 py-1 rounded text-sm ${
               selectedCategory === category
-                ? 'bg-orange-500 text-white'
+                ? 'bg-[var(--heybo-primary-500)] text-white'
                 : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
             }`}
           >
@@ -289,7 +289,7 @@ export function OrderHistoryExample() {
               
               <button
                 onClick={() => reorderItem(order)}
-                className="px-3 py-1 bg-orange-500 text-white rounded text-sm hover:bg-orange-600"
+                className="px-3 py-1 bg-[var(--heybo-primary-500)] text-white rounded text-sm hover:bg-[var(--heybo-primary-600)]"
               >
                 Reorder
               </button>
@@ -410,7 +410,7 @@ export default function ComponentAPIIntegration() {
               onClick={() => setActiveExample(example.id)}
               className={`px-3 py-2 rounded text-sm ${
                 activeExample === example.id
-                  ? 'bg-orange-500 text-white'
+                  ? 'bg-[var(--heybo-primary-500)] text-white'
                   : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
               }`}
             >

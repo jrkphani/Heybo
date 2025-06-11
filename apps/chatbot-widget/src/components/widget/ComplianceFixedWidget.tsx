@@ -7,7 +7,7 @@ import { useWidgetStateStore } from '../../store/widget-state-store';
 import { useLayoutStore } from '../../store/layout-store';
 import { DualPaneLayout } from '../layout/DualPaneLayout';
 import { ProgressiveUIDisclosure } from '../navigation/ProgressiveUIDisclosure';
-import { ChatMessagesV2 } from '../chat/ChatMessagesV2';
+import { EnhancedChatInterface } from '../chat/EnhancedChatInterface';
 import { getCurrentLayoutConfig } from '../../lib/config/layout-config';
 import '../../styles/heybo-design-tokens.css';
 
@@ -117,12 +117,9 @@ export function ComplianceFixedWidget({ className }: ComplianceFixedWidgetProps)
   // Left pane content (chat interface)
   const leftPaneContent = (
     <div className="flex flex-col h-full">
-      <ChatMessagesV2 
-        enableEmbeddedUI={true}
-        enableReactions={true}
-        maxHeight="100%"
-        className="flex-1"
-      />
+      <div className="flex-1">
+        <EnhancedChatInterface />
+      </div>
       
       {/* Progressive UI Disclosure */}
       <div className="p-4 border-t border-gray-200">
@@ -230,7 +227,7 @@ function SimpleBaseSelection() {
       {bases.map((base) => (
         <button
           key={base}
-          className="heybo-chatbot-touch-target bg-orange-50 border border-orange-200 rounded-lg text-sm font-medium text-orange-800 hover:bg-orange-100 transition-colors"
+          className="heybo-chatbot-touch-target bg-[var(--heybo-primary-50)] border border-[var(--heybo-primary-200)] rounded-lg text-sm font-medium text-[var(--heybo-primary-800)] hover:bg-[var(--heybo-primary-100)] transition-colors"
         >
           {base}
         </button>
@@ -307,7 +304,7 @@ function BowlPreviewPanel() {
   return (
     <div className="p-4 border-b border-gray-200">
       <h3 className="font-medium text-gray-900 mb-3">Bowl Preview</h3>
-      <div className="bg-orange-50 rounded-lg p-3 text-center">
+      <div className="bg-[var(--heybo-primary-50)] rounded-lg p-3 text-center">
         <div className="text-4xl mb-2">🥣</div>
         <div className="text-sm text-gray-600">Building your perfect bowl...</div>
       </div>

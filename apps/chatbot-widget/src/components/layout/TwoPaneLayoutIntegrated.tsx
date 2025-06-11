@@ -265,7 +265,7 @@ export function TwoPaneLayoutIntegrated({
   );
 
   return (
-    <div className={cn('relative w-full h-full', className)}>
+    <div className={cn('heybo-chatbot-two-pane-integrated relative w-full h-full', className)}>
       <TwoPaneLayout
         leftPaneContent={leftPaneContent}
         rightPaneContent={rightPaneContent}

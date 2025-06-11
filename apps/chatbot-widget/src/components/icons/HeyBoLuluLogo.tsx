@@ -35,7 +35,7 @@ export function HeyBoLuluLogo({
   };
 
   return (
-    <div className={cn("flex items-center space-x-3", className)}>
+    <div className={cn("heybo-chatbot-logo flex items-center space-x-3", className)}>
       {/* HeyBo Logo */}
       <div className="flex items-center">
         <img

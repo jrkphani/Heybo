@@ -7,6 +7,7 @@ import { useChatbotStore } from '../../store/chatbot-store';
 import { mockIngredientsAPI } from '../../lib/mock-api';
 import { cn } from '../../lib/utils';
 import type { HeyBoIngredient, IngredientCategory, DietaryRestriction, Allergen } from '../../types';
+import { Icon } from '../ui/Icon';
 import '../../styles/heybo-design-tokens.css';
 
 interface IngredientSelectorProps {
@@ -140,8 +141,8 @@ export function IngredientSelector({
       {/* Header */}
       <div className="text-center space-y-2">
         <div className="text-3xl mb-2">{getIngredientIcon(category)}</div>
-        <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
-        <p className="text-sm text-gray-600">{description}</p>
+        <h3 className="heybo-text-lg heybo-font-semibold heybo-text-primary" style={{ fontFamily: 'var(--font-fallback)' }}>{title}</h3>
+        <p className="heybo-text-sm heybo-text-secondary" style={{ fontFamily: 'var(--font-fallback)' }}>{description}</p>
 
         {multiple && (
           <div className="text-sm heybo-text-primary-600">
@@ -178,22 +179,22 @@ export function IngredientSelector({
                 <div className="heybo-chatbot-ingredient-name">
                   {ingredient.name}
                   {isSelected && (
-                    <Check className="w-3 h-3 inline-block ml-1 text-green-600" />
+                    <Icon icon={Check} size="xs" color="healthy" className="inline-block ml-1" />
                   )}
                 </div>
 
                 {ingredient.description && (
-                  <p className="text-xs text-gray-500 mt-1 line-clamp-2">{ingredient.description}</p>
+                  <p className="heybo-text-xs heybo-text-muted mt-1 line-clamp-2" style={{ fontFamily: 'var(--font-fallback)' }}>{ingredient.description}</p>
                 )}
 
-                <div className="flex items-center space-x-2 text-xs text-gray-500 mt-2">
+                <div className="flex items-center space-x-2 heybo-text-xs heybo-text-muted mt-2" style={{ fontFamily: 'var(--font-fallback)' }}>
                   <span>{ingredient.weight}g</span>
                   <span>{ingredient.nutritionalInfo.calories} cal</span>
                   {ingredient.nutritionalInfo.protein && <span>{ingredient.nutritionalInfo.protein}g protein</span>}
                 </div>
 
                 {/* Price */}
-                <div className="font-medium text-gray-900 mt-2">
+                <div className="heybo-font-medium heybo-text-primary mt-2" style={{ fontFamily: 'var(--font-fallback)' }}>
                   {formatPrice(ingredient.price)}
                 </div>
 
@@ -215,12 +216,12 @@ export function IngredientSelector({
                 {multiple && (
                   <div className="mt-2">
                     {isSelected ? (
-                      <div className="w-5 h-5 bg-green-600 text-white rounded-full flex items-center justify-center">
-                        <Check className="w-3 h-3" />
+                      <div className="w-5 h-5 heybo-bg-primary text-white rounded-full flex items-center justify-center">
+                        <Icon icon={Check} size="xs" color="default" className="text-white" />
                       </div>
                     ) : canSelect ? (
-                      <div className="w-5 h-5 border-2 border-gray-300 rounded-full flex items-center justify-center">
-                        <Plus className="w-2 h-2 text-gray-400" />
+                      <div className="w-5 h-5 border-2 heybo-border-light rounded-full flex items-center justify-center">
+                        <Icon icon={Plus} size="xs" color="default" className="heybo-text-muted" />
                       </div>
                     ) : (
                       <div className="w-5 h-5 border-2 border-gray-200 rounded-full bg-gray-100"></div>

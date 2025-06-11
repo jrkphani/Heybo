@@ -180,7 +180,7 @@ export function ActionButtons() {
     // Main menu buttons
     if (actionType === 'show-main-menu' || currentStep === 'welcome') {
       return (
-        <div className="grid grid-cols-1 gap-2">
+        <div className="heybo-chatbot-action-buttons">
           <ActionButton
             icon={<Utensils className="w-4 h-4" />}
             label="Signature Bowls"

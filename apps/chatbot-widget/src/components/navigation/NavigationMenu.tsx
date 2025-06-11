@@ -146,7 +146,7 @@ export function NavigationMenu({ className, onNavigate }: NavigationMenuProps) {
   };
 
   return (
-    <nav className={cn('heybo-navigation-menu', className)}>
+    <nav className={cn('heybo-chatbot-nav-menu heybo-navigation-menu', className)}>
       <div className="space-y-1 p-2">
         {navigationItems.map((item) => (
           <div key={item.id} className="relative">
@@ -161,7 +161,7 @@ export function NavigationMenu({ className, onNavigate }: NavigationMenuProps) {
                   // Active state
                   'bg-heybo-primary text-white shadow-md': isItemActive(item),
                   // Current flow state
-                  'bg-orange-50 text-heybo-primary border border-orange-200': 
+                  'bg-[var(--heybo-primary-50)] text-heybo-primary border border-[var(--heybo-primary-200)]': 
                     !isItemActive(item) && isItemInCurrentFlow(item),
                   // Default state
                   'text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800': 
@@ -204,8 +204,8 @@ export function NavigationMenu({ className, onNavigate }: NavigationMenuProps) {
                     <div className={cn(
                       'text-xs mt-0.5 truncate',
                       {
-                        'text-orange-100': isItemActive(item),
-                        'text-orange-600': !isItemActive(item) && isItemInCurrentFlow(item),
+                        'text-[var(--heybo-primary-100)]': isItemActive(item),
+                        'text-[var(--heybo-primary-600)]': !isItemActive(item) && isItemInCurrentFlow(item),
                         'text-gray-500 dark:text-gray-400': !isItemActive(item) && !isItemInCurrentFlow(item)
                       }
                     )}>
@@ -224,7 +224,7 @@ export function NavigationMenu({ className, onNavigate }: NavigationMenuProps) {
                     {
                       'bg-white/20 text-white': isItemActive(item),
                       'bg-heybo-primary text-white': !isItemActive(item) && typeof item.badge === 'string',
-                      'bg-orange-200 text-orange-800': !isItemActive(item) && typeof item.badge === 'number',
+                      'bg-[var(--heybo-primary-200)] text-[var(--heybo-primary-800)]': !isItemActive(item) && typeof item.badge === 'number',
                     }
                   )}>
                     {item.badge}

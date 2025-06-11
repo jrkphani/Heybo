@@ -6,7 +6,7 @@ import { Bot } from 'lucide-react';
 
 export function LoadingIndicator() {
   return (
-    <div className="flex gap-3 max-w-full justify-start">
+    <div className="heybo-chatbot-loading">
       {/* Avatar */}
       <div
         className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm"

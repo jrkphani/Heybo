@@ -72,8 +72,8 @@ export function RecentOrdersList({ onOrderSelect, className }: RecentOrdersListP
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center py-12">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-600"></div>
+      <div className="heybo-chatbot-recent-orders">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[var(--heybo-primary-600)]"></div>
       </div>
     );
   }
@@ -89,7 +89,7 @@ export function RecentOrdersList({ onOrderSelect, className }: RecentOrdersListP
           <p className="text-gray-600 mb-4">You haven't placed any orders yet.</p>
           <button
             onClick={() => setCurrentStep('order-type-selection')}
-            className="px-6 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors"
+            className="px-6 py-2 bg-[var(--heybo-primary-600)] text-white rounded-lg hover:bg-[var(--heybo-primary-700)] transition-colors"
           >
             Start Your First Order
           </button>
@@ -149,7 +149,7 @@ export function RecentOrdersList({ onOrderSelect, className }: RecentOrdersListP
             <div className="space-y-2 mb-3">
               {order.items.slice(0, 2).map((item, itemIndex) => (
                 <div key={itemIndex} className="flex items-center space-x-3">
-                  <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="w-8 h-8 bg-[var(--heybo-primary-100)] rounded-lg flex items-center justify-center flex-shrink-0">
                     <span className="text-sm">🥣</span>
                   </div>
                   <div className="flex-1">
@@ -180,7 +180,7 @@ export function RecentOrdersList({ onOrderSelect, className }: RecentOrdersListP
                 {order.status === 'completed' ? 'Order completed' : 'Order in progress'}
               </div>
               
-              <button className="flex items-center space-x-2 px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors group-hover:scale-105 transform duration-200">
+              <button className="flex items-center space-x-2 px-4 py-2 bg-[var(--heybo-primary-600)] text-white rounded-lg hover:bg-[var(--heybo-primary-700)] transition-colors group-hover:scale-105 transform duration-200">
                 <RotateCcw className="w-4 h-4" />
                 <span>Reorder</span>
               </button>
@@ -192,7 +192,7 @@ export function RecentOrdersList({ onOrderSelect, className }: RecentOrdersListP
       {/* Show More Button (if more than 5 orders) */}
       {recentOrders.length >= 5 && (
         <div className="text-center">
-          <button className="text-orange-600 hover:text-orange-700 font-medium">
+          <button className="text-[var(--heybo-primary-600)] hover:text-[var(--heybo-primary-700)] font-medium">
             View All Orders
           </button>
         </div>

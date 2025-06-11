@@ -52,7 +52,7 @@ export function HeyBoLogo({
     <img
       src={HEYBO_ASSETS.logos[variant]}
       alt={alt}
-      className={cn(sizeClasses[size], 'w-auto', className)}
+      className={cn('heybo-chatbot-assets', sizeClasses[size], 'w-auto', className)}
       style={getFilterStyle()}
     />
   );

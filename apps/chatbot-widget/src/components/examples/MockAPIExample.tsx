@@ -243,7 +243,7 @@ function BowlsExample() {
         </button>
         <button
           onClick={() => fetchBowls('popular')}
-          className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600"
+          className="px-4 py-2 bg-[var(--heybo-primary-500)] text-white rounded hover:bg-[var(--heybo-primary-600)]"
         >
           Popular Bowls
         </button>
@@ -260,7 +260,7 @@ function BowlsExample() {
               {apiUtils.formatPrice(bowl.totalPrice || 1200)}
             </p>
             {bowl.isPopular && (
-              <span className="inline-block bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded mt-2">
+              <span className="inline-block bg-[var(--heybo-primary-100)] text-[var(--heybo-primary-800)] text-xs px-2 py-1 rounded mt-2">
                 Popular
               </span>
             )}

@@ -57,24 +57,30 @@ function generateBreadcrumbs(
   const significantStages = ['selection', 'customization', 'building', 'review'];
   
   navigationHistory.forEach((historyItem) => {
-    if (significantStages.includes(historyItem.stage)) {
-             const flowLabel = historyItem.flow.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase());
-       breadcrumbs.push({
-         label: `${flowLabel} - ${historyItem.stage.charAt(0).toUpperCase() + historyItem.stage.slice(1)}`,
-         stage: historyItem.stage,
-         flow: historyItem.flow as NavigationState['currentFlow'],
-         icon: FLOW_ICONS[historyItem.flow as NavigationState['currentFlow']]
-       });
+    if (historyItem.stage && significantStages.includes(historyItem.stage)) {
+      const flowLabel = historyItem.flow.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase());
+      const stageLabel = typeof historyItem.stage === 'string' ?
+        historyItem.stage.charAt(0).toUpperCase() + historyItem.stage.slice(1) :
+        'Welcome';
+      breadcrumbs.push({
+        label: `${flowLabel} - ${stageLabel}`,
+        stage: historyItem.stage || 'welcome',
+        flow: historyItem.flow as NavigationState['currentFlow'],
+        icon: FLOW_ICONS[historyItem.flow as NavigationState['currentFlow']]
+      });
     }
   });
   
   // Add current stage if different
-  if (navigation.currentStage !== 'welcome' && 
+  if (navigation.currentStage && navigation.currentStage !== 'welcome' && 
       !breadcrumbs.some(b => b.stage === navigation.currentStage)) {
     const currentFlowLabel = navigation.currentFlow.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase());
+    const stageLabel = typeof navigation.currentStage === 'string' ?
+      navigation.currentStage.charAt(0).toUpperCase() + navigation.currentStage.slice(1) :
+      'Welcome';
     breadcrumbs.push({
-      label: `${currentFlowLabel} - ${navigation.currentStage.charAt(0).toUpperCase() + navigation.currentStage.slice(1)}`,
-      stage: navigation.currentStage,
+      label: `${currentFlowLabel} - ${stageLabel}`,
+      stage: navigation.currentStage || 'welcome',
       flow: navigation.currentFlow,
       icon: FLOW_ICONS[navigation.currentFlow]
     });
@@ -123,6 +129,7 @@ export function NavigationHeader({
 
   return (
     <div className={cn(
+      'heybo-chatbot-nav-header',
       'heybo-navigation-header flex items-center justify-between p-4 bg-white border-b border-gray-200',
       'dark:bg-gray-900 dark:border-gray-700',
       className

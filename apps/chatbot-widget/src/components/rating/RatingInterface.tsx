@@ -159,7 +159,7 @@ export function RatingInterface({ unratedOrders, onRatingComplete, onSkip, class
   }
 
   return (
-    <div className={cn("h-full flex items-center justify-center bg-black bg-opacity-50 p-4", className)}>
+    <div className={cn("heybo-chatbot-rating h-full flex items-center justify-center bg-black bg-opacity-50 p-4", className)}>
       {/* Modal Container */}
       <div className="bg-white rounded-lg shadow-xl max-w-md w-full max-h-[80vh] overflow-hidden">
         {/* Modal Header */}
@@ -207,7 +207,7 @@ export function RatingInterface({ unratedOrders, onRatingComplete, onSkip, class
               return (
                 <div key={bowl.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                   <div className="flex items-center space-x-3">
-                    <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center">
+                    <div className="w-8 h-8 bg-[var(--heybo-primary-500)] rounded-full flex items-center justify-center">
                       <span className="text-white text-sm font-medium">
                         {bowl.name.charAt(0).toUpperCase()}
                       </span>
@@ -255,7 +255,7 @@ export function RatingInterface({ unratedOrders, onRatingComplete, onSkip, class
             <div className="flex items-center justify-center space-x-4 mb-4">
               {[
                 { value: 1, emoji: '😞', label: 'Very Bad', color: 'text-red-500' },
-                { value: 2, emoji: '😕', label: 'Bad', color: 'text-orange-500' },
+                { value: 2, emoji: '😕', label: 'Bad', color: 'text-[var(--heybo-primary-500)]' },
                 { value: 3, emoji: '😐', label: 'Average', color: 'text-yellow-500' },
                 { value: 4, emoji: '😊', label: 'Satisfied', color: 'text-green-500' },
                 { value: 5, emoji: '😄', label: 'Very Good', color: 'text-green-600' }

@@ -7,10 +7,27 @@ import { useLayoutStore } from '../../store/layout-store';
 import { useChatbotStore } from '../../store/chatbot-store';
 import type { NavigationState } from '../../types/layout';
 
+// Import existing ordering components
+import { WelcomeScreen } from '../chat/WelcomeScreen';
+import { LocationTypeSelector } from '../ordering/LocationTypeSelector';
+import { LocationSelector } from '../ordering/LocationSelector';
+import { GPSLocationHandler } from '../ordering/GPSLocationHandler';
+import { TimeSelector } from '../ordering/TimeSelector';
+import { OrderTypeSelection } from '../ordering/OrderTypeSelection';
+import { SignatureBowlsList } from '../ordering/SignatureBowlsList';
+import { RecentOrdersList } from '../ordering/RecentOrdersList';
+import { FavoritesList } from '../ordering/FavoritesList';
+import { CreateYourOwnFlow } from '../ordering/CreateYourOwnFlow';
+import { MLSuggestionsStartingPoint } from '../ordering/MLSuggestionsStartingPoint';
+import { MLRecommendationsList } from '../ordering/MLRecommendationsList';
+import { CartView } from '../ordering/CartView';
+import { UpsellingSuggestions } from '../ordering/UpsellingSuggestions';
+import type { LocationType, Location, OrderTimeType, BowlComposition, RecentOrder, FavoriteItem } from '../../types';
+
 // Content loading component
 function ContentLoader({ message = 'Loading...' }: { message?: string }) {
   return (
-    <div className="flex items-center justify-center h-32">
+    <div className="heybo-chatbot-content-router">
       <div className="flex items-center space-x-3">
         <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-heybo-primary"></div>
         <span className="text-gray-600 dark:text-gray-400">{message}</span>
@@ -50,144 +67,256 @@ interface LeftPaneContentProps {
 }
 
 function LeftPaneContent({ flow, stage }: LeftPaneContentProps) {
-  const { currentStep, user } = useChatbotStore();
+  const {
+    currentStep,
+    user,
+    setCurrentStep,
+    selectedLocation,
+    setSelectedLocation
+  } = useChatbotStore();
+
+  // Navigation handlers for components
+  const handleWelcomeAction = (action: string) => {
+    switch (action) {
+      case 'create-your-own':
+        setCurrentStep('create-your-own');
+        break;
+      case 'signature-bowls':
+        setCurrentStep('signature-bowls');
+        break;
+      case 'recent-orders':
+        setCurrentStep('recent-orders');
+        break;
+      case 'favorites':
+        setCurrentStep('favorites');
+        break;
+      default:
+        setCurrentStep('order-type-selection');
+    }
+  };
+
+  const handleLocationTypeSelect = (locationType: LocationType) => {
+    setCurrentStep('gps-location-check');
+  };
+
+  const handleLocationSelect = (location: Location) => {
+    setSelectedLocation(location);
+    setCurrentStep('time-selection');
+  };
 
   // Import components dynamically based on route
   const getContent = () => {
     const routeKey = `${flow}-${stage}`;
-    
+
     switch (routeKey) {
       case 'bowl-building-welcome':
         return (
-          <div className="p-4">
-            <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-              Welcome to HeyBo! 🥣
-            </h2>
-            <p className="text-gray-600 dark:text-gray-400 mb-6">
-              Ready to build your perfect warm grain bowl? Let's get started!
-            </p>
-            <div className="space-y-3">
-              <button className="w-full bg-heybo-primary text-white py-3 px-4 rounded-lg font-medium hover:bg-orange-600 transition-colors">
-                Create Your Bowl
-              </button>
-              <button className="w-full bg-gray-100 text-gray-700 py-3 px-4 rounded-lg font-medium hover:bg-gray-200 transition-colors">
-                Browse Signature Bowls
-              </button>
-            </div>
-          </div>
+          <WelcomeScreen
+            onActionSelect={handleWelcomeAction}
+            userName={user?.name}
+          />
         );
-        
+
+      case 'bowl-building-location-setup':
+        // Map to current step to determine which location component to show
+        if (currentStep === 'location-type-selection') {
+          return <LocationTypeSelector onLocationTypeSelect={handleLocationTypeSelect} />;
+        } else if (currentStep === 'gps-location-check') {
+          return (
+            <GPSLocationHandler
+              locationType="outlet" // This would come from state
+              onLocationSelect={handleLocationSelect}
+              onShowAllLocations={() => setCurrentStep('location-selection')}
+            />
+          );
+        } else if (currentStep === 'location-selection') {
+          return <LocationSelector locationType="outlet" onLocationSelect={handleLocationSelect} />;
+        } else if (currentStep === 'time-selection') {
+          return (
+            <TimeSelector
+              onTimeSelect={(timeType: OrderTimeType, time?: Date) => {
+                setCurrentStep('order-type-selection');
+              }}
+            />
+          );
+        }
+        return <LocationTypeSelector onLocationTypeSelect={handleLocationTypeSelect} />;
+
       case 'bowl-building-selection':
+        if (currentStep === 'signature-bowls') {
+          return (
+            <SignatureBowlsList
+              onBowlSelect={(bowl) => {
+                setCurrentStep('bowl-review');
+              }}
+            />
+          );
+        } else if (currentStep === 'order-type-selection') {
+          return (
+            <OrderTypeSelection
+              onOrderTypeSelect={(orderType) => {
+                switch (orderType) {
+                  case 'signature-bowls':
+                    setCurrentStep('signature-bowls');
+                    break;
+                  case 'create-your-own':
+                    setCurrentStep('create-your-own');
+                    break;
+                  case 'recent-orders':
+                    setCurrentStep('recent-orders');
+                    break;
+                  case 'favorites':
+                    setCurrentStep('favorites');
+                    break;
+                }
+              }}
+            />
+          );
+        }
         return (
-          <div className="p-4">
-            <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-4">
-              Choose Your Bowl
-            </h2>
-            <div className="space-y-3">
-              <div className="grid grid-cols-2 gap-3">
-                <div className="bg-white border border-gray-200 rounded-lg p-3 hover:border-heybo-primary cursor-pointer transition-colors">
-                  <div className="text-sm font-medium">Signature Bowls</div>
-                  <div className="text-xs text-gray-500">Chef curated</div>
-                </div>
-                <div className="bg-white border border-gray-200 rounded-lg p-3 hover:border-heybo-primary cursor-pointer transition-colors">
-                  <div className="text-sm font-medium">Create Your Own</div>
-                  <div className="text-xs text-gray-500">Customize</div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <OrderTypeSelection
+            onOrderTypeSelect={(orderType) => {
+              setCurrentStep(orderType as any);
+            }}
+          />
         );
-        
-      case 'bowl-building-customization':
+
       case 'bowl-building-building':
+        if (currentStep === 'create-your-own') {
+          return (
+            <CreateYourOwnFlow
+              onBowlComplete={() => {
+                setCurrentStep('bowl-review');
+              }}
+            />
+          );
+        } else if (currentStep === 'ml-suggestions-starting-point') {
+          return (
+            <MLSuggestionsStartingPoint
+              dietaryRestrictions={[]}
+              allergens={[]}
+              onSelectSuggestion={(recommendation) => {
+                setCurrentStep('create-your-own');
+              }}
+              onBuildFromScratch={() => setCurrentStep('create-your-own')}
+            />
+          );
+        } else if (currentStep === 'ml-recommendations') {
+          return (
+            <MLRecommendationsList
+              onBowlSelect={(bowl) => {
+                setCurrentStep('bowl-review');
+              }}
+            />
+          );
+        }
+        return (
+          <CreateYourOwnFlow
+            onBowlComplete={() => {
+              setCurrentStep('bowl-review');
+            }}
+          />
+        );
+
+      case 'bowl-building-customization':
+        return (
+          <CreateYourOwnFlow
+            onBowlComplete={() => {
+              setCurrentStep('bowl-review');
+            }}
+          />
+        );
+
+      case 'bowl-building-review':
         return (
           <div className="p-4">
             <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-4">
-              Build Your Bowl
+              Review Your Bowl
             </h2>
             <div className="space-y-4">
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Base</label>
-                <select className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm">
-                  <option>Brown Rice</option>
-                  <option>Quinoa</option>
-                  <option>Mixed Greens</option>
-                </select>
+              <div className="bg-gray-50 rounded-lg p-4">
+                <div className="font-medium">Custom Bowl</div>
+                <div className="text-sm text-gray-600 mt-1">
+                  Review your selections and add to cart
+                </div>
               </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Protein</label>
-                <select className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm">
-                  <option>Grilled Chicken</option>
-                  <option>Tofu</option>
-                  <option>Salmon</option>
-                </select>
-              </div>
-              <button className="w-full bg-heybo-primary text-white py-2 px-4 rounded-lg font-medium hover:bg-orange-600 transition-colors">
-                Continue
+              <button
+                onClick={() => setCurrentStep('cart-review')}
+                className="w-full bg-heybo-primary text-white py-3 px-4 rounded-lg font-medium hover:bg-[var(--heybo-primary-600)] transition-colors"
+              >
+                Add to Cart
               </button>
             </div>
           </div>
         );
-        
+
       case 'cart-management-review':
         return (
-          <div className="p-4">
-            <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-4">
-              Review Your Order
-            </h2>
-            <div className="space-y-3">
-              <div className="bg-gray-50 rounded-lg p-3">
-                <div className="font-medium text-sm">Custom Bowl</div>
-                <div className="text-xs text-gray-500">Brown Rice, Chicken, Vegetables</div>
-                <div className="text-sm font-medium text-heybo-primary mt-1">$12.99</div>
-              </div>
-              <div className="border-t pt-3">
-                <div className="flex justify-between text-sm">
-                  <span>Subtotal</span>
-                  <span>$12.99</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span>Tax</span>
-                  <span>$1.04</span>
-                </div>
-                <div className="flex justify-between font-bold text-base border-t pt-2 mt-2">
-                  <span>Total</span>
-                  <span>$14.03</span>
-                </div>
-              </div>
-              <button className="w-full bg-heybo-primary text-white py-3 px-4 rounded-lg font-medium hover:bg-orange-600 transition-colors">
-                Proceed to Checkout
-              </button>
-            </div>
-          </div>
+          <CartView
+            onViewCart={() => {}}
+            onAddItems={() => setCurrentStep('order-type-selection')}
+            onCheckout={() => setCurrentStep('upselling')}
+          />
         );
-        
+
+      case 'cart-management-upselling':
+        return (
+          <UpsellingSuggestions
+            cartItems={[]}
+            onAddItem={(item) => {
+              console.log('Adding upsell item:', item);
+            }}
+            onContinue={() => setCurrentStep('order-confirmation')}
+            onSkip={() => setCurrentStep('order-confirmation')}
+          />
+        );
+
       case 'favorites-selection':
+        if (currentStep === 'favorites') {
+          return (
+            <FavoritesList
+              onFavoriteSelect={(favorite) => {
+                setCurrentStep('bowl-review');
+              }}
+            />
+          );
+        } else if (currentStep === 'recent-orders') {
+          return (
+            <RecentOrdersList
+              onOrderSelect={(order) => {
+                setCurrentStep('bowl-review');
+              }}
+            />
+          );
+        }
+        return (
+          <FavoritesList
+            onFavoriteSelect={(favorite) => {
+              setCurrentStep('bowl-review');
+            }}
+          />
+        );
+
+      case 'order-review-confirmation':
         return (
           <div className="p-4">
             <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-4">
-              Your Favorites
+              Order Confirmed! 🎉
             </h2>
-            {user?.favorites?.length ? (
-              <div className="space-y-3">
-                {user.favorites.map((favorite, index) => (
-                  <div key={index} className="bg-white border border-gray-200 rounded-lg p-3 hover:border-heybo-primary cursor-pointer transition-colors">
-                    <div className="font-medium text-sm">{favorite.name}</div>
-                    <div className="text-xs text-gray-500">{favorite.description}</div>
-                    <div className="text-sm font-medium text-heybo-primary mt-1">${(favorite.price / 100).toFixed(2)}</div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-8">
-                <div className="text-gray-500 dark:text-gray-400 mb-4">
-                  No favorites yet
+            <div className="space-y-4">
+              <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                <div className="font-medium text-green-800">Order #12345</div>
+                <div className="text-sm text-green-600 mt-1">
+                  Your bowl is being prepared! Estimated time: 25-30 minutes
                 </div>
-                <button className="bg-heybo-primary text-white py-2 px-4 rounded-lg font-medium hover:bg-orange-600 transition-colors">
-                  Browse Bowls
-                </button>
               </div>
-            )}
+              <button
+                onClick={() => setCurrentStep('welcome')}
+                className="w-full bg-heybo-primary text-white py-3 px-4 rounded-lg font-medium hover:bg-[var(--heybo-primary-600)] transition-colors"
+              >
+                Order Another Bowl
+              </button>
+            </div>
           </div>
         );
         

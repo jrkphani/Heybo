@@ -180,7 +180,7 @@ export function MessageInput({
 
   return (
     <div
-      className="relative flex w-full"
+      className="heybo-chatbot-message-input relative flex w-full"
       onDragOver={onDragOver}
       onDragLeave={onDragLeave}
       onDrop={onDrop}

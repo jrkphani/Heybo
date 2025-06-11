@@ -128,15 +128,17 @@ export default function ChatbotDemoPage() {
           </div>
         </div>
 
-        {/* Debug Info */}
-        <div className="mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
-          <h4 className="font-semibold text-blue-900 mb-2">🔧 Developer Info</h4>
-          <p className="text-blue-800 text-sm mb-2">
-            Environment: <strong>{process.env.NODE_ENV}</strong><br/>
-            Mock APIs: <strong>{process.env.NEXT_PUBLIC_USE_MOCK_API || 'true'}</strong>
+        {/* Testing Info */}
+        <div className="mt-8 p-4 bg-green-50 rounded-lg border border-green-200">
+          <h4 className="font-semibold text-green-900 mb-2">✅ Real Components Testing</h4>
+          <p className="text-green-800 text-sm mb-2">
+            This demo now uses the actual HeyBo chatbot components:<br/>
+            • <strong>ChatbotWidget</strong> - Main widget implementation<br/>
+            • <strong>EnhancedChatInterface</strong> - Real chat interface<br/>
+            • <strong>Real ordering components</strong> - CartView, CreateYourOwnFlow, etc.
           </p>
-          <p className="text-blue-700 text-xs">
-            Check the browser console for API call logs and responses
+          <p className="text-green-700 text-xs">
+            All V2 duplicate components have been removed. Testing the real implementation!
           </p>
         </div>
       </div>

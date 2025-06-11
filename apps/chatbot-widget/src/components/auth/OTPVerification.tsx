@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, Loader2, RefreshCw } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
+import { HeyBoOTPInput } from '../ui/heybo-otp-input';
 import { useChatbotStore } from '../../store/chatbot-store';
 import { cn } from '../../lib/utils';
 import type { User } from '../../types';
@@ -22,16 +23,15 @@ export function OTPVerification({
   onVerificationError, 
   onBack 
 }: OTPVerificationProps) {
-  const [otp, setOtp] = useState(
-    process.env.NODE_ENV === 'development'
-      ? ['1', '2', '3', '4', '5', '6']
-      : ['', '', '', '', '', '']
+  const [otpValue, setOtpValue] = useState(
+    process.env.NODE_ENV === 'development' ? '123456' : ''
   );
   const [isLoading, setIsLoading] = useState(false);
   const [isResending, setIsResending] = useState(false);
   const [timeLeft, setTimeLeft] = useState(600); // 10 minutes in seconds
   const [attempts, setAttempts] = useState(0);
-  const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
+  const [otpError, setOtpError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string>('');
   const { setLoading } = useChatbotStore();
 
   // Countdown timer
@@ -49,50 +49,42 @@ export function OTPVerification({
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
-  const handleOtpChange = (index: number, value: string) => {
-    if (value.length > 1) return; // Prevent multiple characters
-    
-    const newOtp = [...otp];
-    newOtp[index] = value;
-    setOtp(newOtp);
-
-    // Auto-focus next input
-    if (value && index < 5) {
-      inputRefs.current[index + 1]?.focus();
-    }
-
-    // Auto-submit when all fields are filled
-    if (newOtp.every(digit => digit !== '') && !isLoading) {
-      handleVerifyOtp(newOtp.join(''));
-    }
+  const handleOtpChange = (value: string) => {
+    setOtpValue(value);
+    setOtpError(false);
+    setErrorMessage('');
   };
 
-  const handleKeyDown = (index: number, e: React.KeyboardEvent) => {
-    if (e.key === 'Backspace' && !otp[index] && index > 0) {
-      inputRefs.current[index - 1]?.focus();
+  const handleOtpComplete = (value: string) => {
+    if (!isLoading) {
+      handleVerifyOtp(value);
     }
   };
 
   const handleVerifyOtp = async (otpCode?: string) => {
-    const codeToVerify = otpCode || otp.join('');
-    
+    const codeToVerify = otpCode || otpValue;
+
     if (codeToVerify.length !== 6) {
-      onVerificationError('Please enter the complete 6-digit OTP');
+      setOtpError(true);
+      setErrorMessage('Please enter the complete 6-digit OTP');
       return;
     }
 
     if (attempts >= 5) {
-      onVerificationError('Too many failed attempts. Please request a new OTP.');
+      setOtpError(true);
+      setErrorMessage('Too many failed attempts. Please request a new OTP.');
       return;
     }
 
     setIsLoading(true);
     setLoading(true);
+    setOtpError(false);
+    setErrorMessage('');
 
     try {
       // Simulate OTP verification
       await new Promise(resolve => setTimeout(resolve, 1500));
-      
+
       // Mock verification logic
       if (codeToVerify === '123456' || codeToVerify === '000000') {
         // Successful verification - pass the OTP code to parent
@@ -101,16 +93,20 @@ export function OTPVerification({
         // Failed verification
         const newAttempts = attempts + 1;
         setAttempts(newAttempts);
-        setOtp(['', '', '', '', '', '']);
-        inputRefs.current[0]?.focus();
+        setOtpValue('');
+        setOtpError(true);
 
         if (newAttempts >= 5) {
+          setErrorMessage('Too many failed attempts. Please request a new OTP or try again later.');
           onVerificationError('Too many failed attempts. Please request a new OTP or try again later.');
         } else {
+          setErrorMessage(`Invalid OTP. ${5 - newAttempts} attempts remaining.`);
           onVerificationError(`Invalid OTP. ${5 - newAttempts} attempts remaining.`);
         }
       }
     } catch (error) {
+      setOtpError(true);
+      setErrorMessage('Verification failed. Please try again.');
       onVerificationError('Verification failed. Please try again.');
     } finally {
       setIsLoading(false);
@@ -120,20 +116,23 @@ export function OTPVerification({
 
   const handleResendOtp = async () => {
     setIsResending(true);
-    
+
     try {
       // Simulate resending OTP
       await new Promise(resolve => setTimeout(resolve, 1000));
-      
+
       // Reset state
-      setOtp(['', '', '', '', '', '']);
+      setOtpValue('');
       setTimeLeft(600);
       setAttempts(0);
-      inputRefs.current[0]?.focus();
-      
+      setOtpError(false);
+      setErrorMessage('');
+
       // Show success message (you might want to use a toast here)
       console.log('OTP resent successfully');
     } catch (error) {
+      setOtpError(true);
+      setErrorMessage('Failed to resend OTP. Please try again.');
       onVerificationError('Failed to resend OTP. Please try again.');
     } finally {
       setIsResending(false);
@@ -154,7 +153,7 @@ export function OTPVerification({
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="p-6 space-y-6"
+      className="heybo-chatbot-otp"
     >
       <div className="text-center space-y-2">
         <h2 className="text-xl font-bold text-gray-800">Verify Your Number</h2>
@@ -165,30 +164,17 @@ export function OTPVerification({
       </div>
 
       <div className="space-y-4">
-        {/* OTP Input Fields */}
-        <div className="flex justify-center space-x-3">
-          {otp.map((digit, index) => (
-            <Input
-              key={index}
-              ref={(el) => {
-                inputRefs.current[index] = el;
-              }}
-              type="text"
-              inputMode="numeric"
-              pattern="[0-9]*"
-              maxLength={1}
-              value={digit}
-              onChange={(e) => handleOtpChange(index, e.target.value)}
-              onKeyDown={(e) => handleKeyDown(index, e)}
-              className={cn(
-                "w-12 h-12 text-center text-lg font-semibold",
-                "border-2 rounded-lg",
-                digit ? "border-orange-500 bg-orange-50" : "border-gray-300",
-                "focus:border-orange-500 focus:ring-orange-500"
-              )}
-              disabled={isLoading}
-            />
-          ))}
+        {/* HeyBo OTP Input */}
+        <div className="flex justify-center">
+          <HeyBoOTPInput
+            maxLength={6}
+            onComplete={handleOtpComplete}
+            onValueChange={handleOtpChange}
+            error={otpError}
+            errorMessage={errorMessage}
+            disabled={isLoading}
+            className="max-w-md"
+          />
         </div>
 
         {/* Timer and Resend */}
@@ -207,7 +193,7 @@ export function OTPVerification({
             variant="ghost"
             onClick={handleResendOtp}
             disabled={isResending || timeLeft > 540} // Allow resend after 1 minute
-            className="text-orange-600 hover:text-orange-700 text-sm"
+            className="text-[var(--heybo-primary-600)] hover:text-[var(--heybo-primary-700)] text-sm"
           >
             {isResending ? (
               <>
@@ -226,7 +212,7 @@ export function OTPVerification({
         {/* Manual Verify Button */}
         <Button
           onClick={() => handleVerifyOtp()}
-          disabled={isLoading || otp.some(digit => !digit)}
+          disabled={isLoading || otpValue.length !== 6}
           className={cn(
             "w-full h-12 bg-gradient-to-r from-orange-500 to-orange-600",
             "hover:from-orange-600 hover:to-orange-700",

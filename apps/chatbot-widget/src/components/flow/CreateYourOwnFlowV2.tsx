@@ -23,7 +23,7 @@ import {
 } from 'lucide-react';
 import { useChatbotStore } from '../../store/chatbot-store';
 import { useLayoutStore } from '../../store/layout-store';
-import { BowlPreviewV2 } from '../bowl/BowlPreviewV2';
+import { BowlPreview } from '../bowl/BowlPreview';
 import { cn } from '../../lib/utils';
 
 // Types
@@ -598,7 +598,7 @@ export function CreateYourOwnFlowV2({
   const renderStepContent = () => {
     if (currentStep === 'review') {
       return (
-        <div className="space-y-6">
+        <div className="heybo-chatbot-cyo-flow-v2">
           <div className="text-center">
             <h3 className="text-xl font-semibold text-gray-900 mb-2">Your Custom Bowl</h3>
             <p className="text-gray-600">Review and customize your creation</p>
@@ -660,7 +660,7 @@ export function CreateYourOwnFlowV2({
             <div className="flex space-x-4">
               <button
                 onClick={handleAddToCart}
-                className="flex-1 bg-heybo-primary text-white py-3 px-4 rounded-lg hover:bg-orange-600 transition-colors font-medium flex items-center justify-center"
+                className="flex-1 bg-heybo-primary text-white py-3 px-4 rounded-lg hover:bg-[var(--heybo-primary-600)] transition-colors font-medium flex items-center justify-center"
               >
                 <ShoppingCart className="w-4 h-4 mr-2" />
                 Add to Cart - ${(totalPrice / 100).toFixed(2)}
@@ -706,8 +706,8 @@ export function CreateYourOwnFlowV2({
                 className={cn(
                   "p-4 rounded-lg border-2 text-left transition-all relative",
                   isSelected 
-                    ? "border-orange-500 bg-orange-50" 
-                    : "border-gray-200 bg-white hover:border-orange-300"
+                    ? "border-[var(--heybo-primary-500)] bg-[var(--heybo-primary-50)]" 
+                    : "border-gray-200 bg-white hover:border-[var(--heybo-primary-300)]"
                 )}
               >
                 {ingredient.popular && (
@@ -749,7 +749,7 @@ export function CreateYourOwnFlowV2({
                 
                 {isSelected && (
                   <div className="absolute top-2 left-2">
-                    <div className="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center">
+                    <div className="w-6 h-6 bg-[var(--heybo-primary-500)] rounded-full flex items-center justify-center">
                       <Check className="w-4 h-4 text-white" />
                     </div>
                   </div>
@@ -770,7 +770,7 @@ export function CreateYourOwnFlowV2({
             </p>
             <button
               onClick={() => setDietaryPreferences([])}
-              className="text-heybo-primary hover:text-orange-600 font-medium"
+              className="text-heybo-primary hover:text-[var(--heybo-primary-600)] font-medium"
             >
               Clear all filters
             </button>
@@ -787,7 +787,7 @@ export function CreateYourOwnFlowV2({
         <div className="flex items-center justify-between mb-4">
           <div>
             <h2 className="text-xl font-bold text-gray-900 flex items-center">
-              <ChefHat className="w-5 h-5 mr-2 text-orange-500" />
+              <ChefHat className="w-5 h-5 mr-2 text-[var(--heybo-primary-500)]" />
               Create Your Own Bowl
             </h2>
             <p className="text-sm text-gray-600">{currentStepData.description}</p>
@@ -807,7 +807,7 @@ export function CreateYourOwnFlowV2({
                 <div className={cn(
                   "w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium transition-colors",
                   index <= currentStepIndex
-                    ? "bg-orange-500 text-white"
+                    ? "bg-[var(--heybo-primary-500)] text-white"
                     : "bg-gray-200 text-gray-600"
                 )}>
                   {index + 1}
@@ -815,7 +815,7 @@ export function CreateYourOwnFlowV2({
                 {index < BOWL_STEPS.length - 1 && (
                   <div className={cn(
                     "flex-1 h-2 rounded transition-colors",
-                    index < currentStepIndex ? "bg-orange-500" : "bg-gray-200"
+                    index < currentStepIndex ? "bg-[var(--heybo-primary-500)]" : "bg-gray-200"
                   )} />
                 )}
               </React.Fragment>
@@ -838,7 +838,7 @@ export function CreateYourOwnFlowV2({
             <Filter className="w-4 h-4" />
             <span>Dietary Preferences</span>
             {dietaryPreferences.length > 0 && (
-              <span className="bg-orange-100 text-orange-700 px-2 py-1 rounded text-xs">
+              <span className="bg-[var(--heybo-primary-100)] text-[var(--heybo-primary-700)] px-2 py-1 rounded text-xs">
                 {dietaryPreferences.length} active
               </span>
             )}
@@ -960,7 +960,7 @@ export function CreateYourOwnFlowV2({
             <button
               onClick={handleNextStep}
               disabled={!canProceed()}
-              className="flex-1 flex items-center justify-center space-x-2 bg-heybo-primary text-white py-2 px-4 rounded-lg hover:bg-orange-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex-1 flex items-center justify-center space-x-2 bg-heybo-primary text-white py-2 px-4 rounded-lg hover:bg-[var(--heybo-primary-600)] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <span>
                 {currentStepIndex === BOWL_STEPS.length - 2 ? 'Review Bowl' : 'Continue'}

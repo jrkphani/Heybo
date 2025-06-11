@@ -257,6 +257,7 @@ function ControlComponent({
       {...getAnimationVariants()}
       transition={{ duration: 0.3, ease: 'easeInOut' }}
       className={cn(
+        "heybo-chatbot-control-placement",
         getPositionClasses(),
         {
           'opacity-60': responsiveState === 'collapse',
@@ -300,7 +301,7 @@ export function ControlPlacementManager({ children, className }: ControlPlacemen
   // Sample control components - in real implementation, these would be imported
   const PrimaryActions = () => (
     <div className="bg-white border-t border-gray-200 p-4 flex space-x-3">
-      <button className="flex-1 bg-heybo-primary text-white py-3 px-4 rounded-lg font-medium hover:bg-orange-600 transition-colors">
+      <button className="flex-1 bg-heybo-primary text-white py-3 px-4 rounded-lg font-medium hover:bg-[var(--heybo-primary-600)] transition-colors">
         Continue
       </button>
       <button className="flex-1 bg-gray-100 text-gray-700 py-3 px-4 rounded-lg font-medium hover:bg-gray-200 transition-colors">

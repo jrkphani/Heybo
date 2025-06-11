@@ -1360,10 +1360,10 @@ interface WidgetBreakpoints {
   
   xl: {
     screenSize: '1441px+';
-    widgetBehavior: 'premium-experience';
+    widgetBehavior: 'premium-experience-enhanced-coverage';
     dimensions: {
-      width: '520px';
-      height: '680px';
+      width: '720px';
+      height: '800px';
       borderRadius: '24px';
       position: 'optimally-positioned';
     };
@@ -1638,14 +1638,14 @@ interface WidgetBreakpoints {
 #### **Extra Large (XL) - Large Desktop Monitors**
 
 ```css
-/* XL: 1441px+ - Premium Experience */
+/* XL: 1441px+ - Premium Experience with Enhanced Coverage */
 @media (min-width: 1441px) {
   .heybo-chatbot-widget {
     position: fixed;
     bottom: 40px;
     right: 40px;
-    width: 520px;
-    height: 680px;
+    width: 720px;
+    height: 800px;
     border-radius: 24px;
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
     z-index: 1000;
@@ -1667,10 +1667,10 @@ interface WidgetBreakpoints {
   }
   
   .chat-messages-container {
-    height: calc(680px - 140px); /* Total height - header - input */
+    height: calc(800px - 140px); /* Total height - header - input */
     padding: 24px;
   }
-  
+
   .widget-input-area {
     padding: 20px 24px;
     min-height: 80px;

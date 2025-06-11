@@ -7,6 +7,7 @@ import { useChatbotStore } from '../../store/chatbot-store';
 import { cn } from '../../lib/utils';
 import { mockIngredients } from '../../lib/mock-ingredient-helpers';
 import type { CartItem } from '../../types';
+import '../../styles/heybo-design-tokens.css';
 
 interface CartViewProps {
   onViewCart?: () => void;
@@ -133,26 +134,26 @@ export function CartView({ onViewCart, onAddItems, onCheckout, className }: Cart
   };
 
   return (
-    <div className={cn("flex flex-col h-full bg-white", className)}>
+    <div className={cn("heybo-chatbot-cart-view flex flex-col h-full bg-white", className)}>
       {/* Header Message */}
-      <div className="p-6 border-b border-gray-200">
+      <div className="heybo-chatbot-cart-header p-6 border-b border-gray-200">
         <h2 className="text-lg font-semibold text-gray-900 mb-2">
           Cool, you're all set with your {cartItems.length} bowls! Would you like to view your cart or add more items?
         </h2>
-        
-        {/* Action Buttons */}
+
+        {/* Action Buttons - Touch Target Compliant */}
         <div className="flex space-x-3">
           <button
             onClick={handleViewCart}
-            className="flex items-center space-x-2 px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors"
+            className="heybo-chatbot-button heybo-chatbot-button-primary heybo-chatbot-touch-target flex items-center space-x-2"
           >
             <ShoppingCart className="w-4 h-4" />
             <span>View Cart</span>
           </button>
-          
+
           <button
             onClick={handleAddItems}
-            className="flex items-center space-x-2 px-4 py-2 border border-orange-600 text-orange-600 rounded-lg hover:bg-orange-50 transition-colors"
+            className="heybo-chatbot-button heybo-chatbot-button-secondary heybo-chatbot-touch-target flex items-center space-x-2"
           >
             <Plus className="w-4 h-4" />
             <span>Add Items</span>
@@ -179,7 +180,7 @@ export function CartView({ onViewCart, onAddItems, onCheckout, className }: Cart
                 className="flex items-center space-x-3 bg-white rounded-lg p-3 border border-gray-200"
               >
                 {/* Bowl Image */}
-                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                <div className="w-12 h-12 bg-[var(--heybo-primary-100)] rounded-lg flex items-center justify-center flex-shrink-0">
                   <span className="text-lg">🥣</span>
                 </div>
                 
@@ -191,13 +192,13 @@ export function CartView({ onViewCart, onAddItems, onCheckout, className }: Cart
                   </div>
                 </div>
                 
-                {/* Quantity Controls */}
+                {/* Quantity Controls - Touch Target Compliant */}
                 <div className="flex items-center space-x-2">
-                  <button className="w-6 h-6 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50">
+                  <button className="heybo-chatbot-touch-target w-11 h-11 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50">
                     <Minus className="w-3 h-3" />
                   </button>
                   <span className="w-8 text-center">{item.quantity}</span>
-                  <button className="w-6 h-6 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50">
+                  <button className="heybo-chatbot-touch-target w-11 h-11 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50">
                     <Plus className="w-3 h-3" />
                   </button>
                 </div>
@@ -205,7 +206,7 @@ export function CartView({ onViewCart, onAddItems, onCheckout, className }: Cart
                 {/* Price & Edit */}
                 <div className="text-right">
                   <div className="font-medium text-gray-900">{formatPrice(item.bowl.totalPrice)}</div>
-                  <button className="text-orange-600 hover:text-orange-700">
+                  <button className="text-[var(--heybo-primary-600)] hover:text-[var(--heybo-primary-700)]">
                     <Edit3 className="w-4 h-4" />
                   </button>
                 </div>
@@ -217,7 +218,7 @@ export function CartView({ onViewCart, onAddItems, onCheckout, className }: Cart
           <div className="mt-4 pt-3 border-t border-gray-200">
             <div className="flex justify-between items-center">
               <span className="font-medium text-gray-900">Total</span>
-              <span className="font-semibold text-lg text-orange-600">
+              <span className="font-semibold text-lg text-[var(--heybo-primary-600)]">
                 {formatPrice(total)}
               </span>
             </div>
@@ -236,14 +237,14 @@ export function CartView({ onViewCart, onAddItems, onCheckout, className }: Cart
         
         <div className="space-y-3">
           {addOns.map((addon) => (
-            <div key={addon.id} className="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:border-orange-300 transition-colors">
+            <div key={addon.id} className="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:border-[var(--heybo-primary-300)] transition-colors">
               <div className="flex items-center space-x-3">
                 <span className="text-lg">{addon.emoji}</span>
                 <span className="font-medium text-gray-900">{addon.name}</span>
               </div>
               <div className="flex items-center space-x-3">
                 <span className="font-medium text-gray-900">{formatPrice(addon.price)}</span>
-                <button className="px-3 py-1 bg-orange-600 text-white text-sm rounded hover:bg-orange-700 transition-colors">
+                <button className="px-3 py-1 bg-[var(--heybo-primary-600)] text-white text-sm rounded hover:bg-[var(--heybo-primary-700)] transition-colors">
                   Add
                 </button>
               </div>
@@ -252,19 +253,19 @@ export function CartView({ onViewCart, onAddItems, onCheckout, className }: Cart
         </div>
       </div>
 
-      {/* Bottom Actions */}
-      <div className="p-6 border-t border-gray-200 bg-gray-50">
+      {/* Bottom Actions - Touch Target Compliant */}
+      <div className="heybo-chatbot-cart-actions p-6 border-t border-gray-200 bg-gray-50">
         <div className="flex space-x-3">
           <button
             onClick={handleCheckout}
-            className="flex-1 bg-orange-600 text-white py-3 rounded-lg font-medium hover:bg-orange-700 transition-colors"
+            className="heybo-chatbot-button heybo-chatbot-button-primary heybo-chatbot-touch-target flex-1"
           >
             🛒 Checkout
           </button>
-          
+
           <button
             onClick={handleAddItems}
-            className="px-6 py-3 border border-orange-600 text-orange-600 rounded-lg font-medium hover:bg-orange-50 transition-colors"
+            className="heybo-chatbot-button heybo-chatbot-button-secondary heybo-chatbot-touch-target px-6"
           >
             ➕ Add Items
           </button>

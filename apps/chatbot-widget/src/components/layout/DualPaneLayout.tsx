@@ -180,13 +180,13 @@ export function DualPaneLayout({
           }}
         >
           {/* Right Pane Header */}
-          <div className="heybo-right-pane-header bg-orange-50 border-b border-orange-200 p-4 sticky top-0 z-10">
+          <div className="heybo-right-pane-header bg-[var(--heybo-primary-50)] border-b border-[var(--heybo-primary-200)] p-4 sticky top-0 z-10">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="font-semibold text-orange-800 text-sm">Bowl Preview</h3>
-                <p className="text-xs text-orange-600">Real-time customization</p>
+                <h3 className="font-semibold text-[var(--heybo-primary-800)] text-sm">Bowl Preview</h3>
+                <p className="text-xs text-[var(--heybo-primary-600)]">Real-time customization</p>
               </div>
-              <div className="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center">
+              <div className="w-6 h-6 bg-[var(--heybo-primary-500)] rounded-full flex items-center justify-center">
                 <span className="text-white text-xs font-bold">🥣</span>
               </div>
             </div>
@@ -200,7 +200,7 @@ export function DualPaneLayout({
           {/* Right Pane Footer - Quick Actions */}
           <div className="heybo-right-pane-footer bg-gray-50 border-t border-gray-200 p-3">
             <div className="flex gap-2">
-              <button className="flex-1 bg-orange-500 text-white text-xs py-2 px-3 rounded-lg hover:bg-orange-600 transition-colors">
+              <button className="flex-1 bg-[var(--heybo-primary-500)] text-white text-xs py-2 px-3 rounded-lg hover:bg-[var(--heybo-primary-600)] transition-colors">
                 Add to Cart
               </button>
               <button className="bg-white border border-gray-300 text-gray-700 text-xs py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors">
@@ -266,7 +266,7 @@ export function CrossPaneConnection({
 
   return (
     <motion.div
-      className="absolute bg-orange-300 h-0.5 z-20 pointer-events-none"
+      className="absolute bg-[var(--heybo-primary-300)] h-0.5 z-20 pointer-events-none"
       initial={{ width: 0, opacity: 0 }}
       animate={{ width: '100%', opacity: 1 }}
       exit={{ width: 0, opacity: 0 }}

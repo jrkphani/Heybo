@@ -128,7 +128,7 @@ export function MLRecommendationsList({
 
   if (isLoading) {
     return (
-      <div className="flex flex-col items-center justify-center py-12 space-y-4">
+      <div className="heybo-chatbot-ml-recommendations">
         <div className="relative">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600"></div>
           <Sparkles className="w-6 h-6 text-purple-600 absolute top-3 left-3" />

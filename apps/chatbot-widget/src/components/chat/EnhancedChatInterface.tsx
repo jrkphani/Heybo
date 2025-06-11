@@ -2,10 +2,12 @@
 
 import React, { useState, useEffect } from 'react';
 import { useChatbotStore } from '../../store/chatbot-store';
+import { useLayoutStore } from '../../store/layout-store';
 import { ChatMessage } from './ChatMessage';
 import { ChatInput } from './ChatInput';
 import { WelcomeScreen } from './WelcomeScreen';
 import { LoadingIndicator } from './LoadingIndicator';
+import { HeyBoChatInterface } from './HeyBoChatInterface';
 import { TwoPaneLayout } from '../layout/TwoPaneLayout';
 import { OrderSummaryPane } from '../ordering/OrderSummaryPane';
 import { CartView } from '../ordering/CartView';
@@ -22,6 +24,10 @@ import { FavoritesList } from '../ordering/FavoritesList';
 import { CreateYourOwnFlow } from '../ordering/CreateYourOwnFlow';
 import { OrderTypeSelection } from '../ordering/OrderTypeSelection';
 import { MLRecommendationsList } from '../ordering/MLRecommendationsList';
+// Import Navigation Components
+import { NavigationHeader } from '../navigation/NavigationHeader';
+import { NavigationMenu } from '../navigation/NavigationMenu';
+import { ContentRouter } from '../navigation/ContentRouter';
 import { Menu, X } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import type { LocationType, Location, OrderTimeType, BowlComposition, RecentOrder, FavoriteItem } from '../../types';
@@ -40,20 +46,62 @@ export function EnhancedChatInterface() {
     user
   } = useChatbotStore();
 
+  const {
+    navigation,
+    navigateToStage,
+    setCurrentFlow,
+    syncWithChatbotStep,
+    isDualPane,
+    isMobileView
+  } = useLayoutStore();
+
   const [showMobileOrderSummary, setShowMobileOrderSummary] = useState(false);
   const [selectedLocationType, setSelectedLocationType] = useState<LocationType | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [pendingOrderType, setPendingOrderType] = useState<string | null>(null);
+  const [showNavigationMenu, setShowNavigationMenu] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 1024);
     };
-    
+
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  // Sync chatbot step with navigation system
+  useEffect(() => {
+    syncWithChatbotStep(currentStep);
+  }, [currentStep, syncWithChatbotStep]);
+
+  // Map chatbot steps to navigation flows and stages
+  const getNavigationMapping = (step: string) => {
+    const stepToNavigationMap: Record<string, { flow: typeof navigation.currentFlow; stage: string }> = {
+      'welcome': { flow: 'bowl-building', stage: 'welcome' },
+      'location-type-selection': { flow: 'bowl-building', stage: 'location-setup' },
+      'gps-location-check': { flow: 'bowl-building', stage: 'location-setup' },
+      'location-selection': { flow: 'bowl-building', stage: 'location-setup' },
+      'time-selection': { flow: 'bowl-building', stage: 'location-setup' },
+      'order-type-selection': { flow: 'bowl-building', stage: 'selection' },
+      'signature-bowls': { flow: 'bowl-building', stage: 'selection' },
+      'recent-orders': { flow: 'favorites', stage: 'selection' },
+      'favorites': { flow: 'favorites', stage: 'selection' },
+      'create-your-own': { flow: 'bowl-building', stage: 'building' },
+      'ml-suggestions-starting-point': { flow: 'bowl-building', stage: 'building' },
+      'ml-recommendations': { flow: 'bowl-building', stage: 'building' },
+      'bowl-building': { flow: 'bowl-building', stage: 'building' },
+      'ingredient-selection': { flow: 'bowl-building', stage: 'customization' },
+      'bowl-review': { flow: 'bowl-building', stage: 'review' },
+      'add-ons-selection': { flow: 'bowl-building', stage: 'customization' },
+      'cart-review': { flow: 'cart-management', stage: 'review' },
+      'upselling': { flow: 'cart-management', stage: 'upselling' },
+      'order-confirmation': { flow: 'order-review', stage: 'confirmation' }
+    };
+
+    return stepToNavigationMap[step] || { flow: 'bowl-building', stage: 'welcome' };
+  };
 
   const handleWelcomeAction = (action: string) => {
     switch (action) {
@@ -210,6 +258,40 @@ export function EnhancedChatInterface() {
     setCurrentStep('upselling');
   };
 
+  // Navigation handlers
+  const handleNavigationMenuToggle = () => {
+    setShowNavigationMenu(!showNavigationMenu);
+  };
+
+  const handleNavigate = (stage: string, flow: typeof navigation.currentFlow) => {
+    // Update navigation state
+    navigateToStage(stage, flow);
+    setCurrentFlow(flow);
+
+    // Map navigation back to chatbot step
+    const navigationToStepMap: Record<string, string> = {
+      'bowl-building-welcome': 'welcome',
+      'bowl-building-location-setup': 'location-type-selection',
+      'bowl-building-selection': 'order-type-selection',
+      'bowl-building-building': 'create-your-own',
+      'bowl-building-customization': 'ingredient-selection',
+      'bowl-building-review': 'bowl-review',
+      'cart-management-review': 'cart-review',
+      'cart-management-upselling': 'upselling',
+      'order-review-confirmation': 'order-confirmation',
+      'favorites-selection': 'favorites'
+    };
+
+    const stepKey = `${flow}-${stage}`;
+    const mappedStep = navigationToStepMap[stepKey];
+    if (mappedStep) {
+      setCurrentStep(mappedStep as any);
+    }
+
+    // Close mobile menu
+    setShowNavigationMenu(false);
+  };
+
   // Determine if we should show the two-pane layout
   const shouldShowTwoPaneLayout = [
     'cart-review',
@@ -223,17 +305,18 @@ export function EnhancedChatInterface() {
     'order-confirmation'
   ].includes(currentStep);
 
+  // Determine if we should use the new navigation system
+  const shouldUseNavigationSystem = isDualPane || isMobileView;
+
   // Render main content based on current step
   const renderMainContent = () => {
     console.log('🎯 EnhancedChatInterface rendering step:', currentStep, 'User:', user?.name);
 
     switch (currentStep) {
       case 'welcome':
-        console.log('🏠 Rendering WelcomeScreen');
+        console.log('🏠 Rendering HeyBoChatInterface');
         return (
-          <div className="h-full">
-            <WelcomeScreen onActionSelect={handleWelcomeAction} userName={user?.name} />
-          </div>
+          <HeyBoChatInterface className="heybo-chatbot-enhanced-interface" />
         );
 
       case 'location-type-selection':
@@ -352,45 +435,70 @@ export function EnhancedChatInterface() {
         );
 
       default:
-        console.log('❓ Rendering default case (chat messages) for step:', currentStep);
+        console.log('❓ Rendering HeyBoChatInterface for step:', currentStep);
         return (
-          <div className="flex flex-col h-full">
-            {/* Messages Container */}
-            <div className="flex-1 overflow-y-auto p-6 space-y-4">
-              {/* Error state */}
-              {error && (
-                <div className="bg-red-50 border border-red-200 rounded-lg p-3 mb-4">
-                  <div className="flex items-center">
-                    <svg className="w-5 h-5 text-red-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <p className="text-red-700 text-sm">{error}</p>
-                  </div>
-                </div>
-              )}
-
-              {/* Messages */}
-              {messages.map((message) => (
-                <ChatMessage key={message.id} message={message} />
-              ))}
-
-              {/* Loading indicator */}
-              {isLoading && <LoadingIndicator />}
-            </div>
-
-            {/* Chat Input */}
-            <div className="border-t border-gray-200">
-              <ChatInput />
-            </div>
-          </div>
+          <HeyBoChatInterface className="heybo-chatbot-enhanced-interface" />
         );
     }
   };
 
-  // For two-pane layout steps
+  // For two-pane layout steps with navigation system
   if (shouldShowTwoPaneLayout) {
-    const LayoutComponent = TwoPaneLayout; // TwoPaneLayout handles mobile internally
-    
+    // Use navigation system for dual-pane layouts
+    if (shouldUseNavigationSystem) {
+      return (
+        <div className="flex flex-col h-full">
+          {/* Global Navigation Header */}
+          <NavigationHeader
+            showMenuToggle={isMobileView}
+            onMenuToggle={handleNavigationMenuToggle}
+          />
+
+          {/* Navigation Menu Overlay (Mobile) */}
+          {showNavigationMenu && isMobileView && (
+            <div className="absolute inset-0 z-50 bg-white">
+              <div className="flex items-center justify-between p-4 border-b border-gray-200">
+                <h2 className="font-semibold text-gray-900">Navigation</h2>
+                <button
+                  onClick={() => setShowNavigationMenu(false)}
+                  className="p-2 hover:bg-gray-100 rounded-lg"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+              <NavigationMenu onNavigate={handleNavigate} />
+            </div>
+          )}
+
+          {/* Main Content with Navigation Router */}
+          <div className="flex-1 overflow-hidden">
+            <TwoPaneLayout
+              leftPaneContent={
+                <div className="flex flex-col h-full">
+                  {/* Desktop Navigation Menu */}
+                  {!isMobileView && (
+                    <div className="border-b border-gray-200">
+                      <NavigationMenu onNavigate={handleNavigate} className="p-2" />
+                    </div>
+                  )}
+
+                  {/* Content Router */}
+                  <div className="flex-1 overflow-hidden">
+                    <ContentRouter />
+                  </div>
+                </div>
+              }
+              rightPaneContent={<OrderSummaryPane />}
+              className="h-full"
+            />
+          </div>
+        </div>
+      );
+    }
+
+    // Fallback to original layout for non-navigation systems
+    const LayoutComponent = TwoPaneLayout;
+
     return (
       <LayoutComponent
         leftPaneContent={<OrderSummaryPane />}
@@ -408,12 +516,12 @@ export function EnhancedChatInterface() {
                 </button>
               </div>
             )}
-            
+
             {/* Main content */}
             <div className="flex-1 overflow-hidden">
               {renderMainContent()}
             </div>
-            
+
             {/* Chat input for two-pane layout */}
             <div className="border-t border-gray-200 bg-white">
               <ChatInput />

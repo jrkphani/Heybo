@@ -22,10 +22,10 @@ export function LuluIcon({
 
   // Different visual variants for different contexts
   const variantStyles = {
-    default: "text-orange-500",
+    default: "text-[var(--heybo-primary-500)]",
     gradient: "",
-    outline: "text-orange-600",
-    solid: "text-orange-600",
+    outline: "text-[var(--heybo-primary-600)]",
+    solid: "text-[var(--heybo-primary-600)]",
     logo: "",
     "logo-contrast": ""
   };
@@ -34,7 +34,7 @@ export function LuluIcon({
   if (variant === 'logo') {
     return (
       <div
-        className={cn(baseClasses, className)}
+        className={cn("heybo-chatbot-lulu-icon", baseClasses, className)}
         style={{ width: sizeValue, height: sizeValue }}
       >
         <div className="flex items-center space-x-3">

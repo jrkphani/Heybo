@@ -206,7 +206,7 @@ export function CreateYourOwnFlow({ onBowlComplete, className }: CreateYourOwnFl
     switch (cyoStep) {
       case 'dietary-preferences':
         return (
-          <DietaryPreferences
+          <DietaryPreferences className="heybo-chatbot-cyo-flow"
             onComplete={handleDietaryPreferencesComplete}
             initialRestrictions={dietaryRestrictions}
             initialAllergens={allergens}
@@ -301,7 +301,7 @@ export function CreateYourOwnFlow({ onBowlComplete, className }: CreateYourOwnFl
             
             <button
               onClick={handleComplete}
-              className="w-full bg-orange-600 text-white py-3 rounded-lg font-medium hover:bg-orange-700 transition-colors"
+              className="w-full bg-[var(--heybo-primary-600)] text-white py-3 rounded-lg font-medium hover:bg-[var(--heybo-primary-700)] transition-colors"
             >
               Add to Cart
             </button>
@@ -334,7 +334,7 @@ export function CreateYourOwnFlow({ onBowlComplete, className }: CreateYourOwnFl
       <div className="bg-white border-b border-gray-200 p-4">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center space-x-2">
-            <ChefHat className="w-5 h-5 text-orange-600" />
+            <ChefHat className="w-5 h-5 text-[var(--heybo-primary-600)]" />
             <h2 className="font-semibold text-gray-900">Create Your Own</h2>
           </div>
           <div className="text-sm text-gray-600">
@@ -345,7 +345,7 @@ export function CreateYourOwnFlow({ onBowlComplete, className }: CreateYourOwnFl
         {/* Progress Bar */}
         <div className="w-full bg-gray-200 rounded-full h-2">
           <div 
-            className="bg-orange-600 h-2 rounded-full transition-all duration-300"
+            className="bg-[var(--heybo-primary-600)] h-2 rounded-full transition-all duration-300"
             style={{ width: `${((currentStepIndex + 1) / steps.length) * 100}%` }}
           />
         </div>
@@ -389,7 +389,7 @@ export function CreateYourOwnFlow({ onBowlComplete, className }: CreateYourOwnFl
             <button
               onClick={handleNext}
               disabled={currentStepIndex === steps.length - 1}
-              className="flex items-center space-x-2 px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex items-center space-x-2 px-4 py-2 bg-[var(--heybo-primary-600)] text-white rounded-lg hover:bg-[var(--heybo-primary-700)] disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <span>Next</span>
               <ArrowRight className="w-4 h-4" />

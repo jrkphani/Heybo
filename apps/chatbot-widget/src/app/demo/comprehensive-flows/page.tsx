@@ -29,13 +29,13 @@ import {
   Info,
   ArrowRight
 } from 'lucide-react';
-import { ChatbotWidgetV2 } from '../../../components/ChatbotWidgetV2';
-import { BowlPreviewV2 } from '../../../components/bowl/BowlPreviewV2';
-import { CartManagerV2 } from '../../../components/ordering/CartManagerV2';
-import { FavoritesListV2 } from '../../../components/favorites/FavoritesListV2';
-import { CreateYourOwnFlowV2 } from '../../../components/ordering/CreateYourOwnFlowV2';
-import { OrderTrackingV2 } from '../../../components/ordering/OrderTrackingV2';
-import { ChatMessagesV2 } from '../../../components/chat/ChatMessagesV2';
+import { ChatbotWidget } from '../../../components/ChatbotWidget';
+import { BowlPreview } from '../../../components/bowl/BowlPreview';
+import { CartView } from '../../../components/ordering/CartView';
+import { FavoritesList } from '../../../components/ordering/FavoritesList';
+import { CreateYourOwnFlow } from '../../../components/ordering/CreateYourOwnFlow';
+import { OrderTracking } from '../../../components/ordering/OrderTracking';
+import { EnhancedChatInterface } from '../../../components/chat/EnhancedChatInterface';
 import { useChatbotStore } from '../../../store/chatbot-store';
 import { useLayoutStore } from '../../../store/layout-store';
 import { cn } from '../../../lib/utils';
@@ -113,7 +113,9 @@ export default function ComprehensiveFlowsDemo() {
           id: 'welcome',
           title: 'Welcome & Introduction',
           description: 'User opens the HeyBo chatbot widget',
-          component: <ChatbotWidgetV2 className="max-w-4xl mx-auto" />,
+          component: <div className="max-w-4xl mx-auto p-4 bg-white rounded-lg border">
+            <p className="text-center text-gray-600">HeyBo Chatbot Widget would be displayed here</p>
+          </div>,
           duration: 3000
         },
         {
@@ -122,7 +124,7 @@ export default function ComprehensiveFlowsDemo() {
           description: 'Exploring pre-designed healthy bowls',
           component: (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
-              <BowlPreviewV2
+              <BowlPreview
                 bowl={{
                   name: 'Mediterranean Power Bowl',
                   base: mockBases[1]!, // Quinoa
@@ -131,10 +133,11 @@ export default function ComprehensiveFlowsDemo() {
                   sauce: mockSauces[0]!, // Purple Sweet Potato Dip
                   garnish: mockGarnishes[0]! // Mixed Seeds
                 }}
-                variant="detailed"
+                showNutrition={true}
+                showProgress={true}
                 className=""
               />
-              <ChatMessagesV2 className="" />
+              <EnhancedChatInterface />
             </div>
           ),
           duration: 4000
@@ -143,21 +146,24 @@ export default function ComprehensiveFlowsDemo() {
           id: 'create-custom',
           title: 'Create Your Own Bowl',
           description: 'Step-by-step bowl customization process',
-          component: <CreateYourOwnFlowV2 className="max-w-5xl mx-auto" />,
+          component: <CreateYourOwnFlow
+            className="max-w-5xl mx-auto"
+            onBowlComplete={() => console.log('Bowl completed in demo')}
+          />,
           duration: 6000
         },
         {
           id: 'manage-cart',
           title: 'Cart Management',
           description: 'Review items, adjust quantities, and proceed to checkout',
-          component: <CartManagerV2 className="max-w-4xl mx-auto" />,
+          component: <CartView className="max-w-4xl mx-auto" />,
           duration: 4000
         },
         {
           id: 'track-order',
           title: 'Order Tracking',
           description: 'Real-time order status and pickup information',
-          component: <OrderTrackingV2 className="max-w-4xl mx-auto" />,
+          component: <OrderTracking className="max-w-4xl mx-auto" />,
           duration: 5000
         }
       ]
@@ -174,7 +180,10 @@ export default function ComprehensiveFlowsDemo() {
           id: 'cyo-start',
           title: 'Start Customization',
           description: 'Begin the bowl building process',
-          component: <CreateYourOwnFlowV2 className="max-w-4xl mx-auto" />,
+          component: <CreateYourOwnFlow
+            className="max-w-4xl mx-auto"
+            onBowlComplete={() => console.log('Bowl completed in demo')}
+          />,
           duration: 5000
         },
         {
@@ -183,14 +192,18 @@ export default function ComprehensiveFlowsDemo() {
           description: 'See bowl updates in real-time',
           component: (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
-              <CreateYourOwnFlowV2 className="" />
-              <BowlPreviewV2
+              <CreateYourOwnFlow
+                className=""
+                onBowlComplete={() => console.log('Bowl completed in demo')}
+              />
+              <BowlPreview
                 bowl={{
                   name: 'Custom Bowl in Progress',
                   base: mockBases[0]!, // Brown Rice
                   protein: mockProteins[2]! // Tofu
                 }}
-                variant="detailed"
+                showNutrition={true}
+                showProgress={true}
                 className=""
               />
             </div>
@@ -211,14 +224,14 @@ export default function ComprehensiveFlowsDemo() {
           id: 'cart-full',
           title: 'Full Cart View',
           description: 'Complete cart management interface',
-          component: <CartManagerV2 className="max-w-4xl mx-auto" />,
+          component: <CartView className="max-w-4xl mx-auto" />,
           duration: 4000
         },
         {
           id: 'cart-checkout',
           title: 'Checkout Process',
           description: 'Streamlined checkout experience',
-          component: <CartManagerV2 className="max-w-4xl mx-auto" />,
+          component: <CartView className="max-w-4xl mx-auto" />,
           duration: 3000
         }
       ]
@@ -235,14 +248,14 @@ export default function ComprehensiveFlowsDemo() {
           id: 'tracking-full',
           title: 'Full Tracking View',
           description: 'Complete order tracking interface',
-          component: <OrderTrackingV2 className="max-w-4xl mx-auto" />,
+          component: <OrderTracking className="max-w-4xl mx-auto" />,
           duration: 4000
         },
         {
           id: 'tracking-compact',
           title: 'Compact Tracking',
           description: 'Embedded tracking widget',
-          component: <OrderTrackingV2 className="max-w-md mx-auto" />,
+          component: <OrderTracking className="max-w-md mx-auto" />,
           duration: 2000
         }
       ]
@@ -259,14 +272,20 @@ export default function ComprehensiveFlowsDemo() {
           id: 'favorites-grid',
           title: 'Favorites Grid',
           description: 'Browse saved favorites in grid view',
-          component: <FavoritesListV2 className="max-w-5xl mx-auto" />,
+          component: <FavoritesList
+            className="max-w-5xl mx-auto"
+            onFavoriteSelect={(favorite) => console.log('Favorite selected in demo:', favorite)}
+          />,
           duration: 3000
         },
         {
           id: 'favorites-list',
           title: 'Favorites List',
           description: 'Detailed list view with actions',
-          component: <FavoritesListV2 className="max-w-4xl mx-auto" />,
+          component: <FavoritesList
+            className="max-w-4xl mx-auto"
+            onFavoriteSelect={(favorite) => console.log('Favorite selected in demo:', favorite)}
+          />,
           duration: 3000
         }
       ]
@@ -283,7 +302,7 @@ export default function ComprehensiveFlowsDemo() {
           id: 'chat-full',
           title: 'Full Chat Interface',
           description: 'Complete chat experience with embedded UI',
-          component: <ChatMessagesV2 enableEmbeddedUI className="max-w-4xl mx-auto" />,
+          component: <div className="max-w-4xl mx-auto"><EnhancedChatInterface /></div>,
           duration: 4000
         }
       ]

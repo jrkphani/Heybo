@@ -15,6 +15,7 @@ import { errorHandler } from '../lib/services/error-handler';
 import { sessionManager } from '../lib/services/session-manager';
 import { ratingService } from '../lib/services/rating-service';
 import { cn } from '../lib/utils';
+import { getResponsiveWidgetDimensions } from '../lib/utils/widget-dimensions';
 import type { User, RatingData } from '../types';
 import '../styles/heybo-design-tokens.css';
 
@@ -53,11 +54,22 @@ export function ChatbotWidget({
     skipRating
   } = useChatbotStore();
 
+  // Use the tokenized widget dimensions utility
+
   const [isMobile, setIsMobile] = useState(false);
+  const [screenWidth, setScreenWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1280);
+  const [responsiveDimensions, setResponsiveDimensions] = useState(() => {
+    return getResponsiveWidgetDimensions();
+  });
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+      const width = window.innerWidth;
+      setScreenWidth(width);
+      setIsMobile(width < 768);
+
+      // Update responsive dimensions using tokenized design system
+      setResponsiveDimensions(getResponsiveWidgetDimensions());
     };
 
     checkMobile();
@@ -123,7 +135,7 @@ export function ChatbotWidget({
         }, 500);
       }
 
-      setTimeout(() => setWidgetState('expanded'), 300);
+      setTimeout(() => setWidgetState('expanded'), 400);
     } else {
       setWidgetState('closing');
       setTimeout(() => setWidgetState('collapsed'), 300);
@@ -283,91 +295,114 @@ export function ChatbotWidget({
     }
   };
 
-  // Position classes - dynamic based on widget state
-  const getPositionClasses = () => {
-    if (widgetState === 'collapsed') {
-      return position === 'bottom-right' ? 'bottom-4 right-4' : 'bottom-4 left-4';
-    }
-    // When expanded, center the widget on larger screens
-    if (!isMobile) {
-      return 'top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2';
-    }
-    return 'inset-0';
-  };
+  // Removed old positioning functions - now handled directly in className
 
-  // Get responsive dimensions
-  const getResponsiveDimensions = () => {
-    if (isMobile) {
-      return { width: '100vw', height: '100vh' };
-    }
-
-    // Use CSS classes for responsive behavior
-    return {
-      width: '60vw',
-      height: '85vh'
-    };
-  };
-
-  // Widget container variants for animation
+  // Widget container variants following UX Implementation Guide
   const widgetVariants = {
     collapsed: {
-      width: 60,
-      height: 60,
-      borderRadius: 30
+      width: 56,
+      height: 56,
+      borderRadius: "50%",
+      scale: 1,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 400,
+        damping: 40,
+        duration: 0.3
+      }
     },
     expanding: {
-      ...getResponsiveDimensions(),
-      borderRadius: isMobile ? 0 : 20,
+      width: responsiveDimensions.width,
+      height: responsiveDimensions.height,
+      borderRadius: responsiveDimensions.borderRadius,
+      scale: 1,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 300,
+        damping: 30,
+        duration: 0.4
+      }
+    },
+    expanded: {
+      width: responsiveDimensions.width,
+      height: responsiveDimensions.height,
+      borderRadius: responsiveDimensions.borderRadius,
+      scale: 1,
+      opacity: 1,
       transition: {
         type: "spring",
         stiffness: 300,
         damping: 30
       }
     },
-    expanded: {
-      ...getResponsiveDimensions(),
-      borderRadius: isMobile ? 0 : 20
-    },
     closing: {
-      width: 60,
-      height: 60,
-      borderRadius: 30,
+      width: 56,
+      height: 56,
+      borderRadius: "50%",
+      scale: 0.9,
+      opacity: 1,
       transition: {
         type: "spring",
         stiffness: 400,
-        damping: 40
+        damping: 40,
+        duration: 0.3
       }
     }
   };
 
-  // FAB button variants
+  // FAB button variants with improved animation
   const fabVariants = {
     visible: {
       scale: 1,
       opacity: 1,
-      rotate: 0
+      rotate: 0,
+      transition: {
+        type: "spring",
+        stiffness: 400,
+        damping: 25,
+        duration: 0.3
+      }
     },
     hidden: {
-      scale: 0,
+      scale: 0.3,
       opacity: 0,
-      rotate: 180
+      rotate: 90,
+      transition: {
+        type: "spring",
+        stiffness: 400,
+        damping: 25,
+        duration: 0.2
+      }
+    },
+    hover: {
+      scale: 1.05,
+      transition: {
+        type: "spring",
+        stiffness: 400,
+        damping: 25
+      }
+    },
+    tap: {
+      scale: 0.95,
+      transition: {
+        type: "spring",
+        stiffness: 400,
+        damping: 25
+      }
     }
   };
 
   return (
-    <div className={cn(
-      "heybo-chatbot-widget heybo-chatbot-container",
-      getPositionClasses(),
-      className
-    )}>
+    <>
       {/* Background overlay for expanded state */}
       {(widgetState === 'expanded' || widgetState === 'expanding') && !isMobile && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/30 backdrop-blur-sm"
-          style={{ zIndex: -1 }}
+          className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[999]"
           onClick={handleMinimize}
         />
       )}
@@ -375,28 +410,20 @@ export function ChatbotWidget({
       <motion.div
         variants={widgetVariants}
         animate={widgetState}
+        role={widgetState === 'collapsed' ? 'button' : 'dialog'}
+        aria-label={widgetState === 'collapsed' ? 'Open LULU - HeyBo Chat Assistant' : 'LULU - HeyBo Chat Assistant'}
         className={cn(
           "heybo-chatbot-widget",
-          "heybo-chatbot-window",
-          "relative overflow-hidden",
-          // Collapsed state overrides - Official 56px FAB size
-          widgetState === 'collapsed' && "w-[56px] h-[56px]",
-          theme === 'dark' && "bg-gray-900"
+          // Add collapsed class for CSS targeting - this is crucial for positioning
+          widgetState === 'collapsed' && "collapsed",
+          // Add window class when expanded
+          widgetState !== 'collapsed' && "heybo-chatbot-window",
+          // Background and borders for expanded state
+          widgetState !== 'collapsed' && "bg-white border border-gray-200 shadow-xl",
+          theme === 'dark' && widgetState !== 'collapsed' && "bg-gray-900",
+          className
         )}
-        style={{
-          borderRadius: widgetState === 'collapsed' ? '50%' : (isMobile ? 0 : 20)
-        }}
       >
-        {/* Main background */}
-        {(widgetState === 'expanded' || widgetState === 'expanding') && (
-          <div
-            className="absolute inset-0"
-            style={{
-              background: '#FFFFFF',
-              border: '1px solid #E5E7EB'
-            }}
-          />
-        )}
         {/* FAB Button - Official HeyBo Design (56px with gradient and pulse) */}
         <AnimatePresence>
           {widgetState === 'collapsed' && (
@@ -405,12 +432,10 @@ export function ChatbotWidget({
               initial="hidden"
               animate="visible"
               exit="hidden"
+              whileHover="hover"
+              whileTap="tap"
               onClick={handleToggleWidget}
-              className="heybo-chatbot-fab"
-              style={{
-                background: 'var(--heybo-primary-gradient)',
-                border: 'var(--heybo-border-default)'
-              }}
+              className="heybo-chatbot-fab w-full h-full"
               aria-label="Open LULU - HeyBo Chat Assistant"
             >
               {/* HeyBo Icon */}
@@ -427,10 +452,15 @@ export function ChatbotWidget({
         <AnimatePresence>
           {(widgetState === 'expanded' || widgetState === 'expanding') && (
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ delay: widgetState === 'expanding' ? 0.2 : 0 }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{
+                delay: widgetState === 'expanding' ? 0.2 : 0,
+                type: "spring",
+                stiffness: 300,
+                damping: 30
+              }}
               className="relative w-full h-full flex flex-col z-10"
             >
               {/* Header - CSS Namespace Compliant */}
@@ -522,7 +552,7 @@ export function ChatbotWidget({
           )}
         </AnimatePresence>
       </motion.div>
-    </div>
+    </>
   );
 }
 

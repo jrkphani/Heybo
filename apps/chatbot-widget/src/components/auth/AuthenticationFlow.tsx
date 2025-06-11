@@ -182,7 +182,7 @@ export function AuthenticationFlow({ onAuthComplete, className }: Authentication
   };
 
   return (
-    <div className={cn("h-full flex flex-col bg-gradient-to-b from-orange-50 to-white", className)}>
+    <div className={cn("heybo-chatbot-auth-flow h-full flex flex-col bg-gradient-to-b from-orange-50 to-white", className)}>
       {/* Error/Success Messages */}
       <AnimatePresence>
         {error && (

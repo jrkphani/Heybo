@@ -112,10 +112,10 @@ export function WelcomeScreen({ onActionSelect, userName }: WelcomeScreenProps) 
             <button
               key={card.id}
               onClick={() => onActionSelect(card.id)}
-              className="p-6 bg-white border border-gray-200 rounded-xl hover:border-orange-300 hover:shadow-md transition-all duration-200 text-center group"
+              className="p-6 bg-white border border-gray-200 rounded-xl hover:border-[var(--heybo-primary-300)] hover:shadow-md transition-all duration-200 text-center group"
             >
-              <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-orange-50 flex items-center justify-center group-hover:bg-orange-100 transition-colors">
-                <card.icon className="w-6 h-6 text-orange-600" />
+              <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-[var(--heybo-primary-50)] flex items-center justify-center group-hover:bg-[var(--heybo-primary-100)] transition-colors">
+                <card.icon className="w-6 h-6 text-[var(--heybo-primary-600)]" />
               </div>
               <h3 className="font-semibold text-gray-800 mb-1">{card.title}</h3>
               <p className="text-sm text-gray-500">{card.description}</p>
@@ -133,7 +133,7 @@ export function WelcomeScreen({ onActionSelect, userName }: WelcomeScreenProps) 
               onClick={() => onActionSelect(tab.id)}
               className={`flex flex-col items-center space-y-1 px-2 py-1 rounded-lg transition-colors ${
                 tab.active 
-                  ? 'text-orange-600 bg-orange-50' 
+                  ? 'text-[var(--heybo-primary-600)] bg-[var(--heybo-primary-50)]' 
                   : 'text-gray-500 hover:text-gray-700'
               }`}
             >

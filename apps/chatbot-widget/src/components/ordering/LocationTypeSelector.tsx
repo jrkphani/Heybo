@@ -57,11 +57,11 @@ export function LocationTypeSelector({ onLocationTypeSelect, className }: Locati
   };
 
   return (
-    <div className={cn("space-y-4", className)}>
+    <div className={cn("heybo-chatbot-location-type space-y-4", className)}>
       {/* Header */}
       <div className="text-center space-y-2">
-        <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto">
-          <MapPin className="w-6 h-6 text-orange-600" />
+        <div className="w-12 h-12 bg-[var(--heybo-primary-100)] rounded-full flex items-center justify-center mx-auto">
+          <MapPin className="w-6 h-6 text-[var(--heybo-primary-600)]" />
         </div>
         <h3 className="text-lg font-semibold text-gray-900">Choose Location Type</h3>
         <p className="text-sm text-gray-600">Where would you like to pick up your order?</p>
@@ -73,7 +73,7 @@ export function LocationTypeSelector({ onLocationTypeSelect, className }: Locati
           <motion.button
             key={locationType.type}
             onClick={() => handleLocationTypeSelect(locationType.type)}
-            className="w-full text-left p-4 bg-white border border-gray-200 rounded-xl hover:border-orange-300 hover:shadow-md transition-all duration-200 group"
+            className="w-full text-left p-4 bg-white border border-gray-200 rounded-xl hover:border-[var(--heybo-primary-300)] hover:shadow-md transition-all duration-200 group"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
@@ -89,7 +89,7 @@ export function LocationTypeSelector({ onLocationTypeSelect, className }: Locati
               {/* Content */}
               <div className="flex-1 space-y-2">
                 <div>
-                  <h4 className="font-semibold text-gray-900 group-hover:text-orange-600 transition-colors">
+                  <h4 className="font-semibold text-gray-900 group-hover:text-[var(--heybo-primary-600)] transition-colors">
                     {locationType.title}
                   </h4>
                   <p className="text-sm text-gray-600">{locationType.description}</p>
@@ -109,7 +109,7 @@ export function LocationTypeSelector({ onLocationTypeSelect, className }: Locati
               </div>
 
               {/* Arrow */}
-              <div className="text-gray-400 group-hover:text-orange-500 transition-colors">
+              <div className="text-gray-400 group-hover:text-[var(--heybo-primary-500)] transition-colors">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>

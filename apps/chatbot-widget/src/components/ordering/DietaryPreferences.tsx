@@ -78,7 +78,7 @@ export function DietaryPreferences({
   };
 
   return (
-    <div className={cn("p-6 space-y-6", className)}>
+    <div className={cn("heybo-chatbot-dietary p-6 space-y-6", className)}>
       {/* Header */}
       <div className="text-center space-y-2">
         <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto">
@@ -127,7 +127,7 @@ export function DietaryPreferences({
       {/* Allergens */}
       <div className="space-y-4">
         <div className="flex items-center space-x-2">
-          <AlertTriangle className="w-5 h-5 text-orange-600" />
+          <AlertTriangle className="w-5 h-5 text-[var(--heybo-primary-600)]" />
           <h4 className="font-medium text-gray-900">Allergies & Intolerances</h4>
         </div>
         <p className="text-sm text-gray-600">
@@ -198,7 +198,7 @@ export function DietaryPreferences({
         
         <button
           onClick={handleContinue}
-          className="flex-1 px-4 py-3 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors"
+          className="flex-1 px-4 py-3 bg-[var(--heybo-primary-600)] text-white rounded-lg hover:bg-[var(--heybo-primary-700)] transition-colors"
         >
           Continue
         </button>

@@ -134,7 +134,7 @@ export function LoginScreen({ onAuthSuccess, onAuthError }: LoginScreenProps) {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="p-6 space-y-6"
+        className="heybo-chatbot-login"
       >
         <div className="text-center space-y-4">
           <div className="flex justify-center">
@@ -173,9 +173,9 @@ export function LoginScreen({ onAuthSuccess, onAuthError }: LoginScreenProps) {
               onClick={() => setAuthMode('guest')}
               variant="outline"
               className={cn(
-                "w-full h-14 border-2 border-orange-200",
-                "hover:border-orange-300 hover:bg-orange-50",
-                "text-orange-700 font-medium text-base",
+                "w-full h-14 border-2 border-[var(--heybo-primary-200)]",
+                "hover:border-[var(--heybo-primary-300)] hover:bg-[var(--heybo-primary-50)]",
+                "text-[var(--heybo-primary-700)] font-medium text-base",
                 "transition-all duration-200"
               )}
             >
@@ -189,7 +189,7 @@ export function LoginScreen({ onAuthSuccess, onAuthError }: LoginScreenProps) {
         <div className="text-center">
           <p className="text-sm text-gray-500">
             New to HeyBo?{' '}
-            <button className="text-orange-600 hover:text-orange-700 font-medium">
+            <button className="text-[var(--heybo-primary-600)] hover:text-[var(--heybo-primary-700)] font-medium">
               Create an account
             </button>
           </p>

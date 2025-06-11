@@ -101,7 +101,7 @@ function Pane({
 
   return (
     <motion.div
-      className={paneClasses}
+      className={cn("heybo-chatbot-two-pane", paneClasses)}
       style={layoutStyle}
       variants={paneVariants}
       animate={getAnimationState()}

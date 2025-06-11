@@ -66,8 +66,8 @@ export function FavoritesList({ onFavoriteSelect, className }: FavoritesListProp
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center py-12">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-600"></div>
+      <div className="heybo-chatbot-favorites">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[var(--heybo-primary-600)]"></div>
       </div>
     );
   }
@@ -83,7 +83,7 @@ export function FavoritesList({ onFavoriteSelect, className }: FavoritesListProp
           <p className="text-gray-600 mb-4">Save your favorite bowls for quick reordering.</p>
           <button
             onClick={() => setCurrentStep('order-type-selection')}
-            className="px-6 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors"
+            className="px-6 py-2 bg-[var(--heybo-primary-600)] text-white rounded-lg hover:bg-[var(--heybo-primary-700)] transition-colors"
           >
             Explore Our Menu
           </button>
@@ -127,7 +127,7 @@ export function FavoritesList({ onFavoriteSelect, className }: FavoritesListProp
                 {/* Name and Type */}
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
-                    <h4 className="font-semibold text-gray-900 group-hover:text-orange-600 transition-colors">
+                    <h4 className="font-semibold text-gray-900 group-hover:text-[var(--heybo-primary-600)] transition-colors">
                       {favorite.name}
                     </h4>
                     <div className="flex items-center space-x-2 mt-1">
@@ -201,7 +201,7 @@ export function FavoritesList({ onFavoriteSelect, className }: FavoritesListProp
                       <Trash2 className="w-4 h-4" />
                     </button>
                     
-                    <button className="flex items-center space-x-1 px-3 py-1 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors group-hover:scale-105 transform duration-200">
+                    <button className="flex items-center space-x-1 px-3 py-1 bg-[var(--heybo-primary-600)] text-white rounded-lg hover:bg-[var(--heybo-primary-700)] transition-colors group-hover:scale-105 transform duration-200">
                       <Plus className="w-3 h-3" />
                       <span className="text-sm">Order</span>
                     </button>
@@ -216,7 +216,7 @@ export function FavoritesList({ onFavoriteSelect, className }: FavoritesListProp
       {/* Show More Button (if more than 5 favorites) */}
       {favorites.length >= 5 && (
         <div className="text-center">
-          <button className="text-orange-600 hover:text-orange-700 font-medium">
+          <button className="text-[var(--heybo-primary-600)] hover:text-[var(--heybo-primary-700)] font-medium">
             View All Favorites
           </button>
         </div>

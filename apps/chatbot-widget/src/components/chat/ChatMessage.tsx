@@ -2,9 +2,10 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Bot, User } from 'lucide-react';
+import { User } from 'lucide-react';
 import type { ChatMessage as ChatMessageType } from '../../types';
 import { cn } from '../../lib/utils';
+import { Icon } from '../ui/Icon';
 
 interface ChatMessageProps {
   message: ChatMessageType;
@@ -42,7 +43,7 @@ export function ChatMessage({ message }: ChatMessageProps) {
         animate="visible"
         className="flex justify-center my-2"
       >
-        <div className="bg-gray-100 text-gray-600 text-xs px-3 py-1 rounded-full">
+        <div className="heybo-bg-secondary heybo-text-muted heybo-text-xs px-3 py-1 rounded-full" style={{ fontFamily: 'var(--font-fallback)' }}>
           {message.content}
         </div>
       </motion.div>
@@ -55,7 +56,7 @@ export function ChatMessage({ message }: ChatMessageProps) {
       initial="hidden"
       animate="visible"
       className={cn(
-        "heybo-chatbot-message",
+        "heybo-chatbot-message chat-message", // Add chat-message for test compatibility
         "flex gap-3 max-w-full",
         isAssistant ? "bot justify-start" : "user justify-end"
       )}
@@ -63,11 +64,11 @@ export function ChatMessage({ message }: ChatMessageProps) {
       {/* Avatar - Only for assistant messages */}
       {isAssistant && (
         <div
-          className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm"
+          className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white heybo-font-bold heybo-text-sm"
           style={{
             background: 'var(--heybo-primary-gradient)',
-            fontFamily: 'Inter, sans-serif',
-            letterSpacing: '-0.02em'
+            fontFamily: 'var(--font-lulu)',
+            letterSpacing: '-0.03em'
           }}
         >
           O
@@ -99,9 +100,9 @@ export function ChatMessage({ message }: ChatMessageProps) {
 
         {/* Timestamp */}
         <div className={cn(
-          "text-xs text-gray-500 mt-1 px-1",
+          "heybo-text-xs heybo-text-muted mt-1 px-1",
           isAssistant ? "text-left" : "text-right"
-        )}>
+        )} style={{ fontFamily: 'var(--font-fallback)' }}>
           {formatTimestamp(message.timestamp)}
         </div>
       </div>
@@ -112,7 +113,7 @@ export function ChatMessage({ message }: ChatMessageProps) {
           className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center"
           style={{ background: 'var(--heybo-background-secondary)' }}
         >
-          <User className="w-4 h-4" style={{ color: 'var(--heybo-text-primary)' }} />
+          <Icon icon={User} size="sm" color="default" />
         </div>
       )}
     </motion.div>

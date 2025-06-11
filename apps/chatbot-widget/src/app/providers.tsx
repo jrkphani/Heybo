@@ -11,7 +11,14 @@ export function Providers({ children }: { children: React.ReactNode }) {
     defaultOptions: {
       queries: {
         staleTime: 5 * 60 * 1000, // 5 minutes
-        retry: 2,
+        retry: (failureCount, error) => {
+          // Don't retry on network errors in development
+          if (process.env.NODE_ENV === 'development' && error instanceof Error && error.message?.includes('NetworkError')) {
+            return false;
+          }
+          return failureCount < 2;
+        },
+        retryDelay: attemptIndex => Math.min(1000 * 2 ** attemptIndex, 30000),
       },
     },
   }));
@@ -26,6 +33,19 @@ export function Providers({ children }: { children: React.ReactNode }) {
             return {
               'x-heybo-brand': 'heybo',
             };
+          },
+          // Handle network errors gracefully in development
+          fetch(url, options) {
+            return fetch(url, {
+              ...options,
+              // Add timeout to prevent hanging requests
+              signal: AbortSignal.timeout(10000), // 10 second timeout
+            }).catch(error => {
+              if (process.env.NODE_ENV === 'development') {
+                console.warn('tRPC fetch error (development):', error.message);
+              }
+              throw error;
+            });
           },
         }),
       ],

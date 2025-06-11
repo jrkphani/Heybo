@@ -193,7 +193,7 @@ export function ChatInput() {
   const isDisabled = isLoading || isSending;
 
   return (
-    <div className="p-6">
+    <div className="heybo-chatbot-input">
       {/* Input Container with layered design */}
       <div className="relative">
         {/* Outer container */}

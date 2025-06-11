@@ -149,8 +149,7 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
 
   if (isUser) {
     return (
-      <div
-        className={cn("flex flex-col", isUser ? "items-end" : "items-start")}
+      <div className={cn("heybo-chatbot-chat-message flex flex-col", isUser ? "items-end" : "items-start")}
       >
         {files ? (
           <div className="mb-1 flex flex-wrap gap-2">
@@ -231,7 +230,7 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
   }
 
   return (
-    <div className={cn("flex flex-col", isUser ? "items-end" : "items-start")}>
+    <div className={cn("heybo-chatbot-chat-message flex flex-col", isUser ? "items-end" : "items-start")}>
       <div className={cn(chatBubbleVariants({ isUser, animation }))}>
         <MarkdownRenderer>{content}</MarkdownRenderer>
         {actions ? (

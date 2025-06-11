@@ -193,7 +193,7 @@ export function Chat({
   )
 
   return (
-    <ChatContainer className={className}>
+    <ChatContainer className={cn("heybo-chatbot-chat", className)}>
       {isEmpty && append && suggestions ? (
         <PromptSuggestions
           label="Try these prompts ✨"

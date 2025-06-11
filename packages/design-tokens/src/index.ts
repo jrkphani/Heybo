@@ -38,3 +38,51 @@ export const spacing = {
   12: '3rem',   // 48px
   16: '4rem',   // 64px
 } as const
+
+export const widgetDimensions = {
+  sm: {
+    width: '100vw',
+    height: '100vh',
+    margin: '0px',
+    radius: '0px',
+  },
+  md: {
+    width: '420px',
+    height: '600px',
+    margin: '24px',
+    radius: '16px',
+  },
+  lg: {
+    width: '480px',
+    height: '640px',
+    margin: '32px',
+    radius: '20px',
+  },
+  xl: {
+    width: '720px',
+    height: '800px',
+    margin: '40px',
+    radius: '24px',
+  },
+  dualPane: {
+    lg: {
+      width: '75vw',
+      height: '80vh',
+      maxWidth: '1200px',
+      maxHeight: '800px',
+    },
+    xl: {
+      width: '60vw',
+      height: '75vh',
+      maxWidth: '1400px',
+      maxHeight: '900px',
+    },
+  },
+} as const
+
+export const breakpoints = {
+  sm: 640,   // SM: ≤640px - Mobile devices
+  md: 1024,  // MD: 641-1024px - Tablets & small laptops
+  lg: 1440,  // LG: 1025-1440px - Desktop monitors
+  xl: 1441,  // XL: ≥1441px - Large desktop monitors
+} as const

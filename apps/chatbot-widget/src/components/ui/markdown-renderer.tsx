@@ -11,7 +11,7 @@ interface MarkdownRendererProps {
 
 export function MarkdownRenderer({ children }: MarkdownRendererProps) {
   return (
-    <div className="space-y-3">
+    <div className="heybo-chatbot-markdown-renderer space-y-3">
       <Markdown remarkPlugins={[remarkGfm]} components={COMPONENTS}>
         {children}
       </Markdown>

@@ -12,8 +12,15 @@ downloadable font: download failed (font-family: "__nextjs-Geist" style:normal w
 **Solutions:**
 - ✅ **Fixed**: Updated `layout.tsx` with proper font fallbacks and preconnect links
 - ✅ **Fixed**: Added `display: 'swap'` and fallback fonts to Inter configuration
+- ✅ **Fixed**: Added Geist font as fallback to prevent loading errors
+- ✅ **Fixed**: Enhanced global CSS with comprehensive font fallback system
 - The error is cosmetic and doesn't affect functionality
 - Fonts will load properly in production
+
+**Resolution Steps:**
+1. Added both Inter and Geist fonts in `layout.tsx`
+2. Updated body font-family with complete fallback chain
+3. Enhanced CSS with widget-specific font inheritance
 
 ### 2. WebSocket HMR Connection Issues
 
@@ -37,10 +44,18 @@ TypeError: NetworkError when attempting to fetch resource.
 ```
 
 **Solutions:**
+- ✅ **Fixed**: Cleared .next cache directory
+- ✅ **Fixed**: Killed conflicting processes on port 3000
 - ✅ **Fixed**: Added error boundary with graceful fallbacks
 - ✅ **Fixed**: Updated Next.js config for better development experience
+- ✅ **Fixed**: Improved tRPC client with timeout and error handling
 - This is related to React Server Components in development
 - The fallback to browser navigation works correctly
+
+**Resolution Steps:**
+1. `kill -9 $(lsof -ti:3000)` - Free port 3000
+2. `rm -rf .next` - Clear Next.js cache
+3. `npm run dev` - Restart development server
 
 ### 4. Port Conflicts
 

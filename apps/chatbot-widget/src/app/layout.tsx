@@ -1,15 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 
-const inter = Inter({
-  subsets: ["latin"],
-  display: 'swap',
-  fallback: ['system-ui', 'arial'],
-  preload: true,
-  variable: '--font-inter'
-});
+// HeyBo Design System Typography Implementation
+// Following the official HeyBo Design System & Style Guide
 
 export const metadata: Metadata = {
   title: "LULU - HeyBo AI Assistant",
@@ -44,7 +38,14 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className={`${inter.className} ${inter.variable}`} style={{ fontFamily: 'var(--font-inter), system-ui, arial, sans-serif' }}>
+      <body
+        style={{
+          fontFamily: 'inherit, Inter, "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+          fontSize: '16px',
+          lineHeight: '1.5',
+          fontWeight: '400'
+        }}
+      >
         <Providers>
           {children}
         </Providers>

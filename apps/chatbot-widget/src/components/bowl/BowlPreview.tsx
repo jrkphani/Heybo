@@ -64,7 +64,7 @@ export function BowlPreview({
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         className={cn(
-          "bg-gradient-to-r from-orange-50 to-yellow-50 rounded-lg p-3 border border-orange-200",
+          "heybo-chatbot-bowl-preview bg-gradient-to-r from-orange-50 to-yellow-50 rounded-lg p-3 border border-[var(--heybo-primary-200)]",
           className
         )}
       >
@@ -107,7 +107,7 @@ export function BowlPreview({
           {onEdit && (
             <button
               onClick={onEdit}
-              className="ml-3 p-2 text-orange-600 hover:bg-orange-100 rounded-lg transition-colors"
+              className="ml-3 p-2 text-[var(--heybo-primary-600)] hover:bg-[var(--heybo-primary-100)] rounded-lg transition-colors"
               aria-label="Edit bowl"
             >
               <Edit3 className="w-4 h-4" />
@@ -142,7 +142,7 @@ export function BowlPreview({
             <h3 className="font-semibold text-lg">
               {bowl.name || 'Your Custom Bowl'}
             </h3>
-            <p className="text-orange-100 text-sm">
+            <p className="text-[var(--heybo-primary-100)] text-sm">
               {totalIngredients} ingredients selected
             </p>
           </div>
@@ -168,7 +168,7 @@ export function BowlPreview({
             {allIngredients.map((ingredient, index) => (
               <div key={index} className="flex items-center justify-between text-sm">
                 <div className="flex items-center space-x-2">
-                  <span className="w-2 h-2 bg-orange-500 rounded-full"></span>
+                  <span className="w-2 h-2 bg-[var(--heybo-primary-500)] rounded-full"></span>
                   <span className="text-gray-900">{ingredient.name}</span>
                   <span className="text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded">
                     {ingredient.category}

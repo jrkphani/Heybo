@@ -325,7 +325,7 @@ export function MLSuggestionsStartingPoint({
       <div className="pt-4 border-t border-gray-200">
         <button
           onClick={handleBuildFromScratch}
-          className="w-full p-4 border-2 border-dashed border-gray-300 rounded-lg heybo-hover-border-primary-400 hover:bg-orange-50 transition-all duration-200 text-center group"
+          className="w-full p-4 border-2 border-dashed border-gray-300 rounded-lg heybo-hover-border-primary-400 hover:bg-[var(--heybo-primary-50)] transition-all duration-200 text-center group"
         >
           <div className="flex items-center justify-center space-x-2">
             <ChefHat className="w-5 h-5 text-gray-400 group-hover:heybo-text-primary-600 transition-colors" />

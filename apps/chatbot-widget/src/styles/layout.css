@@ -8,71 +8,90 @@
 
 /* Widget positioning and responsiveness - Official HeyBo Specification */
 .heybo-chatbot-widget {
-  position: fixed;
-  z-index: 1000;
+  position: fixed !important;
+  z-index: 1000 !important;
   font-family: inherit;
   color: inherit;
+  /* Ensure no margin/padding interference */
+  margin: 0 !important;
+  padding: 0;
+  /* Prevent any transform interference */
+  transform: none;
 }
 
-/* Mobile: Full screen overlay */
-@media (max-width: 767px) {
-  .heybo-chatbot-widget {
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    border-radius: 0 !important;
-  }
+/* HeyBo Chatbot Widget Responsive Layout - Following UX Implementation Guide */
+
+/* Base widget positioning - Framer Motion handles size/animation */
+.heybo-chatbot-widget {
+  position: fixed;
+  z-index: 1000;
+  overflow: hidden;
+  /* Size and border-radius animated by Framer Motion */
 }
 
-/* Tablet: Large coverage for better interaction */
-@media (min-width: 768px) and (max-width: 1023px) {
-  .heybo-chatbot-widget {
-    width: 95vw !important;
-    height: 90vh !important;
-    max-width: 95vw !important;
-    max-height: 90vh !important;
-    bottom: 24px !important;
-    right: 24px !important;
-    border-radius: 20px !important;
-  }
-}
-
-/* Large Desktop: Large coverage */
-@media (min-width: 1024px) and (max-width: 1279px) {
-  .heybo-chatbot-widget {
-    width: 95vw !important;
-    height: 90vh !important;
-    max-width: 95vw !important;
-    max-height: 90vh !important;
-    bottom: 24px !important;
-    right: 24px !important;
-    border-radius: 20px !important;
-  }
-}
-
-/* XL Desktop: Optimal coverage */
-@media (min-width: 1280px) {
-  .heybo-chatbot-widget {
-    width: 60vw !important;
-    height: 85vh !important;
-    max-width: 60vw !important;
-    max-height: 85vh !important;
-    bottom: 24px !important;
-    right: 24px !important;
-    border-radius: 20px !important;
-  }
-}
-
-/* Collapsed state positioning */
+/* Collapsed state positioning (FAB) */
 .heybo-chatbot-widget.collapsed {
-  bottom: 24px !important;
-  right: 24px !important;
-  width: 56px !important;
-  height: 56px !important;
-  border-radius: 50% !important;
+  /* Position varies by breakpoint - set by Framer Motion */
+}
+
+/* Expanded state positioning - Following UX Implementation Guide Breakpoints */
+
+/* SM: 320px - 640px - Fullscreen Mobile Widget */
+@media (max-width: 640px) {
+  .heybo-chatbot-widget.collapsed {
+    bottom: var(--heybo-widget-md-margin);
+    right: var(--heybo-widget-md-margin);
+  }
+
+  .heybo-chatbot-widget:not(.collapsed) {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* Size handled by Framer Motion: var(--heybo-widget-sm-width) x var(--heybo-widget-sm-height), var(--heybo-widget-sm-radius) */
+  }
+}
+
+/* MD: 641px - 1024px - Large Corner Widget */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .heybo-chatbot-widget.collapsed {
+    bottom: var(--heybo-widget-md-margin);
+    right: var(--heybo-widget-md-margin);
+  }
+
+  .heybo-chatbot-widget:not(.collapsed) {
+    bottom: var(--heybo-widget-md-margin);
+    right: var(--heybo-widget-md-margin);
+    /* Size handled by Framer Motion: var(--heybo-widget-md-width) x var(--heybo-widget-md-height), var(--heybo-widget-md-radius) */
+  }
+}
+
+/* LG: 1025px - 1440px - Optimal Dual-Pane Capable */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .heybo-chatbot-widget.collapsed {
+    bottom: var(--heybo-widget-lg-margin);
+    right: var(--heybo-widget-lg-margin);
+  }
+
+  .heybo-chatbot-widget:not(.collapsed) {
+    bottom: var(--heybo-widget-lg-margin);
+    right: var(--heybo-widget-lg-margin);
+    /* Size handled by Framer Motion: var(--heybo-widget-lg-width) x var(--heybo-widget-lg-height), var(--heybo-widget-lg-radius) */
+  }
+}
+
+/* XL: 1441px+ - Premium Experience with Enhanced Coverage */
+@media (min-width: 1441px) {
+  .heybo-chatbot-widget.collapsed {
+    bottom: var(--heybo-widget-xl-margin);
+    right: var(--heybo-widget-xl-margin);
+  }
+
+  .heybo-chatbot-widget:not(.collapsed) {
+    bottom: var(--heybo-widget-xl-margin);
+    right: var(--heybo-widget-xl-margin);
+    /* Size handled by Framer Motion: var(--heybo-widget-xl-width) x var(--heybo-widget-xl-height), var(--heybo-widget-xl-radius) */
+  }
 }
 
 /* Prevent conflicts with parent website styles */

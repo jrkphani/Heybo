@@ -217,7 +217,7 @@ export function UpsellingSuggestions({
   if (isLoading) {
     return (
       <div className={cn("heybo-chatbot-upselling flex flex-col items-center justify-center p-8 space-y-4", className)}>
-        <TrendingUp className="w-8 h-8 heybo-text-primary-600 animate-pulse" />
+        <TrendingUp className="w-8 h-8 text-[var(--heybo-primary-600)] animate-pulse" />
         <div className="text-center">
           <h3 className="font-medium text-gray-900 mb-1">Finding perfect add-ons</h3>
           <p className="text-sm text-gray-600">Checking what goes well with your order...</p>
@@ -237,7 +237,7 @@ export function UpsellingSuggestions({
       {/* Header */}
       <div className="text-center">
         <div className="flex items-center justify-center space-x-2 mb-2">
-          <TrendingUp className="w-6 h-6 heybo-text-primary-600" />
+          <TrendingUp className="w-6 h-6 text-[var(--heybo-primary-600)]" />
           <h3 className="text-lg font-semibold text-gray-900">Complete Your Order</h3>
         </div>
         <p className="text-sm text-gray-600">
@@ -259,20 +259,20 @@ export function UpsellingSuggestions({
               transition={{ delay: index * 0.1 }}
               className={cn(
                 "p-4 border rounded-lg transition-all duration-200 cursor-pointer",
-                isSelected 
-                  ? "border-orange-300 bg-orange-50" 
-                  : "border-gray-200 hover:border-orange-200 hover:shadow-sm"
+                isSelected
+                  ? "border-[var(--heybo-primary-300)] bg-[var(--heybo-primary-50)]"
+                  : "border-gray-200 hover:border-[var(--heybo-primary-200)] hover:shadow-sm"
               )}
               onClick={() => handleItemToggle(item.id)}
             >
               <div className="flex items-start space-x-4">
                 <div className={cn(
                   "w-12 h-12 rounded-lg flex items-center justify-center",
-                  isSelected ? "bg-orange-100" : "bg-gray-100"
+                  isSelected ? "bg-[var(--heybo-primary-100)]" : "bg-gray-100"
                 )}>
                   <IconComponent className={cn(
                     "w-6 h-6",
-                    isSelected ? "text-orange-600" : "text-gray-600"
+                    isSelected ? "text-[var(--heybo-primary-600)]" : "text-gray-600"
                   )} />
                 </div>
                 
@@ -314,7 +314,7 @@ export function UpsellingSuggestions({
                       <div className={cn(
                         "w-6 h-6 rounded-full border-2 flex items-center justify-center mt-2",
                         isSelected
-                          ? "heybo-border-primary-500 heybo-bg-primary-500"
+                          ? "border-[var(--heybo-primary-500)] bg-[var(--heybo-primary-500)]"
                           : "border-gray-300"
                       )}>
                         {isSelected && <Plus className="w-3 h-3 text-white" />}
@@ -335,18 +335,18 @@ export function UpsellingSuggestions({
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="bg-orange-50 border border-orange-200 rounded-lg p-4"
+            className="bg-[var(--heybo-primary-50)] border border-[var(--heybo-primary-200)] rounded-lg p-4"
           >
             <div className="flex items-center justify-between">
               <div>
-                <span className="font-medium text-orange-900">
+                <span className="font-medium text-[var(--heybo-primary-900)]">
                   {selectedItems.length} item{selectedItems.length > 1 ? 's' : ''} selected
                 </span>
-                <div className="text-sm text-orange-700">
+                <div className="text-sm text-[var(--heybo-primary-700)]">
                   Additional: ${(getTotalSelectedPrice() / 100).toFixed(2)}
                 </div>
               </div>
-              <Plus className="w-5 h-5 text-orange-600" />
+              <Plus className="w-5 h-5 text-[var(--heybo-primary-600)]" />
             </div>
           </motion.div>
         )}
@@ -356,7 +356,7 @@ export function UpsellingSuggestions({
       <div className="space-y-3">
         <button
           onClick={handleAddSelected}
-          className="w-full flex items-center justify-center space-x-2 py-3 heybo-bg-primary-600 text-white rounded-lg heybo-hover-bg-primary-700 transition-colors font-medium"
+          className="w-full flex items-center justify-center space-x-2 py-3 bg-[var(--heybo-primary-600)] text-white rounded-lg hover:bg-[var(--heybo-primary-700)] transition-colors font-medium"
         >
           <span>
             {selectedItems.length > 0

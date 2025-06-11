@@ -189,7 +189,7 @@ export function AudioVisualizer({
   return (
     <div
       ref={containerRef}
-      className="h-full w-full cursor-pointer rounded-lg bg-background/80 backdrop-blur"
+      className="heybo-chatbot-audio-visualizer h-full w-full cursor-pointer rounded-lg bg-background/80 backdrop-blur"
       onClick={onClick}
     >
       <canvas ref={canvasRef} className="h-full w-full" />

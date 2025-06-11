@@ -113,7 +113,7 @@ export function OrderTypeSelection({ onOrderTypeSelect, className }: OrderTypeSe
   };
 
   return (
-    <div className={cn("space-y-6", className)}>
+    <div className={cn("heybo-chatbot-order-type space-y-6", className)}>
       {/* Header */}
       <div className="text-center space-y-2">
         <h3 className="text-lg font-semibold text-gray-900">How would you like to order?</h3>
@@ -128,7 +128,7 @@ export function OrderTypeSelection({ onOrderTypeSelect, className }: OrderTypeSe
           <motion.button
             key={orderType.id}
             onClick={() => handleOrderTypeSelect(orderType.id)}
-            className="w-full text-left p-4 bg-white border border-gray-200 rounded-xl hover:border-orange-300 hover:shadow-md transition-all duration-200 group"
+            className="w-full text-left p-4 bg-white border border-gray-200 rounded-xl hover:border-[var(--heybo-primary-300)] hover:shadow-md transition-all duration-200 group"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
@@ -147,7 +147,7 @@ export function OrderTypeSelection({ onOrderTypeSelect, className }: OrderTypeSe
               {/* Content */}
               <div className="flex-1 space-y-2">
                 <div className="flex items-center justify-between">
-                  <h4 className="font-semibold text-gray-900 group-hover:text-orange-600 transition-colors">
+                  <h4 className="font-semibold text-gray-900 group-hover:text-[var(--heybo-primary-600)] transition-colors">
                     {orderType.title}
                   </h4>
                   <span className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">
@@ -171,7 +171,7 @@ export function OrderTypeSelection({ onOrderTypeSelect, className }: OrderTypeSe
               </div>
 
               {/* Arrow */}
-              <div className="text-gray-400 group-hover:text-orange-500 transition-colors">
+              <div className="text-gray-400 group-hover:text-[var(--heybo-primary-500)] transition-colors">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
@@ -207,7 +207,7 @@ export function OrderTypeSelection({ onOrderTypeSelect, className }: OrderTypeSe
       <div className="text-center">
         <button
           onClick={() => handleOrderTypeSelect('faq')}
-          className="inline-flex items-center space-x-2 text-orange-600 hover:text-orange-700 text-sm font-medium"
+          className="inline-flex items-center space-x-2 text-[var(--heybo-primary-600)] hover:text-[var(--heybo-primary-700)] text-sm font-medium"
         >
           <HelpCircle className="w-4 h-4" />
           <span>Need help choosing? View FAQ</span>

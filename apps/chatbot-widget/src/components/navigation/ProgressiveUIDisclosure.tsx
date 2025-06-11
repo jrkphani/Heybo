@@ -91,6 +91,7 @@ export function ProgressiveUIDisclosure({
 
   return (
     <div className={cn(
+      "heybo-chatbot-progressive-ui",
       "heybo-progressive-ui",
       "bg-white border border-gray-200 rounded-xl overflow-hidden",
       "shadow-sm",
@@ -128,9 +129,9 @@ export function ProgressiveUIDisclosure({
                   className={cn(
                     "w-2 h-2 rounded-full transition-colors",
                     level.id === currentLevel.id 
-                      ? "bg-orange-500" 
+                      ? "bg-[var(--heybo-primary-500)]" 
                       : index < levels.findIndex(l => l.id === currentLevel.id)
-                        ? "bg-orange-300"
+                        ? "bg-[var(--heybo-primary-300)]"
                         : "bg-gray-200"
                   )}
                 />
@@ -152,7 +153,7 @@ export function ProgressiveUIDisclosure({
                 )}
                 className={cn(
                   "flex items-center justify-between w-full",
-                  "text-sm text-orange-600 hover:text-orange-700",
+                  "text-sm text-[var(--heybo-primary-600)] hover:text-[var(--heybo-primary-700)]",
                   "transition-colors"
                 )}
               >
@@ -200,7 +201,7 @@ export function ProgressiveUIDisclosure({
 
       {/* Smart Navigation Suggestions */}
       {showAdvancedOptions && (
-        <div className="bg-orange-50 border-t border-orange-200 p-3">
+        <div className="bg-[var(--heybo-primary-50)] border-t border-[var(--heybo-primary-200)] p-3">
           <SmartNavigationSuggestions 
             currentStep={conversation.currentStep}
             completedSteps={conversation.completedSteps}
@@ -221,7 +222,7 @@ function LevelIcon({ level }: { level: ProgressiveUILevel['level'] }) {
     case 'intermediate':
       return <div className={cn(iconClass, "bg-yellow-500 rounded-full")} />;
     case 'complex':
-      return <div className={cn(iconClass, "bg-orange-500 rounded-full")} />;
+      return <div className={cn(iconClass, "bg-[var(--heybo-primary-500)] rounded-full")} />;
     case 'review':
       return <div className={cn(iconClass, "bg-blue-500 rounded-full")} />;
     default:
@@ -273,8 +274,8 @@ function AdvancedOptionsPreview({
         <button
           onClick={onUpgrade}
           className={cn(
-            "bg-orange-500 text-white text-xs py-2 px-3 rounded-lg",
-            "hover:bg-orange-600 transition-colors",
+            "bg-[var(--heybo-primary-500)] text-white text-xs py-2 px-3 rounded-lg",
+            "hover:bg-[var(--heybo-primary-600)] transition-colors",
             "flex items-center gap-1"
           )}
         >
@@ -317,7 +318,7 @@ function SmartNavigationSuggestions({
 
   return (
     <div>
-      <p className="text-xs text-orange-700 font-medium mb-2">
+      <p className="text-xs text-[var(--heybo-primary-700)] font-medium mb-2">
         Smart suggestions based on your progress:
       </p>
       <div className="flex flex-wrap gap-2">
@@ -325,8 +326,8 @@ function SmartNavigationSuggestions({
           <button
             key={index}
             className={cn(
-              "text-xs bg-white text-orange-600 border border-orange-200",
-              "px-2 py-1 rounded-md hover:bg-orange-50 transition-colors"
+              "text-xs bg-white text-[var(--heybo-primary-600)] border border-[var(--heybo-primary-200)]",
+              "px-2 py-1 rounded-md hover:bg-[var(--heybo-primary-50)] transition-colors"
             )}
           >
             {suggestion.text}

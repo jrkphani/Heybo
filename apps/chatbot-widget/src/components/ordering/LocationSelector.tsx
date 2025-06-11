@@ -144,7 +144,7 @@ export function LocationSelector({ locationType, onLocationSelect, className }: 
     return (
       <motion.button
         onClick={() => handleLocationSelect(location)}
-        className="w-full text-left p-4 bg-white border border-gray-200 rounded-xl hover:border-orange-300 hover:shadow-md transition-all duration-200 group"
+        className="heybo-chatbot-location-selector w-full text-left p-4 bg-white border border-gray-200 rounded-xl hover:border-[var(--heybo-primary-300)] hover:shadow-md transition-all duration-200 group"
         whileHover={{ scale: 1.01 }}
         whileTap={{ scale: 0.99 }}
         disabled={operatingStatus.status === 'closed'}
@@ -153,7 +153,7 @@ export function LocationSelector({ locationType, onLocationSelect, className }: 
           <div className="flex-1 space-y-2">
             {/* Location Name & Status */}
             <div className="flex items-center space-x-2">
-              <h4 className="font-semibold text-gray-900 group-hover:text-orange-600 transition-colors">
+              <h4 className="font-semibold text-gray-900 group-hover:text-[var(--heybo-primary-600)] transition-colors">
                 {location.name}
               </h4>
               <span className={cn(
@@ -190,7 +190,7 @@ export function LocationSelector({ locationType, onLocationSelect, className }: 
           </div>
 
           {/* Arrow */}
-          <div className="text-gray-400 group-hover:text-orange-500 transition-colors">
+          <div className="text-gray-400 group-hover:text-[var(--heybo-primary-500)] transition-colors">
             <ChevronRight className="w-5 h-5" />
           </div>
         </div>
@@ -201,7 +201,7 @@ export function LocationSelector({ locationType, onLocationSelect, className }: 
   if (isLoading) {
     return (
       <div className="flex items-center justify-center py-8">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-600"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[var(--heybo-primary-600)]"></div>
       </div>
     );
   }
@@ -217,7 +217,7 @@ export function LocationSelector({ locationType, onLocationSelect, className }: 
           <p className="text-sm text-gray-600 mb-4">{error}</p>
           <button
             onClick={() => loadLocations()}
-            className="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors"
+            className="px-4 py-2 bg-[var(--heybo-primary-600)] text-white rounded-lg hover:bg-[var(--heybo-primary-700)] transition-colors"
           >
             Try Again
           </button>
@@ -230,8 +230,8 @@ export function LocationSelector({ locationType, onLocationSelect, className }: 
     <div className={cn("space-y-4", className)}>
       {/* Header */}
       <div className="text-center space-y-2">
-        <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto">
-          <MapPin className="w-6 h-6 text-orange-600" />
+        <div className="w-12 h-12 bg-[var(--heybo-primary-100)] rounded-full flex items-center justify-center mx-auto">
+          <MapPin className="w-6 h-6 text-[var(--heybo-primary-600)]" />
         </div>
         <h3 className="text-lg font-semibold text-gray-900">
           Choose {locationType === 'station' ? 'MRT Station' : 'Outlet'}
@@ -246,7 +246,7 @@ export function LocationSelector({ locationType, onLocationSelect, className }: 
             <h4 className="font-medium text-gray-900">Nearest to you</h4>
             <button
               onClick={() => setShowAllLocations(true)}
-              className="text-sm text-orange-600 hover:text-orange-700"
+              className="text-sm text-[var(--heybo-primary-600)] hover:text-[var(--heybo-primary-700)]"
             >
               Show all
             </button>
@@ -276,7 +276,7 @@ export function LocationSelector({ locationType, onLocationSelect, className }: 
               {showAllLocations && (
                 <button
                   onClick={() => setShowAllLocations(false)}
-                  className="text-sm text-orange-600 hover:text-orange-700"
+                  className="text-sm text-[var(--heybo-primary-600)] hover:text-[var(--heybo-primary-700)]"
                 >
                   Show nearest
                 </button>

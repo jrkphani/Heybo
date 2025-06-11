@@ -35,21 +35,21 @@ export const RESPONSIVE_LAYOUTS: ResponsiveLayoutConfig[] = [
     gap: '1rem'
   },
 
-  // Extra Large Screens (≥1441px) - Premium Experience
+  // Extra Large Screens (≥1441px) - Premium Experience with Enhanced Coverage
   {
     breakpoint: 'xl',
     mode: 'dual-pane',
     leftPane: {
-      width: '520px',
-      height: '680px',
-      maxWidth: '520px',
-      maxHeight: '680px'
+      width: 'var(--heybo-widget-xl-width)',
+      height: 'var(--heybo-widget-xl-height)',
+      maxWidth: 'var(--heybo-widget-xl-width)',
+      maxHeight: 'var(--heybo-widget-xl-height)'
     },
     rightPane: {
-      width: '320px',
-      height: '680px',
-      maxWidth: '320px',
-      maxHeight: '680px'
+      width: '480px',
+      height: 'var(--heybo-widget-xl-height)',
+      maxWidth: '480px',
+      maxHeight: 'var(--heybo-widget-xl-height)'
     },
     gap: '1rem'
   },
@@ -59,16 +59,16 @@ export const RESPONSIVE_LAYOUTS: ResponsiveLayoutConfig[] = [
     breakpoint: 'lg',
     mode: 'dual-pane',
     leftPane: {
-      width: '480px',
-      height: '640px',
-      maxWidth: '480px',
-      maxHeight: '640px'
+      width: 'var(--heybo-widget-lg-width)',
+      height: 'var(--heybo-widget-lg-height)',
+      maxWidth: 'var(--heybo-widget-lg-width)',
+      maxHeight: 'var(--heybo-widget-lg-height)'
     },
     rightPane: {
       width: '300px',
-      height: '640px',
+      height: 'var(--heybo-widget-lg-height)',
       maxWidth: '300px',
-      maxHeight: '640px'
+      maxHeight: 'var(--heybo-widget-lg-height)'
     },
     gap: '0.75rem'
   },
@@ -78,10 +78,10 @@ export const RESPONSIVE_LAYOUTS: ResponsiveLayoutConfig[] = [
     breakpoint: 'md',
     mode: 'single-pane',
     leftPane: {
-      width: '420px',
-      height: '600px',
-      maxWidth: '420px',
-      maxHeight: '600px'
+      width: 'var(--heybo-widget-md-width)',
+      height: 'var(--heybo-widget-md-height)',
+      maxWidth: 'var(--heybo-widget-md-width)',
+      maxHeight: 'var(--heybo-widget-md-height)'
     },
     rightPane: {
       width: '0',
@@ -97,15 +97,15 @@ export const RESPONSIVE_LAYOUTS: ResponsiveLayoutConfig[] = [
     breakpoint: 'sm',
     mode: 'mobile-stack',
     leftPane: {
-      width: '100vw',
-      height: '100vh',
-      maxWidth: '100vw',
-      maxHeight: '100vh'
+      width: 'var(--heybo-widget-sm-width)',
+      height: 'var(--heybo-widget-sm-height)',
+      maxWidth: 'var(--heybo-widget-sm-width)',
+      maxHeight: 'var(--heybo-widget-sm-height)'
     },
     rightPane: {
-      width: '100vw',
+      width: 'var(--heybo-widget-sm-width)',
       height: '60vh',
-      maxWidth: '100vw',
+      maxWidth: 'var(--heybo-widget-sm-width)',
       maxHeight: '60vh'
     },
     gap: '0'

@@ -100,7 +100,7 @@ export function OrderSummaryPane({ className }: OrderSummaryPaneProps) {
   };
 
   return (
-    <div className={cn("h-full flex flex-col", className)}>
+    <div className={cn("heybo-chatbot-order-summary h-full flex flex-col", className)}>
       {/* Bowl Details Section */}
       <CollapsibleSection title="Bowl Details" isOpen={true}>
         <div className="space-y-3">
@@ -148,7 +148,7 @@ export function OrderSummaryPane({ className }: OrderSummaryPaneProps) {
               <span className="text-gray-600">Inclusive of GST</span>
               <span className="text-gray-900">{formatPrice(gst)}</span>
             </div>
-            <div className="flex justify-between font-semibold text-orange-600 border-t border-gray-200 pt-2">
+            <div className="flex justify-between font-semibold text-[var(--heybo-primary-600)] border-t border-gray-200 pt-2">
               <span>Total Cost</span>
               <span>{formatPrice(total)}</span>
             </div>
@@ -162,7 +162,7 @@ export function OrderSummaryPane({ className }: OrderSummaryPaneProps) {
           {/* Location */}
           {selectedLocation && (
             <div className="flex items-start space-x-3">
-              <MapPin className="w-4 h-4 text-orange-600 mt-0.5 flex-shrink-0" />
+              <MapPin className="w-4 h-4 text-[var(--heybo-primary-600)] mt-0.5 flex-shrink-0" />
               <div className="flex-1">
                 <div className="font-medium text-gray-900">{selectedLocation.name}</div>
                 <div className="text-sm text-gray-600">{selectedLocation.address}</div>
@@ -172,7 +172,7 @@ export function OrderSummaryPane({ className }: OrderSummaryPaneProps) {
 
           {/* Pickup Time */}
           <div className="flex items-start space-x-3">
-            <Clock className="w-4 h-4 text-orange-600 mt-0.5 flex-shrink-0" />
+            <Clock className="w-4 h-4 text-[var(--heybo-primary-600)] mt-0.5 flex-shrink-0" />
             <div className="flex-1">
               <div className="font-medium text-gray-900">Today at 12:30 PM</div>
               <div className="text-sm text-gray-600">Your order will be ready for pickup</div>
